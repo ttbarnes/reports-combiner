@@ -1,28 +1,35 @@
-.App {
+body {
   text-align: center;
+  font-family: monospace, sans-serif, Helvetica;
+  padding: 1em;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+h1 {
+  display: inline-flex;
+  background: #000;
+  color: #FFF;
+  padding: .2em;
+  margin: 0 0 2em;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+table {
+  width: 100%;
+  border-spacing: 0;
 }
 
-.App-title {
-  font-size: 1.5em;
+th,
+td {
+  padding: .25em;
+  border: solid 1px #CCC;
 }
 
-.App-intro {
-  font-size: large;
+
+::selection {
+  color: #FFF;
+  background: #000;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+::-moz-selection {
+  color: #FFF;
+  background: #000;
 }
