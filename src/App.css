@@ -1,15 +1,24 @@
 body {
   text-align: center;
   font-family: monospace, sans-serif, Helvetica;
-  padding: 1em;
+  padding: 0 1em 1em;
+}
+
+h1,h2,h3,h4 {
+  background: #000;
+  color: #FFF;
+  padding: .3em;
+  font-weight: normal;
 }
 
 h1 {
   display: inline-flex;
-  background: #000;
-  color: #FFF;
-  padding: .2em;
   margin: 0 0 2em;
+}
+
+h4 {
+  clear: both;
+  float: left;
 }
 
 table {
@@ -32,4 +41,21 @@ td {
 ::-moz-selection {
   color: #FFF;
   background: #000;
+}
+
+.binance,
+.bitfinex {
+  display: inline-flex;
+  padding: .25em .5em;
+  font-size: .8em;
+}
+
+.binance {
+  background: #BADA55;
+  color: #000;
+}
+
+.bitfinex {
+  background: darkgreen;
+  color: #FFF;
 }
