@@ -24,11 +24,13 @@ h4 {
 table {
   width: 100%;
   border-spacing: 0;
+  border: solid 1px #CCC;
 }
 
 th,
 td {
   padding: .25em;
+  font-size: .75em;
   border: solid 1px #CCC;
 }
 
@@ -64,5 +66,15 @@ th {
 
 .gdax {
   background: #444;
+  color: #FFF;
+}
+
+.exchange-tag.buy-or-deposit {
+  background: #BADA55;
+  color: #000;
+}
+
+.exchange-tag.sell-or-withdraw {
+  background: darkred;
   color: #FFF;
 }

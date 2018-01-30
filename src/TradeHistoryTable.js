@@ -10,12 +10,13 @@ const sortedMockData = mockDataAvailable && MOCK_DATA.rows.sort((a, b) =>
 
 class TradeHistoryTable extends Component {
 
-  cellIsDate(cellIndex) {
-    if (MOCK_DATA.headings[cellIndex] === 'Date') {
-      return true;
-    }
-    return false;
-  }
+  isCellDate = (cellIndex) => MOCK_DATA.headings[cellIndex] === 'Date';
+
+  isCellBuy = (str) => str.match(/BUY|deposit\b/ig);
+
+  isCellSell = (str) => str.match(/SELL|withdrawal\b/ig);
+
+  isCellExchange = (str) => str.match(/binance|bitfinex|gdax\b/ig);
 
   render() {
     if (!mockDataAvailable) return <p>No data :(</p>
@@ -41,24 +42,39 @@ class TradeHistoryTable extends Component {
                 {row.map((c, cellIndex) => {
                   const exchangeName = row[row.length - 1]; // exchange name is always last field
                   const tdKey = `${exchangeName}-${c}-${cellIndex}`;
+
+                  if (this.isCellBuy(c)) {
+                    return (
+                      <td key={tdKey}>
+                        <span className="exchange-tag buy-or-deposit">{c}</span>
+                      </td>
+                    );
+                  }
+
+                  if (this.isCellSell(c)) {
+                    return (
+                      <td key={tdKey}>
+                        <span className="exchange-tag sell-or-withdraw">{c}</span>
+                      </td>
+                    );
+                  }
+
+                  if (this.isCellExchange(c)) {
+                    return (
+                      <td key={tdKey}>
+                        <span className={`exchange-tag ${c}`}>{c}</span>
+                      </td>
+                    );
+                  }
+
                   return (
                     <td key={tdKey}>
-                      {c === 'binance' && <span className="exchange-tag binance">{c}</span>}
-                      {c === 'bitfinex' && <span className="exchange-tag bitfinex">{c}</span>}
-                      {c === 'gdax' && <span className="exchange-tag gdax">{c}</span>}
-
-                      {c !== 'binance' &&
-                        c !== 'bitfinex' &&
-                        c !== 'gdax' && (
-                          <div>
-                            {this.cellIsDate(cellIndex) ?
-                              moment(c).format('Do MMM YYYY @ HH:mma')
-                            : c}
-                          </div>
-                        )
-                      }
+                      {this.isCellDate(cellIndex) ?
+                        moment(c).format('Do MMM YYYY @ HH:mma')
+                      : c}
                     </td>
                   );
+
                 })}
               </tr>
             )}
