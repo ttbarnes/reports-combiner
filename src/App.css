@@ -32,6 +32,9 @@ td {
   border: solid 1px #CCC;
 }
 
+th {
+  font-weight: bold;
+}
 
 ::selection {
   color: #FFF;
