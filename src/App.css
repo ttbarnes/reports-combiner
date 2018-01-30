@@ -43,8 +43,7 @@ td {
   background: #000;
 }
 
-.binance,
-.bitfinex {
+.exchange-tag {
   display: inline-flex;
   padding: .25em .5em;
   font-size: .8em;
@@ -57,5 +56,10 @@ td {
 
 .bitfinex {
   background: darkgreen;
+  color: #FFF;
+}
+
+.gdax {
+  background: #444;
   color: #FFF;
 }

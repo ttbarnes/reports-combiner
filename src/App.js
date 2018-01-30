@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import MOCK_DATA from './mockData';
 import './App.css';
 
-const sortedMockData = MOCK_DATA.rows.sort((a, b) =>
+const mockDataAvailable = MOCK_DATA && MOCK_DATA.rows && MOCK_DATA.rows.length;
+
+const sortedMockData = mockDataAvailable && MOCK_DATA.rows.sort((a, b) =>
   new Date(a[0]).getTime() - new Date(b[0]).getTime()
 );
 
 class App extends Component {
   render() {
+    if (!mockDataAvailable) return <p>No data :(</p>
     return (
       <div className="App">
         <header>
@@ -30,13 +33,23 @@ class App extends Component {
           <tbody>
             {sortedMockData.map((row, i) =>
               <tr key={row + i}>
-                {row.map((c) =>
-                  <td key={c + i}>
-                    {c === 'binance' && <span className="binance">{c}</span>}
-                    {c === 'bitfinex' && <span className="bitfinex">{c}</span>}
-                    {c !== 'binance' && c !== 'bitfinex' && c}
-                  </td>
-                )}
+                {row.map((c, cellIndex) => {
+                  const exchangeName = row[row.length - 1]; // exchange name is always last field
+                  const tdKey = `${exchangeName}-${c}-${cellIndex}`;
+                  return (
+                    <td key={tdKey}>
+                      {c === 'binance' && <span className="exchange-tag binance">{c}</span>}
+                      {c === 'bitfinex' && <span className="exchange-tag bitfinex">{c}</span>}
+                      {c === 'gdax' && <span className="exchange-tag gdax">{c}</span>}
+
+                      {c !== 'binance' &&
+                       c !== 'bitfinex' &&
+                       c !== 'gdax' &&
+                       c
+                      }
+                    </td>
+                  );
+                })}
               </tr>
             )}
           </tbody>
