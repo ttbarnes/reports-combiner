@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import moment from 'moment';
 import {
   RadialChart,
   DiscreteColorLegend
@@ -27,13 +26,7 @@ const DONUT_DATA = [
 const TEMP_LEGEND = [ 'exchange A', 'exchange B', 'exchange C'];
 
 class TradeHistoryChart extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { value: null };
-  }
-
   render() {
-    const { value } = this.state;
 
     return (
       <div className="row">
@@ -50,9 +43,7 @@ class TradeHistoryChart extends Component {
               data={DONUT_DATA}
               width={300}
               height={350}
-            >
-              {/* value && <Hint value={value} /> */}
-            </RadialChart>
+            />
           </div>
 
           <div className="legend-container">

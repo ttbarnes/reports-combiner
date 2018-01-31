@@ -1,13 +1,30 @@
 import React, { Component } from 'react';
 import TradeHistoryTable from './TradeHistoryTable';
 import TradeHistoryChart from './TradeHistoryChart';
+import { API_ROOT } from './constants';
 import './App.css';
 
 class App extends Component {
+
+  getCsv = () => {
+    fetch(`${API_ROOT}/download/combined-history`, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then((res => res.json()))
+    .then((data) =>
+      window.open(data.link, '_blank')
+    );
+  }
+
   render() {
 
     return (
       <div className="App">
+
         <header>
           <h1>Reports Combiner</h1>
         </header>
@@ -20,12 +37,9 @@ class App extends Component {
           <TradeHistoryChart />
         </div>
 
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-
+        <button style={{ float: 'left' }} onClick={this.getCsv}>
+          Download test CV
+        </button>
 
 
       </div>
