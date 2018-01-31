@@ -78,3 +78,22 @@ th {
   background: darkred;
   color: #FFF;
 }
+
+.chart-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.legend-container {
+  padding-top: 2em;
+  padding-left: 4em;
+}
+
+.row {
+  clear: both;
+}
+
+.row.large {
+  margin-bottom: 10em;
+}

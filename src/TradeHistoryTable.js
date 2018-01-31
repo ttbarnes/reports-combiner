@@ -22,7 +22,7 @@ class TradeHistoryTable extends Component {
     if (!mockDataAvailable) return <p>No data :(</p>
 
     return (
-      <div>
+      <div className="row">
         <h4>All Trade History</h4>
         <table>
           <thead>
