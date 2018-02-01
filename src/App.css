@@ -88,6 +88,7 @@ th {
 .legend-container {
   padding-top: 2em;
   padding-left: 4em;
+  text-align: left;
 }
 
 .row {
@@ -106,4 +107,11 @@ button,
   appearance: none;
   cursor: pointer;
   margin-bottom: 1em;
+}
+
+ul,
+ol,
+dl {
+  margin: 0;
+  padding: 0;
 }

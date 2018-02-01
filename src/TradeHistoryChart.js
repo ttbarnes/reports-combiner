@@ -1,32 +1,21 @@
 import React, { Component } from 'react';
-import {
-  RadialChart,
-  DiscreteColorLegend
-} from 'react-vis';
+import { RadialChart } from 'react-vis';
 import '../node_modules/react-vis/dist/style.css';
-
-const DONUT_DATA = [
-  {
-    label: 'Exchange A',
-    name: 'Exchange A',
-    angle: 2
-  },
-  {
-    label: 'Exchange B',
-    name: 'Exchange B',
-    angle: 6
-  },
-  {
-    label: 'Exchange C',
-    name: 'Exchange C',
-    angle: 2
-  }
-]
-
-const TEMP_LEGEND = [ 'exchange A', 'exchange B', 'exchange C'];
+import MOCK_DATA from './mockData';
+import { getPercentagesObjFromArrayIndex } from './utils';
 
 class TradeHistoryChart extends Component {
+
   render() {
+
+    const exchanges = getPercentagesObjFromArrayIndex(MOCK_DATA.rows, 'last');
+
+    // rename required field names for chrat
+    exchanges.map((e) => {
+      e.angle = e.percentage;
+      e.label = e.name;
+      return e;
+    });
 
     return (
       <div className="row">
@@ -40,16 +29,20 @@ class TradeHistoryChart extends Component {
               innerRadius={0}
               radius={150}
               getAngle={d => d.angle}
-              data={DONUT_DATA}
+              data={exchanges}
               width={300}
               height={350}
+              showLabels
             />
           </div>
 
           <div className="legend-container">
-            <DiscreteColorLegend
-              items={TEMP_LEGEND}
-            />
+            {exchanges.map((i) =>
+              <li key={i.name}>
+                {i.name} {i.percentage.toString().substr(0, 2)}{'%'}
+              </li>
+            )}
+
           </div>
 
         </div>
