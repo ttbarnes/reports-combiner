@@ -16,9 +16,18 @@ h1 {
   margin: 0 0 2em;
 }
 
+h1 a {
+  color: #FFF;
+  text-decoration: none;
+}
+
+p a {
+  color: #000;
+}
+
 h4 {
-  clear: both;
   float: left;
+  clear: both;
 }
 
 table {
@@ -114,4 +123,41 @@ ol,
 dl {
   margin: 0;
   padding: 0;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.landing .hero-intro {
+  padding: 0 0 8em 0;
+}
+
+.landing .hero-intro h2 {
+  background: none;
+  color: #000;
+  float: none;
+  display: inline-block;
+  letter-spacing: 2px;
+  font-size: 3em;
+  margin-top: 0.5em;
+}
+
+.landing .exhanges-list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  max-width: 1100px;
+  margin: 0 auto 5em auto;
+}
+
+.landing .exhanges-list div {
+  max-width: 300px;
+  padding: 0 2em;
+}
+
+.landing .exhanges-list img {
+  width: 100%;
+  max-width: 100%;
 }

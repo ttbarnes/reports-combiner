@@ -1,48 +1,26 @@
 import React, { Component } from 'react';
-import TradeHistoryTable from './TradeHistoryTable';
-import TradeHistoryChart from './TradeHistoryChart';
-import { API_ROOT } from './constants';
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import Header from './Header';
+import Landing from './Landing';
+import Summary from './Summary';
 import './App.css';
 
 class App extends Component {
-
-  getCsv = () => {
-    fetch(`${API_ROOT}/download/combined-history`, {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-    })
-    .then((res => res.json()))
-    .then((data) =>
-      window.open(data.link, '_blank')
-    );
-  }
-
   render() {
-
     return (
-      <div className="App">
+      <BrowserRouter>
+        <div className="App">
 
-        <header>
-          <h1>Reports Combiner</h1>
-        </header>
+          <Header />
 
-        <div className="row large">
-          <TradeHistoryTable />
+          <Switch>
+            <Route exact path="/" component={Landing} />
+            <Route exact path="/summary" component={Summary} />
+          </Switch>
+
         </div>
 
-        <div className="row large">
-          <TradeHistoryChart />
-        </div>
-
-        <button style={{ float: 'left' }} onClick={this.getCsv}>
-          Download test CV
-        </button>
-
-
-      </div>
+      </BrowserRouter>
     );
   }
 }

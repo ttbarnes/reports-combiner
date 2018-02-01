@@ -1,0 +1,44 @@
+import React, { Component } from 'react';
+import TradeHistoryTable from './TradeHistoryTable';
+import TradeHistoryChart from './TradeHistoryChart';
+import { API_ROOT } from './constants';
+
+class Summary extends Component {
+
+  getCsv = () => {
+    fetch(`${API_ROOT}/download/combined-history`, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+      .then((res => res.json()))
+      .then((data) =>
+        window.open(data.link, '_blank')
+      );
+  }
+
+  render() {
+
+    return (
+      <div>
+
+        <div className="row large">
+          <TradeHistoryTable />
+        </div>
+
+        <div className="row large">
+          <TradeHistoryChart />
+        </div>
+
+        <button style={{ float: 'left' }} onClick={this.getCsv}>
+          Download test CV
+        </button>
+
+      </div>
+    );
+  }
+}
+
+export default Summary;
