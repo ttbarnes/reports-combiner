@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import moment from 'moment';
-import MOCK_DATA from './mockData';
+import MOCK_DATA from './mock-data';
 
 const mockDataAvailable = MOCK_DATA && MOCK_DATA.rows && MOCK_DATA.rows.length;
 

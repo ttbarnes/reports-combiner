@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { RadialChart } from 'react-vis';
 import '../node_modules/react-vis/dist/style.css';
-import MOCK_DATA from './mockData';
+import MOCK_DATA from './mock-data';
 import { getPercentagesObjFromArrayIndex } from './utils';
 
 class TradeHistoryChart extends Component {
