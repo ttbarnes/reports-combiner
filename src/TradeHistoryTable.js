@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import MOCK_DATA from './mock-data';
 
+const MOMENT_DATE_FORMAT = 'Do MMM YYYY @ HH:mma';
+
 const mockDataAvailable = MOCK_DATA && MOCK_DATA.rows && MOCK_DATA.rows.length;
 
 const sortedMockData = mockDataAvailable && MOCK_DATA.rows.sort((a, b) =>
@@ -16,7 +18,13 @@ class TradeHistoryTable extends Component {
 
   isCellSell = (str) => str.match(/SELL|withdrawal\b/ig);
 
-  isCellExchange = (str) => str.match(/binance|bitfinex|gdax\b/ig);
+  isCellExchange = (str) => str.match(/binance|bitfinex|gdax|cryptopia\b/ig);
+
+  // cryptopia provides dates with this formatting: DD/MM/YYYY HH:mm:ssa
+  // we want: Do MMM YYYY @ HH:mma
+  handleCryptopiaDateFormat(date) {
+    return moment(date, 'DD/MM/YYYY HH:mm:ssa').format(MOMENT_DATE_FORMAT)
+  }
 
   render() {
     if (!mockDataAvailable) return <p>No data :(</p>
@@ -70,7 +78,12 @@ class TradeHistoryTable extends Component {
                   return (
                     <td key={tdKey}>
                       {this.isCellDate(cellIndex) ?
-                        moment(c).format('Do MMM YYYY @ HH:mma')
+                        <div>
+                          {exchangeName === 'cryptopia' ?
+                            this.handleCryptopiaDateFormat(c) : 
+                            moment(c).format(MOMENT_DATE_FORMAT)
+                          }
+                        </div>
                       : c}
                     </td>
                   );

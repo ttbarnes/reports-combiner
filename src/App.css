@@ -47,6 +47,10 @@ th {
   font-weight: bold;
 }
 
+tr:nth-child(even) td {
+  background: #F1F1F1;
+}
+
 ::selection {
   color: #FFF;
   background: #000;
@@ -75,6 +79,11 @@ th {
 
 .gdax {
   background: #444;
+  color: #FFF;
+}
+
+.cryptopia {
+  background: #556371;
   color: #FFF;
 }
 
