@@ -160,6 +160,13 @@ button,
   margin-bottom: 1em;
   font-size: 1em;
   transition: all .3s ease;
+  font-family: monospace, sans-serif, Helvetica;
+}
+
+button.button-link {
+  background: none;
+  padding: 0;
+  border: 0 none;
 }
 
 button.block,
@@ -200,7 +207,9 @@ header .nav li {
   display: inline-block;
 }
 
-header .nav li a {
+header .nav li a,
+header .nav li button,
+header .nav li .button {
   display: block;
   color: #000;
   text-decoration: none;

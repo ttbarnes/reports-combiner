@@ -1,8 +1,19 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { authCheck, logout } from './actions';
 
-export class Header extends PureComponent {
+export class Header extends Component {
+  componentWillMount() {
+    this.props.doAuthCheck();
+  }
+
   render() {
+    const {
+      isAuth,
+      doLogout
+    } = this.props;
+
     return (
       <header>
         <div className="logo">
@@ -11,14 +22,33 @@ export class Header extends PureComponent {
           </h1>
         </div>
         <div className="nav">
-          <ul>
-            <li><Link to="/login">Login</Link></li>
-            <li><Link to="/login">Sign up</Link></li>
-          </ul>
+          {isAuth ?
+            <ul>
+              <li><Link to="/summary">Summary</Link></li>
+              <li><button className="button-link" onClick={doLogout}>Logout</button></li>
+            </ul>
+            :
+            <ul>
+              <li><Link to="/login">Login</Link></li>
+              <li><Link to="/login">Sign up</Link></li>
+            </ul>
+          }
         </div>
       </header>
     );
   }
 }
 
-export default Header;
+const mapStateToProps = (state) => ({
+  isAuth: state.user.isAuth
+});
+
+const mapDispatchToProps = {
+  doAuthCheck: () => authCheck(),
+  doLogout: () => logout()
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Header);

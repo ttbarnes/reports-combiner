@@ -1,0 +1,14 @@
+// global
+export const API_ROOT = 'http://localhost:8080/api';
+
+// actions
+export const USER_SET_AUTH = 'USER_SET_AUTH';
+export const USER_SIGNUP_SUCCESS = 'USER_SIGNUP_SUCCESS';
+export const DESTORY_USER_SIGNUP_SUCCESS = 'DESTORY_USER_SIGNUP_SUCCESS';
+
+export const USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS';
+export const USER_LOGOUT_SUCCESS = 'USER_LOGOUT_SUCCESS';
+export const USER_AUTH_ERROR = 'USER_AUTH_ERROR';
+export const USER_DATA_SUCCESS = 'USER_DATA_SUCCESS';
+export const USER_DATA_ERROR = 'USER_DATA_ERROR';
+

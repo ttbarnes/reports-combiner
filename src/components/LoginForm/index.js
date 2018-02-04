@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-// import { userLogin } from '../../actions';
+import { userLogin } from '../../actions';
 
 class LoginForm extends Component {
   render() {
@@ -67,7 +67,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-  // onSubmitForm: () => userLogin()
+  onSubmitForm: () => userLogin()
 }
 
 export default connect(
