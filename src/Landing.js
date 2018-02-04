@@ -9,7 +9,6 @@ export class Landing extends PureComponent {
     return (
       <div className="landing align-center">
 
-
         <div className="hero-intro">
           <h2>Merge all the things</h2>
         </div>
@@ -24,6 +23,9 @@ export class Landing extends PureComponent {
           </div>
           <div>
             <img src={GdaxLogo} alt="GDAX" />
+          </div>
+          <div>
+            <p>Cryptopia</p>
           </div>
         </div>
 

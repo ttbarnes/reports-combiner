@@ -1,3 +1,8 @@
+* {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
 body {
   text-align: center;
   font-family: monospace, sans-serif, Helvetica;
@@ -67,6 +72,10 @@ tr:nth-child(even) td {
   font-size: .8em;
 }
 
+.main-container {
+  padding-top: 5em;
+}
+
 .binance {
   background: #BADA55;
   color: #000;
@@ -117,14 +126,52 @@ tr:nth-child(even) td {
   margin-bottom: 10em;
 }
 
+input {
+  width: 100%;
+  padding: .5em;
+  font-size: 1em;
+  border: solid 2px #ACACAC;
+  font-family: monospace, sans-serif, Helvetica;
+  transition: all .3s ease;
+}
+
+input:focus {
+  border: solid 2px #000;
+  outline: 0 none;
+}
+
+form > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1em;
+  max-width: 200px;
+}
+
 button,
 .button {
   background: #BADA55;
+  border:solid 2px #BADA55;
   color: #000;
   padding: 1em;
   appearance: none;
   cursor: pointer;
   margin-bottom: 1em;
+  font-size: 1em;
+  transition: all .3s ease;
+}
+
+button.block,
+.button.block {
+  display: block;
+  width: 100%;
+}
+
+button:focus,
+.button:focus {
+  border-color:#000;
+  outline: 0 none;
 }
 
 ul,
@@ -136,6 +183,28 @@ dl {
 
 .align-center {
   text-align: center;
+}
+
+header h1 {
+  margin: 0;
+}
+
+header .nav {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+header .nav li {
+  list-style-type: none;
+  display: inline-block;
+}
+
+header .nav li a {
+  display: block;
+  color: #000;
+  text-decoration: none;
+  padding: .5em .8em;
 }
 
 .landing .hero-intro {
@@ -169,4 +238,13 @@ dl {
 .landing .exhanges-list img {
   width: 100%;
   max-width: 100%;
+}
+
+.login-form input {
+  text-align: center;
+}
+
+.login-container h2 {
+  background: none;
+  color: #000;
 }
