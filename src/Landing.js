@@ -31,7 +31,6 @@ export class Landing extends PureComponent {
 
         <p><Link to="/summary" className="button">Go to summary</Link></p>
 
-
       </div>
     );
   }

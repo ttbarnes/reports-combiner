@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import { Redirect } from 'react-router-dom'
 import { userLogin } from '../../actions';
 
 class LoginForm extends Component {
@@ -11,7 +12,12 @@ class LoginForm extends Component {
     } = this.props;
 
     if (isAuth) {
-      return null;
+      return (
+          <Redirect to={{
+          pathname: '/summary',
+          state: { from: this.props.location }
+        }} />
+      );
     }
     return (
       <div className="login-form">
