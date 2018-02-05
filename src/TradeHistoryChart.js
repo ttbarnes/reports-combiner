@@ -19,7 +19,7 @@ class TradeHistoryChart extends Component {
 
     return (
       <div className="row">
-        <h4>WIP Chart</h4>
+        <h4 className="heading-with-bg">WIP Chart</h4>
 
         <div className="chart-container">
 

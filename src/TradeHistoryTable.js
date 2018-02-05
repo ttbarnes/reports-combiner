@@ -31,7 +31,7 @@ class TradeHistoryTable extends Component {
 
     return (
       <div className="row">
-        <h4>All Trade History</h4>
+        <h4 className="heading-with-bg">All Trade History</h4>
         <table>
           <thead>
             <tr>

@@ -17,13 +17,14 @@ export class Header extends Component {
     return (
       <header>
         <div className="logo">
-          <h1>
+          <h1 className="heading-with-bg">
             <Link to="/">Reports Combiner</Link>
           </h1>
         </div>
         <div className="nav">
           {isAuth ?
             <ul>
+              <li><Link to="/dashboard">Dashboard</Link></li>
               <li><Link to="/summary">Summary</Link></li>
               <li><button className="button-link" onClick={doLogout}>Logout</button></li>
             </ul>

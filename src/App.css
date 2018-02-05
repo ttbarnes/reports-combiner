@@ -10,10 +10,13 @@ body {
 }
 
 h1,h2,h3,h4 {
+  font-weight: normal;
+}
+
+.heading-with-bg {
   background: #000;
   color: #FFF;
   padding: .3em;
-  font-weight: normal;
 }
 
 h1 {

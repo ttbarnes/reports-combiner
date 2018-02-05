@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import Header from './Header';
 import Landing from './Landing';
 import Login from './Login';
+import Dashboard from './Dashboard';
 import Summary from './Summary';
 import About from './About';
 import './App.css';
@@ -26,7 +27,7 @@ const UnAuthRoute = ({ component: Component, isAuth, ...rest }) => (
   <Route {...rest} render={props => (
     isAuth ? (
       <Redirect to={{
-          pathname: '/summary',
+          pathname: '/dashboard',
           state: { from: props.location }
         }} />
     ) : (
@@ -48,6 +49,7 @@ class Router extends Component {
             <Switch>
               <UnAuthRoute exact path="/" component={Landing} isAuth={isAuth} />
               <Route exact path="/login" component={Login} />
+              <PrivateRoute path="/dashboard" component={Dashboard} isAuth={isAuth} />
               <PrivateRoute path="/summary" component={Summary} isAuth={isAuth} />
               <Route path="/about" component={About} />
             </Switch>

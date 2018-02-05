@@ -5,7 +5,7 @@ export class About extends PureComponent {
     return (
       <div className="align-center">
 
-        <p>About</p>
+        <h2>About</h2>
         <p><span role="img" aria-label="Smiley face">🙂</span></p>
 
       </div>
