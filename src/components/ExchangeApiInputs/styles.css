@@ -1,0 +1,51 @@
+@media(min-width: 768px) {
+ .exchange-api-inputs {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  } 
+}
+
+.exchange-input-box-container {
+  padding: 1em;
+}
+
+.exchange-input-box-container h3 {
+  display: inline-flex;
+}
+
+.exchange-input-box-container-inner {
+  background: #F1F1F1;
+  padding: 1em;
+  position: relative;
+  min-height: 256px;
+  padding-bottom: 0;
+}
+
+@media(min-width: 768px) {
+  .exchange-input-box-container {
+    width: 50%;
+    max-width: 50%;
+  }
+}
+
+.exchange-input-box-promise-state-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(17, 17, 17, 0.85);
+  color: #FFF;
+  text-align: center;
+  padding-top: 2em;
+}
+
+.exchange-input-box-promise-state-overlay .loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: auto;
+  right: 0;
+  bottom: 0;
+}

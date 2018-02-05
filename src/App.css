@@ -4,12 +4,12 @@
   -moz-box-sizing: border-box;
 }
 body {
-  text-align: center;
   font-family: monospace, sans-serif, Helvetica;
   padding: 0 1em 1em;
 }
 
 h1,h2,h3,h4 {
+  margin-top: 0;
   font-weight: normal;
 }
 
@@ -49,6 +49,7 @@ td {
   padding: .25em;
   font-size: .75em;
   border: solid 1px #CCC;
+  text-align: center;
 }
 
 th {
@@ -146,10 +147,17 @@ input:focus {
 form > div {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
   margin: 0 auto 1em;
-  max-width: 200px;
+  width: 100%;
+}
+
+form > div:last-child {
+  margin-bottom: 0;
+}
+
+label {
+  padding-bottom: .25em;
 }
 
 button,
@@ -184,6 +192,16 @@ button:focus,
   outline: 0 none;
 }
 
+button.small,
+.button.small {
+  font-size: .8em;
+  padding: .5em;
+}
+
+button[disabled] {
+  opacity: .4;
+}
+
 ul,
 ol,
 dl {
@@ -192,6 +210,10 @@ dl {
 }
 
 .align-center {
+  text-align: center;
+}
+
+header {
   text-align: center;
 }
 
@@ -250,6 +272,11 @@ header .nav li .button {
 .landing .exhanges-list img {
   width: 100%;
   max-width: 100%;
+}
+
+.login-form > div {
+  max-width: 200px;
+  align-items: center;
 }
 
 .login-form input {
