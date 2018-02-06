@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import Loading from '../Loading';
 import { POSSIBLE_EXCHANGES } from '../../constants';
 import './styles.css';
 
@@ -92,16 +92,13 @@ class ExchangeApiInputs extends Component {
               {(exchangePromise && exchangePromise.exchange === e.exchange) &&
                 <div>
                   {exchangePromise.isLoading &&
-                    <div className="exchange-input-box-promise-state-overlay">
-                      <p style={{ opacity: '.8' }}><small>Connecting antimatter particles</small></p>
-                      <div className="loader" />
-                    </div>
+                    <Loading theme="dark" />
                   }
                   {exchangePromise.hasError &&
-                    <div className="exchange-input-box-promise-state-overlay"><p>Error :(</p></div>
+                    <div className="promise-loading-cover"><p>Error :(</p></div>
                   }
                   {exchangePromise.isSuccess &&
-                  <div className="exchange-input-box-promise-state-overlay"><p>Success! <span role="img" aria-label="success">🚀</span></p></div>
+                    <div className="promise-loading-cover"><p>Success! <span role="img" aria-label="success">🚀</span></p></div>
                   }
                 </div>
               }
@@ -163,13 +160,4 @@ class ExchangeApiInputs extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    userExchanges: state.user.profile.keys
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  null
-)(ExchangeApiInputs);
+export default ExchangeApiInputs;

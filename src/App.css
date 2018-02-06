@@ -276,20 +276,6 @@ header .nav li .button {
   max-width: 100%;
 }
 
-.login-form > div {
-  max-width: 200px;
-  align-items: center;
-}
-
-.login-form input {
-  text-align: center;
-}
-
-.login-container h2 {
-  background: none;
-  color: #000;
-}
-
 .form-error {
   color: #FFF;
   font-weight: 300;
@@ -297,4 +283,25 @@ header .nav li .button {
   padding: .5em;
   width: 100%;
   font-size: .9em;
+}
+
+
+
+.promise-loading-cover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  left: 0;
+  height: 100%;
+  z-index: 3;
+  background: #FFF;
+  color: #000;
+}
+
+.promise-loading-cover.dark {
+  background: #000;
+  color: #FFF;
 }

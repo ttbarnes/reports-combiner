@@ -10,17 +10,24 @@ export class Dashboard extends PureComponent {
   }
 
   render() {
-    const { exchangePromise } = this.props;
+    const {
+      exchangePromise,
+      user
+    } = this.props;
 
     return (
       <div>
 
-        <h2 className="align-center">Dashboard</h2>
+        <div className="align-center">
+          {user.username && <h2>{user.username}{'\''}s Dashboard</h2>}
+          {user.keys && <p>total keys: {user.keys.length}</p>}
+        </div>
 
         <ExchangeApiInputs
           possibleExchanges={POSSIBLE_EXCHANGES}
           onSubmitForm={this.onPostExchangeData}
           exchangePromise={exchangePromise}
+          userExchanges={user.keys}
         />
 
       </div>
@@ -31,7 +38,8 @@ export class Dashboard extends PureComponent {
 
 const mapStateToProps = (state) => {
   return {
-    exchangePromise: state.uiState.exchangePromise
+    exchangePromise: state.uiState.exchangePromise,
+    user: state.user.profile
   }
 }
 

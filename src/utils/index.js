@@ -59,7 +59,7 @@ export const getPercentagesObjFromArrayIndex = (arr, arrIndex) => {
 conditions for subscribe messages/modals
 */
 export const shouldShowSubscribe = (profile) => {
-  if (!profile.subscription && profile.keys.length === MAX_FREE_KEYS) {
+  if (!profile.subscription && profile.keys.length >= MAX_FREE_KEYS) {
     return true;
   }
   return false;

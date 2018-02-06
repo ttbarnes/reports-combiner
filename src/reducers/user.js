@@ -5,14 +5,23 @@ import {
   USER_LOGIN_SUCCESS,
   USER_AUTH_ERROR,
   USER_DATA_SUCCESS,
-  USER_DATA_ERROR
+  USER_DATA_ERROR,
+  USER_UPDATE_SUCCESS,
+  PROMISE_LOADING,
+  PROMISE_SUCCESS,
+  PROMISE_ERROR
 } from '../constants';
 
 const initialState = {
   isAuth: false,
   signupSuccess: false,
   authError: null,
-  profile: {}
+  profile: {},
+  promise: {
+    isLoading: false,
+    isSuccess: false,
+    hasError: false
+  }
 };
 
 const userReducer = (state, action) => {
@@ -55,6 +64,37 @@ const userReducer = (state, action) => {
       return {
         ...state,
         profile: false
+      }
+    case USER_UPDATE_SUCCESS:
+      return {
+        ...state,
+        profile: action.payload
+      }
+    case PROMISE_LOADING:
+      return {
+        ...state,
+        promise: {
+          ...state.promise,
+          isLoading: action.payload.isLoading
+        }
+      }
+    case PROMISE_SUCCESS:
+      return {
+        ...state,
+        promise: {
+          ...state.promise,
+          isLoading: false,
+          isSuccess: action.payload.isSuccess
+        }
+      }
+    case PROMISE_ERROR:
+      return {
+        ...state,
+        promise: {
+          ...state.promise,
+          isLoading: false,
+          hasError: action.payload.hasError
+        }
       }
     default:
       return state;

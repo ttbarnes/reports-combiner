@@ -63,10 +63,17 @@ body.ReactModal__Body--open {
 .modal-content ol,
 .modal-content dl {
   margin-left: 1em;
+  list-style-type: none;
+}
+
+.modal-content li {
+  text-decoration: underline;
+  margin-bottom: .3em;
 }
 
 .modal-close-button {
   position: absolute;
   top: -20px;
   right: -20px;
+  z-index: 3;
 }

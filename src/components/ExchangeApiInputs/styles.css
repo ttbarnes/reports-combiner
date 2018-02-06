@@ -19,6 +19,7 @@
   padding: 1em;
   position: relative;
   min-height: 256px;
+  height: 100%;
   padding-bottom: 0;
 }
 
@@ -29,7 +30,7 @@
   }
 }
 
-.exchange-input-box-promise-state-overlay {
+.exchange-input-box-container .promise-loading-cover {
   position: absolute;
   top: 0;
   left: 0;
@@ -41,7 +42,7 @@
   padding-top: 2em;
 }
 
-.exchange-input-box-promise-state-overlay .loader {
+.exchange-input-box-container.promise-loading-cover .loader {
   position: absolute;
   top: 0;
   left: 0;

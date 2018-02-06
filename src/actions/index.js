@@ -5,13 +5,40 @@ import {
   USER_SIGNUP_SUCCESS,
   USER_LOGIN_SUCCESS,
   USER_LOGOUT_SUCCESS,
+  USER_UPDATE_SUCCESS,
+  USER_UPDATE_ERROR,
   DESTORY_USER_SIGNUP_SUCCESS,
   USER_AUTH_ERROR,
   USER_DATA_SUCCESS,
   USER_DATA_ERROR,
-  TOGGLE_SUBSCRIPTION_MODAL
+  TOGGLE_SUBSCRIPTION_MODAL,
+  SUBSCRIPTION_PREMIUM,
+  PROMISE_LOADING,
+  PROMISE_SUCCESS,
+  PROMISE_ERROR
 } from '../constants';
 import { shouldShowSubscribe } from '../utils';
+
+export function promiseLoading(payload) {
+  return {
+    type: PROMISE_LOADING,
+    payload
+  }
+}
+
+export function promiseSuccess(payload) {
+  return {
+    type: PROMISE_SUCCESS,
+    payload
+  }
+}
+
+export function promiseError(payload) {
+  return {
+    type: PROMISE_ERROR,
+    payload
+  }
+}
 
 export function signupSuccess() {
   return {
@@ -37,6 +64,20 @@ export function logoutSuccess() {
     type: USER_LOGOUT_SUCCESS
   }
 }
+
+export function updateSuccess(payload) {
+  return {
+    type: USER_UPDATE_SUCCESS,
+    payload
+  }
+}
+
+export function updateError() {
+  return {
+    type: USER_UPDATE_ERROR
+  }
+}
+
 
 export function authError(err) {
   return {
@@ -162,6 +203,39 @@ export const userLogin = () => {
         }
       }, () => {
         dispatch(authError('Something is wrong'));
+      });
+  }
+}
+
+export const userUpdate = () => {
+  return (dispatch, getState) => {
+    dispatch(promiseError({ hasError: false }));
+    dispatch(promiseLoading({ isLoading: true }));
+    let userId, user;
+    const userObj = () => getState().user.profile;
+    user = userObj();
+    user.subscription = SUBSCRIPTION_PREMIUM;
+    userId = user._id;
+    return axios.create({
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token')
+      }
+    }).put(
+      `${API_ROOT}/user/${userId}`,
+      user
+      ).then((data) => {
+        if (data && data.data) {
+          dispatch(promiseSuccess({ isLoading: false, isSuccess: true }));
+          dispatch(updateSuccess(data.data));
+          setTimeout(() => {
+            dispatch(toggleSubSubscriptionModal(false));
+          }, 5000);
+        } else {
+          dispatch(promiseError({ hasError: true }));
+        }
+      }, () => {
+        dispatch(promiseError({ hasError: true }));
       });
   }
 }

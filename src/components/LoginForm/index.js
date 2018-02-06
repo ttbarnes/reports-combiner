@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { Redirect } from 'react-router-dom'
 import { userLogin } from '../../actions';
+import './styles.css';
 
 class LoginForm extends Component {
   render() {
