@@ -18,12 +18,12 @@ export class Dashboard extends PureComponent {
         <h2 className="align-center">Dashboard</h2>
 
         <ExchangeApiInputs
-          exchanges={POSSIBLE_EXCHANGES}
+          possibleExchanges={POSSIBLE_EXCHANGES}
           onSubmitForm={this.onPostExchangeData}
           exchangePromise={exchangePromise}
         />
 
-        </div>
+      </div>
     );
   }
 }

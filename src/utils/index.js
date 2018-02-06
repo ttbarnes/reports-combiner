@@ -1,3 +1,5 @@
+import { MAX_FREE_KEYS } from '../constants';
+
 // TODO: tidy up notes/docs
 // TODO: make more functional :)
 
@@ -52,3 +54,15 @@ export const getPercentagesObjFromArrayIndex = (arr, arrIndex) => {
 
   return percentages;
 }
+
+/*
+conditions for subscribe messages/modals
+*/
+export const shouldShowSubscribe = (profile) => {
+  if (!profile.subscription && profile.keys.length === MAX_FREE_KEYS) {
+    return true;
+  }
+  return false;
+}
+
+

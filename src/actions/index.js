@@ -11,6 +11,7 @@ import {
   USER_DATA_ERROR,
   TOGGLE_SUBSCRIPTION_MODAL
 } from '../constants';
+import { shouldShowSubscribe } from '../utils';
 
 export function signupSuccess() {
   return {
@@ -172,7 +173,6 @@ export const logout = () => {
   }
 }
 
-
 export function toggleSubSubscriptionModal(payload) {
   return {
     type: TOGGLE_SUBSCRIPTION_MODAL,
@@ -182,8 +182,7 @@ export function toggleSubSubscriptionModal(payload) {
 
 export const userSubscriptionCheck = (dispatch, profile) => {
   return new Promise((resolve, reject) => {
-    const subscription = profile.subscription;
-    if (!subscription) {
+    if (shouldShowSubscribe(profile)) {
       dispatch(toggleSubSubscriptionModal(true));
       return reject('Subscription required.');
     } else {

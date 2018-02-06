@@ -12,10 +12,10 @@ class ExchangeApiInputs extends Component {
   }
 
   componentDidMount() {
-    const { exchanges } = this.props;
+    const { possibleExchanges } = this.props;
     let exchangesAsObjs = [];
-    if (exchanges && exchanges.length) {
-      exchanges.map((e) =>
+    if (possibleExchanges && possibleExchanges.length) {
+      possibleExchanges.map((e) =>
         exchangesAsObjs = [...exchangesAsObjs, { exchange: e }]
       );
     }
@@ -44,7 +44,7 @@ class ExchangeApiInputs extends Component {
     });
   }
 
-  onButtonClick = (ev) => {
+  onSubmitForm = (ev) => {
     ev.preventDefault();
     const exchange = this.getExchangeInState(ev.target.dataset.provider);
     this.props.onSubmitForm(exchange);
@@ -116,7 +116,7 @@ class ExchangeApiInputs extends Component {
                 </div>
                 :
                 <div>
-                  <form onSubmit={ev => this.onButtonClick(ev)}>
+                  <form onSubmit={ev => this.onSubmitForm(ev)}>
                     <div>
                       <label>API key</label>
                       <input
@@ -140,7 +140,7 @@ class ExchangeApiInputs extends Component {
                     </div>
                     <div>
                       <button
-                        onClick={this.onButtonClick}
+                        onClick={this.onSubmitForm}
                         data-provider={e.exchange}
                         disabled={this.buttonDisabled(e.exchange)}
                         className="small block"
@@ -155,10 +155,6 @@ class ExchangeApiInputs extends Component {
 
               }
             </div>
-            <button
-              onClick={this.onButtonClick}
-              className="block"
-            >Test</button>
             
           </div>
         )}

@@ -1,7 +1,7 @@
 // global
 export const API_ROOT = 'http://localhost:8080/api';
 export const POSSIBLE_EXCHANGES = ['Binance', 'Bitfinex', 'GDAX', 'Cryptopia'];
-
+export const MAX_FREE_KEYS = 2;
 export const API_USER_EXCHANGE_KEYS = `${API_ROOT}/user/exchange-keys`;
 
 // actions

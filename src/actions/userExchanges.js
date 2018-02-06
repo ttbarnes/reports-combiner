@@ -70,6 +70,11 @@ export const postExchangeData = (postObj) => {
             exchange: postObj.exchange
           }));
         });
+    }, (err) => {
+      dispatch(promiseExchangeError({
+        hasError: false,
+        exchange: postObj.exchange
+      }));
     });
   };
 }
