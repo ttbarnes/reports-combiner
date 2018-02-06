@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { Provider, connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Header from './Header';
 import Landing from './Landing';
 import Login from './Login';
 import Dashboard from './Dashboard';
 import Summary from './Summary';
 import About from './About';
+import SubscribeModal from './components/SubscribeModal';
 import './App.css';
 
 const PrivateRoute = ({ component: Component, isAuth, ...rest }) => (
@@ -38,7 +39,11 @@ const UnAuthRoute = ({ component: Component, isAuth, ...rest }) => (
 
 class Router extends Component {
   render() {
-    const { isAuth } = this.props;
+    const {
+      isAuth,
+      showSubscriptionModal
+    } = this.props;
+
     return (
       <BrowserRouter>
         <div>
@@ -55,6 +60,8 @@ class Router extends Component {
             </Switch>
           </div>
 
+          {showSubscriptionModal && <SubscribeModal />}
+
         </div>
       </BrowserRouter>
     );
@@ -62,7 +69,8 @@ class Router extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  isAuth: state.user.isAuth
+  isAuth: state.user.isAuth,
+  showSubscriptionModal: state.uiState.showSubscriptionModal
 })
 
 const ConnectedRouter = connect(

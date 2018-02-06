@@ -23,7 +23,7 @@ export class Dashboard extends PureComponent {
           exchangePromise={exchangePromise}
         />
 
-      </div>
+        </div>
     );
   }
 }

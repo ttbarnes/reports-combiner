@@ -150,9 +150,16 @@ class ExchangeApiInputs extends Component {
                     </div>
 
                   </form>
+
                 </div>
+
               }
             </div>
+            <button
+              onClick={this.onButtonClick}
+              className="block"
+            >Test</button>
+            
           </div>
         )}
       </div>

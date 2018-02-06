@@ -8,7 +8,8 @@ import {
   DESTORY_USER_SIGNUP_SUCCESS,
   USER_AUTH_ERROR,
   USER_DATA_SUCCESS,
-  USER_DATA_ERROR
+  USER_DATA_ERROR,
+  TOGGLE_SUBSCRIPTION_MODAL
 } from '../constants';
 
 export function signupSuccess() {
@@ -169,4 +170,24 @@ export const logout = () => {
     localStorage.removeItem('token');
     dispatch(setUserAuth(false));
   }
+}
+
+
+export function toggleSubSubscriptionModal(payload) {
+  return {
+    type: TOGGLE_SUBSCRIPTION_MODAL,
+    payload
+  }
+}
+
+export const userSubscriptionCheck = (dispatch, profile) => {
+  return new Promise((resolve, reject) => {
+    const subscription = profile.subscription;
+    if (!subscription) {
+      dispatch(toggleSubSubscriptionModal(true));
+      return reject('Subscription required.');
+    } else {
+      return resolve();
+    }
+  });
 }
