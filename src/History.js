@@ -3,7 +3,7 @@ import TradeHistoryTable from './TradeHistoryTable';
 import TradeHistoryChart from './TradeHistoryChart';
 import { API_ROOT } from './constants';
 
-class Summary extends Component {
+class History extends Component {
 
   getCsv = () => {
     fetch(`${API_ROOT}/download/combined-history`, {
@@ -41,4 +41,4 @@ class Summary extends Component {
   }
 }
 
-export default Summary;
+export default History;

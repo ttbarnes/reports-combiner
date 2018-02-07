@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const IntegrationsCount = (props) => {
   const {
@@ -8,7 +9,14 @@ const IntegrationsCount = (props) => {
 
   if (!integrations || !totalCount) return null;
 
-  return <p><small>{integrations.length}/{totalCount} exchanges integrated</small></p>;
+  return (
+    <div>
+      <p>
+        <small>{integrations.length}/{totalCount} exchanges integrated</small>
+        {props.showCta && <span>{' '}-{' '}<Link to="/integrations">add exchange</Link></span>}
+      </p>
+    </div>
+  )
 }
 
 export default IntegrationsCount; 

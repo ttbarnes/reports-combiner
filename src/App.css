@@ -38,10 +38,6 @@ p {
   margin-top: 0;
 }
 
-p a {
-  color: #000;
-}
-
 h4 {
   float: left;
   clear: both;
@@ -216,6 +212,10 @@ ol,
 dl {
   margin: 0 0 1em 0;
   padding: 0;
+}
+
+a {
+  color: #55a0da;
 }
 
 .align-center {

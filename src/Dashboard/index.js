@@ -19,6 +19,7 @@ export class Dashboard extends PureComponent {
           <IntegrationsCount
             integrations={user.keys}
             totalCount={POSSIBLE_EXCHANGES.length}
+            showCta
           />
         </div>
 
