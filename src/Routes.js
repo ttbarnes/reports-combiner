@@ -11,6 +11,7 @@ import History from './History';
 import Integrations from './Integrations';
 import About from './About';
 import SubscribeModal from './components/SubscribeModal';
+import Sidebar from './Sidebar';
 import './App.css';
 
 const PrivateRoute = ({ component: Component, isAuth, ...rest }) => (
@@ -65,6 +66,8 @@ class Router extends Component {
           </div>
 
           {showSubscriptionModal && <SubscribeModal />}
+
+          <Sidebar />
 
         </div>
       </BrowserRouter>

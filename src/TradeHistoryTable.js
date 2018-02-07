@@ -28,6 +28,7 @@ class TradeHistoryTable extends Component {
 
   render() {
     if (!mockDataAvailable) return <p>No data :(</p>
+    const { onAddNote } = this.props;
 
     return (
       <div className="row">
@@ -89,6 +90,13 @@ class TradeHistoryTable extends Component {
                   );
 
                 })}
+                <td>
+                  <button
+                    onClick={onAddNote}
+                    className="small"
+                  >Add note
+                  </button>
+                </td>
               </tr>
             )}
           </tbody>

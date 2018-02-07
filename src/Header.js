@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { authCheck, logout } from './actions/user';
+import { openSidebar } from './actions/sidebar';
 
 export class Header extends Component {
   componentWillMount() {

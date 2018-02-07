@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import TradeHistoryTable from './TradeHistoryTable';
 import TradeHistoryChart from './TradeHistoryChart';
 import { API_ROOT } from './constants';
+import { openSidebar } from './actions/sidebar';
 
 class History extends Component {
 
@@ -20,12 +22,13 @@ class History extends Component {
   }
 
   render() {
+    const { onAddNote } = this.props;
 
     return (
       <div>
 
         <div className="row large">
-          <TradeHistoryTable />
+          <TradeHistoryTable onAddNote={onAddNote}/>
         </div>
 
         <div className="row large">
@@ -41,4 +44,11 @@ class History extends Component {
   }
 }
 
-export default History;
+const mapDispatchToProps = {
+  onAddNote: () => openSidebar('ADD_NOTE')
+}
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(History);
