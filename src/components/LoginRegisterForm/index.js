@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { Redirect } from 'react-router-dom'
-import { userLogin } from '../../actions/user';
+import { userLogin, userSignup } from '../../actions/user';
 import './styles.css';
 
-class LoginForm extends Component {
+class LoginRegisterForm extends Component {
   render() {
     const {
       isAuth,
@@ -14,7 +14,7 @@ class LoginForm extends Component {
 
     if (isAuth) {
       return (
-          <Redirect to={{
+        <Redirect to={{
           pathname: '/dashboard',
           state: { from: this.props.location }
         }} />
@@ -62,9 +62,9 @@ class LoginForm extends Component {
   }
 }
 
-const LogInReduxForm = reduxForm({
-  form: 'USER_LOGIN'
-})(LoginForm);
+const LogInRegisterReduxForm = reduxForm({
+  form: 'USER_LOGIN_SIGNUP'
+})(LoginRegisterForm);
 
 const mapStateToProps = (state) => {
   return {
@@ -73,12 +73,15 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = {
-  onSubmitForm: () => userLogin()
+const mapDispatchToProps = (dispatch, props) => {
+  const submitFormAction = props.isSignup ? userSignup() : userLogin()
+  return {
+    onSubmitForm: () => dispatch(submitFormAction)
+  }
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(LogInReduxForm);
+)(LogInRegisterReduxForm);
 

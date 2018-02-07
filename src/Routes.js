@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Header from './Header';
 import Landing from './Landing';
 import Login from './Login';
+import Signup from './Signup';
 import Dashboard from './Dashboard';
 import Summary from './Summary';
 import Integrations from './Integrations';
@@ -55,6 +56,7 @@ class Router extends Component {
             <Switch>
               <UnAuthRoute exact path="/" component={Landing} isAuth={isAuth} />
               <Route exact path="/login" component={Login} />
+              <Route exact path="/signup" component={Signup} />
               <PrivateRoute path="/dashboard" component={Dashboard} isAuth={isAuth} />
               <PrivateRoute path="/integrations" component={Integrations} isAuth={isAuth} />
               <PrivateRoute path="/summary" component={Summary} isAuth={isAuth} />

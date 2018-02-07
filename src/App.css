@@ -219,6 +219,10 @@ dl {
   text-align: center;
 }
 
+.text-transform-capitalize {
+  text-transform: capitalize;
+}
+
 header {
   text-align: center;
 }

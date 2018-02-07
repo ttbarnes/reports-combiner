@@ -32,7 +32,7 @@ export class Header extends Component {
             :
             <ul>
               <li><Link to="/login">Login</Link></li>
-              <li><Link to="/login">Sign up</Link></li>
+              <li><Link to="/signup">Sign up</Link></li>
             </ul>
           }
         </div>
