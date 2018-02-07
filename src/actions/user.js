@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import {
   API_ROOT,
   USER_SET_AUTH,
@@ -11,13 +12,13 @@ import {
   USER_AUTH_ERROR,
   USER_DATA_SUCCESS,
   USER_DATA_ERROR,
-  TOGGLE_SUBSCRIPTION_MODAL,
-  SUBSCRIPTION_PREMIUM,
-  PROMISE_LOADING,
   PROMISE_SUCCESS,
-  PROMISE_ERROR
+  PROMISE_LOADING,
+  PROMISE_ERROR,
+  SUBSCRIPTION_PREMIUM
 } from '../constants';
 import { shouldShowSubscribe } from '../utils';
+import { toggleSubSubscriptionModal } from './uiState';
 
 export function promiseLoading(payload) {
   return {
@@ -244,13 +245,6 @@ export const logout = () => {
   return (dispatch) => {
     localStorage.removeItem('token');
     dispatch(setUserAuth(false));
-  }
-}
-
-export function toggleSubSubscriptionModal(payload) {
-  return {
-    type: TOGGLE_SUBSCRIPTION_MODAL,
-    payload
   }
 }
 

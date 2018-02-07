@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import ExchangeApiInputs from '../components/ExchangeApiInputs';
-import { postExchangeData } from '../actions/userExchanges';
+import { postExchangeData } from '../actions/uiState';
 import { POSSIBLE_EXCHANGES } from '../constants';
 
 export class Dashboard extends PureComponent {
@@ -11,7 +11,7 @@ export class Dashboard extends PureComponent {
 
   render() {
     const {
-      exchangePromise,
+      promise,
       user
     } = this.props;
 
@@ -20,13 +20,13 @@ export class Dashboard extends PureComponent {
 
         <div className="align-center">
           {user.username && <h2>{user.username}{'\''}s Dashboard</h2>}
-          {user.keys && <p>total keys: {user.keys.length}</p>}
+          {user.keys && <p><small>{user.keys.length}/4 exchanges</small></p>}
         </div>
 
         <ExchangeApiInputs
           possibleExchanges={POSSIBLE_EXCHANGES}
           onSubmitForm={this.onPostExchangeData}
-          exchangePromise={exchangePromise}
+          promise={promise}
           userExchanges={user.keys}
         />
 
@@ -38,7 +38,7 @@ export class Dashboard extends PureComponent {
 
 const mapStateToProps = (state) => {
   return {
-    exchangePromise: state.uiState.exchangePromise,
+    promise: state.uiState.promise,
     user: state.user.profile
   }
 }

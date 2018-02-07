@@ -3,10 +3,11 @@ import {
   API_USER_EXCHANGE_KEYS,
   PROMISE_EXCHANGE_LOADING,
   PROMISE_EXCHANGE_SUCCESS,
-  PROMISE_EXCHANGE_ERROR
+  PROMISE_EXCHANGE_ERROR,
+  TOGGLE_SUBSCRIPTION_MODAL
 } from '../constants';
 
-import { userSubscriptionCheck } from './index';
+import { userSubscriptionCheck } from './user';
 
 export function promiseExchangeLoading(payload) {
   return {
@@ -77,4 +78,11 @@ export const postExchangeData = (postObj) => {
       }));
     });
   };
+}
+
+export function toggleSubSubscriptionModal(payload) {
+  return {
+    type: TOGGLE_SUBSCRIPTION_MODAL,
+    payload
+  }
 }

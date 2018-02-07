@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { authCheck, logout } from './actions';
+import { authCheck, logout } from './actions/user';
 
 export class Header extends Component {
   componentWillMount() {

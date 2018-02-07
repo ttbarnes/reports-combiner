@@ -75,7 +75,7 @@ class ExchangeApiInputs extends Component {
 
   render() {
     const {
-      exchangePromise
+      promise
     } = this.props;
 
     const {
@@ -89,15 +89,15 @@ class ExchangeApiInputs extends Component {
           <div key={e.exchange} className="exchange-input-box-container">
             <div className="exchange-input-box-container-inner">
 
-              {(exchangePromise && exchangePromise.exchange === e.exchange) &&
+              {(promise && promise.exchange === e.exchange) &&
                 <div>
-                  {exchangePromise.isLoading &&
+                  {promise.isLoading &&
                     <Loading theme="dark" />
                   }
-                  {exchangePromise.hasError &&
+                  {promise.hasError &&
                     <div className="promise-loading-cover"><p>Error :(</p></div>
                   }
-                  {exchangePromise.isSuccess &&
+                  {promise.isSuccess &&
                     <div className="promise-loading-cover"><p>Success! <span role="img" aria-label="success">🚀</span></p></div>
                   }
                 </div>

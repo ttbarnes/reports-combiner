@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Modal from '../Modal';
 import Loading from '../Loading';
-import { toggleSubSubscriptionModal, userUpdate } from '../../actions'
-
-const FINAL_STEP = 3;
+import { userUpdate } from '../../actions/user'
+import { toggleSubSubscriptionModal } from '../../actions/uiState';
 
 class SubscribeModal extends Component {
   constructor(props) {

@@ -6,7 +6,7 @@ import {
 } from '../constants';
 
 const initialState = {
-  exchangePromise: {
+  promise: {
     exchange: '',
     isLoading: false,
     isSuccess: false,
@@ -24,8 +24,8 @@ const uiStateReducer = (state, action) => {
     case PROMISE_EXCHANGE_LOADING:
       return {
         ...state,
-        exchangePromise: {
-          ...state.exchangePromise,
+        promise: {
+          ...state.promise,
           exchange: action.payload.exchange,
           isLoading: action.payload.isLoading
         }
@@ -33,8 +33,8 @@ const uiStateReducer = (state, action) => {
     case PROMISE_EXCHANGE_SUCCESS:
       return {
         ...state,
-        exchangePromise: {
-          ...state.exchangePromise,
+        promise: {
+          ...state.promise,
           isLoading: false,
           exchange: action.payload.exchange,
           isSuccess: action.payload.isSuccess
@@ -43,8 +43,8 @@ const uiStateReducer = (state, action) => {
     case PROMISE_EXCHANGE_ERROR:
       return {
         ...state,
-        exchangePromise: {
-          ...state.exchangePromise,
+        promise: {
+          ...state.promise,
           isLoading: false,
           exchange: action.payload.exchange,
           hasError: action.payload.hasError
