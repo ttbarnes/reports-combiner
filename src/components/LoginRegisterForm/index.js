@@ -52,7 +52,7 @@ class LoginRegisterForm extends Component {
               type="submit"
               onClick={this.props.onSubmitForm}
               className="block"
-            >Login
+            >{this.props.isSignup ? 'Get started today' : 'Log in'}
             </button>
           </div>
 

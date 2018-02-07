@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Loading from '../components/Loading';
-import ShowHide from '../components/ShowHide';
+import ExchangeShowHide from '../components/ExchangeShowHide';
 import ExchangeForm from './ExchangeForm';
 
 class Exchange extends Component {
@@ -29,9 +29,7 @@ class Exchange extends Component {
            className={userExchange ? 'exchange-input-box-container active' : 'exchange-input-box-container'}>
         <div className="exchange-input-box-container-inner">
 
-          {/* show hide details */}
-
-          <ShowHide
+          <ExchangeShowHide
             name={exchange.name}
             integrated={userExchange}
           >
@@ -64,7 +62,7 @@ class Exchange extends Component {
               </div>
             }
             
-          </ShowHide>
+          </ExchangeShowHide>
 
 
         </div>

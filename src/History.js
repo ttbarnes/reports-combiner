@@ -6,7 +6,7 @@ import { API_ROOT } from './constants';
 class History extends Component {
 
   getCsv = () => {
-    fetch(`${API_ROOT}/download/combined-history`, {
+    fetch(`${API_ROOT}/combined-history/local/download`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',

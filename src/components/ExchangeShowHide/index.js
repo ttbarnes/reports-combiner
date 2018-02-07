@@ -1,6 +1,6 @@
 import React , { Component } from 'react';
 
-class ShowHide extends Component {
+class ExchangeShowHide extends Component {
   constructor() {
     super();
     this.state = {
@@ -47,4 +47,4 @@ class ShowHide extends Component {
 
 };
 
-export default ShowHide;
+export default ExchangeShowHide;
