@@ -6,6 +6,7 @@ import {
   postExchangeData,
   promiseExchangeReset
 } from '../actions/uiState';
+import IntegrationsCount from '../components/IntegrationsCount';
 import './styles.css';
 
 // this could be a lot better
@@ -77,26 +78,34 @@ class Integrations extends Component {
   render() {
     const {
       promise,
-      onResetPromise
+      onResetPromise,
+      user
     } = this.props;
     const { allExchanges } = this.state;
 
     return (
-      <div className="exchange-api-inputs">
+      <div className="align-center">
 
-        {allExchanges.length ? (
-          allExchanges.map((exchange) =>
-            <Exchange
-              exchange={exchange}
-              key={exchange.name}
-              userExchange={this.getUserExchange(exchange.name)}
-              onInputChange={this.onInputChange}
-              onSubmitForm={this.onPostExchangeData}
-              promise={promise}
-              onResetPromise={onResetPromise}
-            />
-          )
-        ) : null}
+        <IntegrationsCount
+          integrations={user.keys}
+          totalCount={POSSIBLE_EXCHANGES.length}
+        />
+
+        <div className="exchange-inputs-container">
+          {allExchanges.length ? (
+            allExchanges.map((exchange) =>
+              <Exchange
+                exchange={exchange}
+                key={exchange.name}
+                userExchange={this.getUserExchange(exchange.name)}
+                onInputChange={this.onInputChange}
+                onSubmitForm={this.onPostExchangeData}
+                promise={promise}
+                onResetPromise={onResetPromise}
+              />
+            )
+          ) : null}
+        </div>
       </div>
     );
   }

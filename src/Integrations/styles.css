@@ -1,5 +1,5 @@
 @media(min-width: 768px) {
- .exchange-api-inputs {
+ .exchange-inputs-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -8,6 +8,7 @@
 
 .exchange-input-box-container {
   padding: 1em;
+  text-align: left;
 }
 
 .exchange-input-box-container h3 {
