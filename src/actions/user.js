@@ -66,7 +66,7 @@ export function logoutSuccess() {
   }
 }
 
-export function updateSuccess(payload) {
+export function userUpdateSuccess(payload) {
   return {
     type: USER_UPDATE_SUCCESS,
     payload
@@ -228,7 +228,7 @@ export const userUpdate = () => {
       ).then((data) => {
         if (data && data.data) {
           dispatch(promiseSuccess({ isLoading: false, isSuccess: true }));
-          dispatch(updateSuccess(data.data));
+          dispatch(userUpdateSuccess(data.data));
           setTimeout(() => {
             dispatch(toggleSubSubscriptionModal(false));
           }, 5000);

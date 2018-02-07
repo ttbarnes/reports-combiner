@@ -2,7 +2,8 @@ import {
   PROMISE_EXCHANGE_LOADING,
   PROMISE_EXCHANGE_SUCCESS,
   PROMISE_EXCHANGE_ERROR,
-  TOGGLE_SUBSCRIPTION_MODAL
+  TOGGLE_SUBSCRIPTION_MODAL,
+  PROMISE_EXCHANGE_RESET
 } from '../constants';
 
 const initialState = {
@@ -48,6 +49,15 @@ const uiStateReducer = (state, action) => {
           isLoading: false,
           exchange: action.payload.exchange,
           hasError: action.payload.hasError
+        }
+      }
+    case PROMISE_EXCHANGE_RESET:
+      return {
+        ...state,
+        promise: {
+          isLoading: false,
+          exchange: '',
+          hasError: false
         }
       }
     case TOGGLE_SUBSCRIPTION_MODAL:

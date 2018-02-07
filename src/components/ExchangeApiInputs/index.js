@@ -24,6 +24,15 @@ class ExchangeApiInputs extends Component {
     });
   }
 
+  componentWillReceiveProps(nextProps) {
+    if ((this.props.promise.isSuccess !== nextProps.promise.isSuccess) &&
+        nextProps.promise.isSuccess !== undefined) {
+      setTimeout(() => {
+        return this.props.onResetPromise();
+      }, 2000);
+    }
+  }
+
   getExchangeInState(str) {
     return this.state.exchanges.find((e) => e.exchange === str);
   }

@@ -4,10 +4,14 @@ import {
   PROMISE_EXCHANGE_LOADING,
   PROMISE_EXCHANGE_SUCCESS,
   PROMISE_EXCHANGE_ERROR,
+  PROMISE_EXCHANGE_RESET,
   TOGGLE_SUBSCRIPTION_MODAL
 } from '../constants';
 
-import { userSubscriptionCheck } from './user';
+import {
+  userSubscriptionCheck,
+  userUpdateSuccess
+} from './user';
 
 export function promiseExchangeLoading(payload) {
   return {
@@ -29,6 +33,13 @@ export function promiseExchangeError(payload) {
     payload
   }
 }
+
+export function promiseExchangeReset() {
+  return {
+    type: PROMISE_EXCHANGE_RESET
+  }
+}
+
 
 export const postExchangeData = (postObj) => {
   return (dispatch, getState) => {
@@ -61,6 +72,7 @@ export const postExchangeData = (postObj) => {
             isSuccess: true,
             exchange: postObj.exchange
           }));
+          dispatch(userUpdateSuccess(data.data));
         }, () => {
           dispatch(promiseExchangeLoading({
             isLoading: false,
