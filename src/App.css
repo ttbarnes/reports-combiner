@@ -31,6 +31,10 @@ h1 a {
   text-decoration: none;
 }
 
+p {
+  margin-top: 0;
+}
+
 p a {
   color: #000;
 }
@@ -304,4 +308,18 @@ header .nav li .button {
 .promise-loading-cover.dark {
   background: #000;
   color: #FFF;
+}
+
+.account-tag {
+  display: inline-flex;
+  padding: .3em;
+  color: #000;
+}
+
+.account-tag.basic {
+  background: #55a0da;
+}
+
+.account-tag.premium {
+  background: #d6a84c;
 }

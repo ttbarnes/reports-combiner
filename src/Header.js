@@ -26,6 +26,7 @@ export class Header extends Component {
             <ul>
               <li><Link to="/dashboard">Dashboard</Link></li>
               <li><Link to="/summary">Summary</Link></li>
+              <li><Link to="/integrations">Integrations</Link></li>
               <li><button className="button-link" onClick={doLogout}>Logout</button></li>
             </ul>
             :

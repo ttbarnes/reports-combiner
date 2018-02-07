@@ -7,6 +7,7 @@ import Landing from './Landing';
 import Login from './Login';
 import Dashboard from './Dashboard';
 import Summary from './Summary';
+import Integrations from './Integrations';
 import About from './About';
 import SubscribeModal from './components/SubscribeModal';
 import './App.css';
@@ -55,6 +56,7 @@ class Router extends Component {
               <UnAuthRoute exact path="/" component={Landing} isAuth={isAuth} />
               <Route exact path="/login" component={Login} />
               <PrivateRoute path="/dashboard" component={Dashboard} isAuth={isAuth} />
+              <PrivateRoute path="/integrations" component={Integrations} isAuth={isAuth} />
               <PrivateRoute path="/summary" component={Summary} isAuth={isAuth} />
               <Route path="/about" component={About} />
             </Switch>
