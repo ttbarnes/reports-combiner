@@ -8,7 +8,7 @@ const IntegrationsCount = (props) => {
 
   if (!integrations || !totalCount) return null;
 
-  return <p><small>{integrations.length}/{totalCount} exchanges</small></p>;
+  return <p><small>{integrations.length}/{totalCount} exchanges integrated</small></p>;
 }
 
 export default IntegrationsCount; 

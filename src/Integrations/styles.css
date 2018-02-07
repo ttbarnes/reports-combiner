@@ -31,6 +31,20 @@
   }
 }
 
+@media(min-width: 990px) {
+  .exchange-input-box-container {
+    width: 33.333%;
+    max-width: 33.333%;
+  }
+}
+
+@media(min-width: 1300px) {
+  .exchange-input-box-container {
+    width: 25%;
+    max-width: 25%;
+  }
+}
+
 .exchange-input-box-container .promise-loading-cover {
   position: absolute;
   top: 0;
