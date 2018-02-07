@@ -2,7 +2,8 @@ import {
   PROMISE_EXCHANGE_LOADING,
   PROMISE_EXCHANGE_SUCCESS,
   PROMISE_EXCHANGE_ERROR,
-  TOGGLE_SUBSCRIPTION_MODAL,
+  SHOW_SUBSCRIPTION_MODAL,
+  HIDE_SUBSCRIPTION_MODAL,
   PROMISE_EXCHANGE_RESET
 } from '../constants';
 
@@ -13,7 +14,10 @@ const initialState = {
     isSuccess: false,
     hasError: false
   },
-  showSubscriptionModal: false
+  subscriptionModal: {
+    show: false,
+    fromContext: ''
+  }
 };
 
 const uiStateReducer = (state, action) => {
@@ -60,10 +64,21 @@ const uiStateReducer = (state, action) => {
           hasError: false
         }
       }
-    case TOGGLE_SUBSCRIPTION_MODAL:
+    case SHOW_SUBSCRIPTION_MODAL:
       return {
         ...state,
-        showSubscriptionModal: action.payload
+        subscriptionModal: {
+          fromContext: action.payload,
+          show: true
+        }
+      }
+    case HIDE_SUBSCRIPTION_MODAL:
+      return {
+        ...state,
+        subscriptionModal: {
+          fromContext: '',
+          show: false
+        }
       }
     default:
       return state;

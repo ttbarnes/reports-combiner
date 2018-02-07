@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Modal from '../Modal';
 import Loading from '../Loading';
 import { userUpdate } from '../../actions/user'
-import { toggleSubSubscriptionModal } from '../../actions/uiState';
+import { hideSubSubscriptionModal } from '../../actions/uiState';
 
 class SubscribeModal extends Component {
   constructor(props) {
@@ -97,7 +97,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  onCloseModal: () => toggleSubSubscriptionModal(),
+  onCloseModal: () => hideSubSubscriptionModal(),
   onSubmitPayment: () => userUpdate()
 }
 

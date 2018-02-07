@@ -74,7 +74,7 @@ class Router extends Component {
 
 const mapStateToProps = (state) => ({
   isAuth: state.user.isAuth,
-  showSubscriptionModal: state.uiState.showSubscriptionModal
+  showSubscriptionModal: state.uiState.subscriptionModal.show
 })
 
 const ConnectedRouter = connect(

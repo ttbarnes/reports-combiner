@@ -5,7 +5,8 @@ import {
   PROMISE_EXCHANGE_SUCCESS,
   PROMISE_EXCHANGE_ERROR,
   PROMISE_EXCHANGE_RESET,
-  TOGGLE_SUBSCRIPTION_MODAL
+  SHOW_SUBSCRIPTION_MODAL,
+  HIDE_SUBSCRIPTION_MODAL
 } from '../constants';
 
 import {
@@ -44,7 +45,7 @@ export function promiseExchangeReset() {
 export const postExchangeData = (postObj) => {
   return (dispatch, getState) => {
     const userProfile = getState().user.profile;
-    userSubscriptionCheck(dispatch, userProfile).then(() => {
+    userSubscriptionCheck(dispatch, userProfile, 'addExchange').then(() => {
       dispatch(promiseExchangeError({
         hasError: false,
         exchangeName: postObj.name
@@ -92,9 +93,15 @@ export const postExchangeData = (postObj) => {
   };
 }
 
-export function toggleSubSubscriptionModal(payload) {
+export function showSubSubscriptionModal(payload) {
   return {
-    type: TOGGLE_SUBSCRIPTION_MODAL,
+    type: SHOW_SUBSCRIPTION_MODAL,
     payload
+  }
+}
+
+export function hideSubSubscriptionModal(payload) {
+  return {
+    type: HIDE_SUBSCRIPTION_MODAL
   }
 }

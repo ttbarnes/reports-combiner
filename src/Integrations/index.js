@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { POSSIBLE_EXCHANGES } from '../constants';
+import {
+  POSSIBLE_EXCHANGES,
+  SUBSCRIPTION_PREMIUM
+} from '../constants';
 import Exchange from './Exchange';
 import {
   postExchangeData,
@@ -9,8 +12,8 @@ import {
 import IntegrationsCount from '../components/IntegrationsCount';
 import './styles.css';
 
-// this could be better
-// this is quick v1 from cleaning other things up
+// needs refactor
+// this is quick v1 from merging other things
 
 const PlaceholderExchange = () => (
   <div className="exchange-input-box-container">
@@ -28,7 +31,8 @@ class Integrations extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      allExchanges: []
+      allExchanges: [],
+      selectedExchange: {}
     }
   }
 
@@ -42,6 +46,19 @@ class Integrations extends Component {
     this.setState({
       allExchanges: exchangesAsObjs
     });
+  }
+
+  // TEMP solution to resubmit form after subscription success
+  // TODO: redux/reselect/redux-form actions/observables
+  componentWillReceiveProps(nextProps) {
+    const resubmitForm = (this.props.subscriptionModal.show === true &&
+                         !nextProps.subscriptionModal.show) &&
+                         nextProps.user.subscription === SUBSCRIPTION_PREMIUM;
+
+    if (resubmitForm) {
+      const { selectedExchange } = this.state;
+      this.props.onSubmitExchange(selectedExchange);
+    }
   }
 
   getExchangeInState(str) {
@@ -84,6 +101,10 @@ class Integrations extends Component {
   onPostExchangeData = (ev) => {
     ev.preventDefault();
     const exchange = this.state.allExchanges.find((e) => e.name === ev.target.dataset.provider);
+    this.setState({
+      selectedExchange: exchange
+    });
+
     this.props.onSubmitExchange(exchange);
   }
 
@@ -134,7 +155,8 @@ class Integrations extends Component {
 const mapStateToProps = (state) => {
   return {
     promise: state.uiState.promise,
-    user: state.user.profile
+    user: state.user.profile,
+    subscriptionModal: state.uiState.subscriptionModal
   }
 }
 

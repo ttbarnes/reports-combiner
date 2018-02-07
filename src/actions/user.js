@@ -18,7 +18,7 @@ import {
   SUBSCRIPTION_PREMIUM
 } from '../constants';
 import { shouldShowSubscribe } from '../utils';
-import { toggleSubSubscriptionModal } from './uiState';
+import { showSubSubscriptionModal, hideSubSubscriptionModal } from './uiState';
 
 export function promiseLoading(payload) {
   return {
@@ -231,7 +231,7 @@ export const userUpdate = () => {
           dispatch(promiseSuccess({ isLoading: false, isSuccess: true }));
           dispatch(userUpdateSuccess(data.data));
           setTimeout(() => {
-            dispatch(toggleSubSubscriptionModal(false));
+            dispatch(hideSubSubscriptionModal());
           }, 5000);
         } else {
           dispatch(promiseError({ hasError: true }));
@@ -249,10 +249,10 @@ export const logout = () => {
   }
 }
 
-export const userSubscriptionCheck = (dispatch, profile) => {
+export const userSubscriptionCheck = (dispatch, profile, context) => {
   return new Promise((resolve, reject) => {
-    if (shouldShowSubscribe(profile)) {
-      dispatch(toggleSubSubscriptionModal(true));
+    if (shouldShowSubscribe(profile, context)) {
+      dispatch(showSubSubscriptionModal(context));
       return reject('Subscription required.');
     } else {
       return resolve();
