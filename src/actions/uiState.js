@@ -47,11 +47,11 @@ export const postExchangeData = (postObj) => {
     userSubscriptionCheck(dispatch, userProfile).then(() => {
       dispatch(promiseExchangeError({
         hasError: false,
-        exchange: postObj.exchange
+        exchangeName: postObj.name
       }));
       dispatch(promiseExchangeLoading({
         isLoading: true,
-        exchange: postObj.exchange
+        exchangeName: postObj.name
       }));
       postObj.userId = userProfile._id;
       return axios.create({
@@ -65,28 +65,28 @@ export const postExchangeData = (postObj) => {
         ).then((data) => {
           dispatch(promiseExchangeLoading({
             isLoading: false,
-            exchange: postObj.exchange
+            exchangeName: postObj.name
           }));
           dispatch(promiseExchangeSuccess({
             isLoading: false,
             isSuccess: true,
-            exchange: postObj.exchange
+            exchangeName: postObj.name
           }));
           dispatch(userUpdateSuccess(data.data));
         }, () => {
           dispatch(promiseExchangeLoading({
             isLoading: false,
-            exchange: postObj.exchange
+            exchangeName: postObj.name
           }));
           dispatch(promiseExchangeError({
             hasError: true,
-            exchange: postObj.exchange
+            exchangeName: postObj.name
           }));
         });
     }, (err) => {
       dispatch(promiseExchangeError({
         hasError: false,
-        exchange: postObj.exchange
+        exchangeName: postObj.name
       }));
     });
   };

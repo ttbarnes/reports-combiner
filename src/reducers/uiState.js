@@ -8,7 +8,7 @@ import {
 
 const initialState = {
   promise: {
-    exchange: '',
+    exchangeName: '',
     isLoading: false,
     isSuccess: false,
     hasError: false
@@ -27,7 +27,7 @@ const uiStateReducer = (state, action) => {
         ...state,
         promise: {
           ...state.promise,
-          exchange: action.payload.exchange,
+          exchangeName: action.payload.exchangeName,
           isLoading: action.payload.isLoading
         }
       }
@@ -37,7 +37,7 @@ const uiStateReducer = (state, action) => {
         promise: {
           ...state.promise,
           isLoading: false,
-          exchange: action.payload.exchange,
+          exchangeName: action.payload.exchangeName,
           isSuccess: action.payload.isSuccess
         }
       }
@@ -47,7 +47,7 @@ const uiStateReducer = (state, action) => {
         promise: {
           ...state.promise,
           isLoading: false,
-          exchange: action.payload.exchange,
+          exchangeName: action.payload.exchangeName,
           hasError: action.payload.hasError
         }
       }
@@ -56,7 +56,7 @@ const uiStateReducer = (state, action) => {
         ...state,
         promise: {
           isLoading: false,
-          exchange: '',
+          exchangeName: '',
           hasError: false
         }
       }
