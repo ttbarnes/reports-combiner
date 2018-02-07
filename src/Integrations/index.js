@@ -9,8 +9,20 @@ import {
 import IntegrationsCount from '../components/IntegrationsCount';
 import './styles.css';
 
-// this could be a lot better
+// this could be better
 // this is quick v1 from cleaning other things up
+
+const PlaceholderExchange = () => (
+  <div className="exchange-input-box-container">
+    <div className="exchange-input-box-container-inner">
+      <div className="show-hide-exchange">
+        <div className="cta">
+          <h3 className="button">Placeholder</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+);
 
 class Integrations extends Component {
   constructor(props) {
@@ -105,6 +117,14 @@ class Integrations extends Component {
               />
             )
           ) : null}
+        
+          <PlaceholderExchange name="Placeholder A" />
+          <PlaceholderExchange name="Placeholder B" />
+          <PlaceholderExchange name="Placeholder C" />
+          <PlaceholderExchange name="Placeholder D" />
+          <PlaceholderExchange name="Placeholder E" />
+          <PlaceholderExchange name="Placeholder F" />
+
         </div>
       </div>
     );

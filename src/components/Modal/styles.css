@@ -9,10 +9,10 @@ body.ReactModal__Body--open {
   left: 0;
   right: 0;
   bottom: 0;
-
   transition: opacity 500ms ease-in-out;
   opacity: 0;
   background: rgba(0, 0, 0, 0.650);
+  z-index: 10;
 }
 
 .modal-overlay-after-open {
@@ -33,6 +33,7 @@ body.ReactModal__Body--open {
   align-items: center;
   justify-content: center;
   padding: 2em;
+  z-index: 11;
 }
 
 .modal-container-after-open {

@@ -228,6 +228,7 @@ a {
 
 header h1 {
   margin: 0;
+  font-size: 1.2em;
 }
 
 header .nav {
@@ -325,4 +326,42 @@ header .nav li .button {
 
 .account-tag.premium {
   background: #d6a84c;
+}
+
+.show-hide-exchange .cta button,
+.show-hide-exchange .cta .button {
+  margin-bottom: 0;
+  background: none;
+  border-color: #F1F1F1;
+  padding: 1em;
+}
+
+.show-hide-exchange {
+  background: #F1F1F1;
+  min-height: 55px;
+  opacity: .8;
+  transition: all .2s ease;
+}
+
+.show-hide-exchange.active,
+.show-hide-exchange:hover {
+  opacity: 1;
+}
+
+.show-hide-exchange .content {
+  transition: all .3s ease;
+  position: absolute;
+  top: 58px;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  z-index: 3;
+  opacity: 0;
+  background: #F1F1F1;
+  padding: 0 1em;
+}
+
+.show-hide-exchange.active .content {
+  margin-bottom: 0;
+  opacity: 1;
 }

@@ -12,16 +12,24 @@
 }
 
 .exchange-input-box-container h3 {
-  display: inline-flex;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.exchange-input-box-container i {
+  font-weight: bold;
+  font-size: 1.6em;
+  margin-top: -.1em;
+}
+
+.exchange-input-box-container.active h3 i {
+  color: #BADA55;
 }
 
 .exchange-input-box-container-inner {
-  background: #F1F1F1;
-  padding: 1em;
   position: relative;
-  min-height: 256px;
-  height: 100%;
-  padding-bottom: 0;
 }
 
 @media(min-width: 768px) {

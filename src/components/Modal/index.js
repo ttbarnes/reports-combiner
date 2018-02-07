@@ -40,7 +40,7 @@ export class Modal extends PureComponent {
           </div>
 
           <button onClick={onClose} className="modal-close-button">
-            <span className="lnr lnr-cross" />
+            <i className="lnr lnr-cross" />
           </button>
 
         </div>
