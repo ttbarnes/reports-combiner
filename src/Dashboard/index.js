@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { POSSIBLE_EXCHANGES } from '../constants';
+import { EXCHANGES_MAP } from '../constants';
 import IntegrationsCount from '../components/IntegrationsCount';
 
 export class Dashboard extends PureComponent {
@@ -18,7 +18,7 @@ export class Dashboard extends PureComponent {
 
           <IntegrationsCount
             integrations={user.keys}
-            totalCount={POSSIBLE_EXCHANGES.length}
+            totalCount={EXCHANGES_MAP.length}
             showCta
           />
 

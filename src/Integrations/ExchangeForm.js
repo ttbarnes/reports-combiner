@@ -33,6 +33,18 @@ class ExchangeForm extends Component {
               data-key="apiSecret"
             />
           </div>
+          {exchange.requiresPassphrase &&
+            <div>
+              <label>Passphrase</label>
+              <input
+                type="text"
+                onChange={onInputChange}
+                placeholder="uiopwerty"
+                name={exchange.name}
+                data-key="passphrase"
+              />
+            </div>
+          }
           <div>
             <button
               onClick={onSubmitForm}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-  POSSIBLE_EXCHANGES,
+  EXCHANGES_MAP,
   SUBSCRIPTION_PREMIUM
 } from '../constants';
 import Exchange from './Exchange';
@@ -37,14 +37,26 @@ class Integrations extends Component {
   }
 
   componentDidMount() {
-    let exchangesAsObjs = [];
-    if (POSSIBLE_EXCHANGES && POSSIBLE_EXCHANGES.length) {
-      POSSIBLE_EXCHANGES.map((e) =>
-        exchangesAsObjs = [...exchangesAsObjs, { name: e }]
-      );
+    let allExchanges = [...EXCHANGES_MAP];
+    const { user } = this.props;
+    if (user.keys.length) {
+      user.keys.map((userExchange) => {
+        const exchangeIndex = allExchanges.findIndex((e) => e.name === userExchange.name);
+        const requiresPassphrase = allExchanges[exchangeIndex].requiresPassphrase;
+        const hasPassphrase = userExchange.passphrase && userExchange.passphrase !== null;
+
+        allExchanges[exchangeIndex] = { ...userExchange };
+        if (requiresPassphrase && hasPassphrase) {
+          return allExchanges[exchangeIndex].passphrase = userExchange.passphrase;
+        }
+        else if (requiresPassphrase) {
+          return allExchanges[exchangeIndex].requiresPassphrase = true;
+        }
+        return userExchange;
+      });
     }
     this.setState({
-      allExchanges: exchangesAsObjs
+      allExchanges
     });
   }
 
@@ -76,26 +88,12 @@ class Integrations extends Component {
     if (dataKey === 'apiSecret') {
       exchangeInState.apiSecret = ev.target.value;
     }
+    if (dataKey === 'passphrase') {
+      exchangeInState.passphrase = ev.target.value;
+    }
     this.setState({
       allExchanges
     });
-  }
-
-  getUserExchange(name) {
-    const { user } = this.props;
-    if (!user.keys) return null;
-    return user.keys.find(e => e.name === name);
-  }
-
-  userExchangeExists(exchangeName) {
-    const { user } = this.props;
-    if (
-      (user.keys && user.keys.length) &&
-      this.getUserExchange(exchangeName)
-    ) {
-      return true;
-    }
-    return false;
   }
   
   onPostExchangeData = (ev) => {
@@ -121,7 +119,7 @@ class Integrations extends Component {
 
         <IntegrationsCount
           integrations={user.keys}
-          totalCount={POSSIBLE_EXCHANGES.length}
+          totalCount={EXCHANGES_MAP.length}
         />
 
         <div className="exchange-inputs-container">
@@ -130,7 +128,6 @@ class Integrations extends Component {
               <Exchange
                 exchange={exchange}
                 key={exchange.name}
-                userExchange={this.getUserExchange(exchange.name)}
                 onInputChange={this.onInputChange}
                 onSubmitForm={this.onPostExchangeData}
                 promise={promise}

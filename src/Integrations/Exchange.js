@@ -19,25 +19,27 @@ class Exchange extends Component {
       exchange,
       promise,
       onInputChange,
-      userExchange,
       onSubmitForm,
       onResetPromise
     } = this.props;
 
+    const hasKeys = (exchange.key && exchange.secret);
+
     return (
       <div key={exchange.name}
-           className={userExchange ? 'exchange-input-box-container active' : 'exchange-input-box-container'}>
+        className={hasKeys ? 'exchange-input-box-container active' : 'exchange-input-box-container'}>
         <div className="exchange-input-box-container-inner">
 
           <ExchangeShowHide
             name={exchange.name}
-            integrated={userExchange}
+            integrated={hasKeys}
           >
 
-            {userExchange ?
+            {hasKeys ?
               <div>
-                <p><small>API key: {userExchange.key}</small></p>
-                <p><small>API secret: {userExchange.secret}</small></p>
+                <p><small>API key: {exchange.key}</small></p>
+                <p><small>API secret: {exchange.secret}</small></p>
+                {exchange.passphrase && <p><small>Pass phrase: {exchange.passphrase}</small></p>}
               </div>
               :
               <ExchangeForm
