@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import BitfinexLogo from './images/bitfinex.png';
 import BittrexLogo from './images/bittrex.png';
 import GdaxLogo from './images/gdax.png';
+import CryptopiaLogo from './images/cryptopia.png';
 
 export class Landing extends PureComponent {
   render() {
@@ -25,7 +26,7 @@ export class Landing extends PureComponent {
             <img src={GdaxLogo} alt="GDAX" />
           </div>
           <div>
-            <p>Cryptopia</p>
+            <img src={CryptopiaLogo} alt="Cryptopia" />
           </div>
         </div>
 
