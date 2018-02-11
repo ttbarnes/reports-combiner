@@ -6,7 +6,8 @@ class ExchangeForm extends Component {
     const {
       exchange,
       onInputChange,
-      onSubmitForm
+      onSubmitForm,
+      promise
     } = this.props;
 
     return (
@@ -46,11 +47,20 @@ class ExchangeForm extends Component {
             </div>
           }
           <div>
+            {(promise && promise.exchangeName === exchange.name) &&
+              <div>
+                {promise.hasError &&
+                  <p>Woops, Error :(</p>
+                }
+              </div>
+            }
+
             <button
               onClick={onSubmitForm}
               data-provider={exchange.name}
               className="small block"
-            >Add</button>
+            >Add
+            </button>
           </div>
 
         </form>

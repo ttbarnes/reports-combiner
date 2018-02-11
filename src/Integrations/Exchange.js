@@ -47,6 +47,7 @@ class Exchange extends Component {
                 onInputChange={onInputChange}
                 onSubmitForm={onSubmitForm}
                 onResetPromise={onResetPromise}
+                promise={promise}
               />
             }
 
@@ -54,9 +55,6 @@ class Exchange extends Component {
               <div>
                 {promise.isLoading &&
                   <Loading theme="dark" />
-                }
-                {promise.hasError &&
-                  <div className="promise-loading-cover"><p>Error :(</p></div>
                 }
                 {promise.isSuccess &&
                   <div className="promise-loading-cover"><p>Success! <span role="img" aria-label="success">🚀</span></p></div>
