@@ -75,12 +75,14 @@ export const postExchangeData = (postObj) => {
           }));
           dispatch(userUpdateSuccess(data.data));
         }, (err) => {
+          // errMessage allows for different error structures from backend
+          const errMessage = (err.response.data && err.response.data.errorMessage) ? err.response.data.errorMessage : err.response.data;
           dispatch(promiseExchangeLoading({
             isLoading: false,
             exchangeName: postObj.name
           }));
           dispatch(promiseExchangeError({
-            hasError: err.response.data.errorMessage,
+            hasError: errMessage,
             exchangeName: postObj.name
           }));
         });
