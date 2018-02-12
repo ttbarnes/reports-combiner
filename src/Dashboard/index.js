@@ -11,7 +11,7 @@ export class Dashboard extends PureComponent {
     return (
       <div>
 
-        <div className="align-center">
+        <div>
           {user.username && <h2><span className="text-transform-capitalize">{user.username}</span>{'\''}s Dashboard</h2>}
           {!user.subscription && <p className="account-tag basic"><small>Basic account</small></p>}
           {user.subscription && <p className="account-tag premium"><small>Premium account</small></p>}

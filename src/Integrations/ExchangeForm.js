@@ -50,7 +50,7 @@ class ExchangeForm extends Component {
             {(promise && promise.exchangeName === exchange.name) &&
               <div>
                 {promise.hasError &&
-                  <p>Woops, Error :(</p>
+                  <p className="form-error">{promise.hasError}</p>
                 }
               </div>
             }

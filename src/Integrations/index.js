@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { difference } from 'lodash';
 import {
   EXCHANGES_MAP,
   SUBSCRIPTION_PREMIUM
@@ -12,7 +13,7 @@ import {
 import IntegrationsCount from '../components/IntegrationsCount';
 import './styles.css';
 
-// needs refactor
+// needs complete refactor
 // this is quick v1 from merging other things
 
 const PlaceholderExchange = () => (
@@ -37,6 +38,10 @@ class Integrations extends Component {
   }
 
   componentDidMount() {
+    this.mapExchanges();
+  }
+
+  mapExchanges() {
     let allExchanges = [...EXCHANGES_MAP];
     const { user } = this.props;
     if (user.keys.length) {
@@ -60,9 +65,9 @@ class Integrations extends Component {
     });
   }
 
-  // TEMP solution to resubmit form after subscription success
-  // TODO: redux/reselect/redux-form actions/observables
   componentWillReceiveProps(nextProps) {
+    // TEMP solution to resubmit form after subscription success
+    // TODO: redux/reselect/redux-form actions/observables
     const resubmitForm = (this.props.subscriptionModal.show === true &&
                          !nextProps.subscriptionModal.show) &&
                          nextProps.user.subscription === SUBSCRIPTION_PREMIUM;
@@ -70,6 +75,11 @@ class Integrations extends Component {
     if (resubmitForm) {
       const { selectedExchange } = this.state;
       this.props.onSubmitExchange(selectedExchange);
+    }
+
+    // TEMP solution to get new user exhchanges in props/state
+    if (difference(this.props.user.keys, nextProps.user.keys)) {
+      this.mapExchanges();
     }
   }
 

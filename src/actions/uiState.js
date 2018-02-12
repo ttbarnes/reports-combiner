@@ -61,8 +61,8 @@ export const postExchangeData = (postObj) => {
           'Authorization': localStorage.getItem('token')
         }
       }).put(
-        API_USER_EXCHANGE_KEYS,
-        postObj
+          API_USER_EXCHANGE_KEYS,
+          postObj
         ).then((data) => {
           dispatch(promiseExchangeLoading({
             isLoading: false,
@@ -74,13 +74,13 @@ export const postExchangeData = (postObj) => {
             exchangeName: postObj.name
           }));
           dispatch(userUpdateSuccess(data.data));
-        }, () => {
+        }, (err) => {
           dispatch(promiseExchangeLoading({
             isLoading: false,
             exchangeName: postObj.name
           }));
           dispatch(promiseExchangeError({
-            hasError: true,
+            hasError: err.response.data.errorMessage,
             exchangeName: postObj.name
           }));
         });
