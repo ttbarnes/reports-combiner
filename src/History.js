@@ -1,54 +1,56 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TradeHistoryTable from './TradeHistoryTable';
-import TradeHistoryChart from './TradeHistoryChart';
-import { API_ROOT } from './constants';
-import { openSidebar } from './actions/sidebar';
+import Loading from './components/Loading';
+// import { openSidebar } from './actions/sidebar';
+import { getUserTradeHistory } from './actions/user';
 
 class History extends Component {
 
-  getCsv = () => {
-    fetch(`${API_ROOT}/combined-history/local/download`, {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-    })
-      .then((res => res.json()))
-      .then((data) =>
-        window.open(data.link, '_blank')
-      );
+  componentDidMount() {
+    this.props.onGetTradeHistory();
   }
 
   render() {
-    const { onAddNote } = this.props;
+    const {
+      tradeHistory,
+      promiseLoading,
+      promiseError,
+      promiseSuccess
+    } = this.props;
 
     return (
       <div>
+        {promiseLoading &&
+          <Loading />
+        }
+        {promiseError &&
+          <p className="form-error">Sorry, something has gone wrong :(</p>
+        }
 
-        <div className="row large">
-          <TradeHistoryTable onAddNote={onAddNote}/>
+        {promiseSuccess &&
+          <TradeHistoryTable
+            tradeHistory={tradeHistory}
+          />
+        }
+
         </div>
-
-        <div className="row large">
-          <TradeHistoryChart />
-        </div>
-
-        <button style={{ float: 'left' }} onClick={this.getCsv}>
-          Download test CV
-        </button>
-
-      </div>
     );
   }
 }
 
 const mapDispatchToProps = {
-  onAddNote: () => openSidebar('ADD_NOTE')
+  onGetTradeHistory: () => getUserTradeHistory()
 }
 
+const mapStateToProps = (state) => ({
+  tradeHistory: state.userTradeHistory,
+  promiseLoading: state.user.promise.isLoading,
+  promiseError: state.user.promise.hasError,
+  promiseSuccess: state.user.promise.isSuccess
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(History);

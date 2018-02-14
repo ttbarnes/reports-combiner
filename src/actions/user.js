@@ -15,7 +15,8 @@ import {
   PROMISE_SUCCESS,
   PROMISE_LOADING,
   PROMISE_ERROR,
-  SUBSCRIPTION_PREMIUM
+  SUBSCRIPTION_PREMIUM,
+  FETCH_USER_TRADE_HISTORY_SUCCESS
 } from '../constants';
 import { shouldShowSubscribe } from '../utils';
 import { showSubSubscriptionModal, hideSubSubscriptionModal } from './uiState';
@@ -106,6 +107,14 @@ export function userDataError() {
     type: USER_DATA_ERROR
   }
 }
+
+export function fetchUserTradeHistorySuccess(payload) {
+  return {
+    type: FETCH_USER_TRADE_HISTORY_SUCCESS,
+    payload
+  }
+}
+
 
 export const authCheck = () => {
   return (dispatch, getState) => {
@@ -258,4 +267,33 @@ export const userSubscriptionCheck = (dispatch, profile, context) => {
       return resolve();
     }
   });
+}
+
+
+
+export const getUserTradeHistory = () => {
+  return (dispatch, getState) => {
+    dispatch(promiseError({ hasError: false }));
+    dispatch(promiseLoading({ isLoading: true }));
+    let userId, user;
+    const userObj = () => getState().user.profile;
+    user = userObj();
+    userId = user._id;
+
+
+    return axios.create({
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token')
+      }
+    }).get(
+      `${API_ROOT}/user/${userId}/trade-history`
+    ).then((res) => {
+      dispatch(fetchUserTradeHistorySuccess(res.data));
+      dispatch(promiseLoading({ isLoading: false }));
+      dispatch(promiseSuccess({ isLoading: false, isSuccess: true }));
+    }, () => {
+      dispatch(promiseError({ hasError: true }));
+    });
+  };
 }
