@@ -13,43 +13,51 @@ class TradeHistoryTable extends Component {
 
   render() {
     const { tradeHistory } = this.props;
+    
+    const hasTrades = tradeHistory.fields.length && tradeHistory.trades.length;
 
     return (
       <div className="row">
-        <h4 className="heading-with-bg">All Trade History</h4>
-        {tradeHistory && tradeHistory.length ?
-          <table>
-            <thead>
-              <tr>
-                {Object.keys(tradeHistory[0]).map((field) => {
+        {hasTrades ?
+          <div>
+            <h4 className="heading-with-bg">All Trade History</h4>
+            <table>
+              <thead>
+                <tr>
+                  {tradeHistory.fields.map((field) => {
+                    return (
+                      <th key={field}>
+                        {field}
+                      </th>
+                    );
+                  })}
+                </tr>
+              </thead>
+              <tbody>
+                {tradeHistory.trades.map((cell, cellIndex) => {
+                  const cellKeys = Object.keys(cell);
                   return (
-                    <th key={field}>
-                      {field}
-                    </th>
+                    <tr key={cellIndex}>
+                      {cellKeys.map((field) => {
+                        return (
+                          <td key={field + cellIndex}>
+                            {cell[field]}
+                          </td>
+                        );
+                      }
+                    )}
+                    </tr>
                   );
-                })}
-              </tr>
-            </thead>
-            <tbody>
-              {tradeHistory.map((cell, cellIndex) => {
-                const cellKeys = Object.keys(cell);
-                return (
-                  <tr key={cellIndex}>
-                    {cellKeys.map((field) => {
-                      return (
-                        <td key={field + cellIndex}>
-                          {cell[field]}
-                        </td>
-                      );
-                    }
-                  )}
-                  </tr>
-                );
 
-              })}
-            </tbody>
-          </table>
-        : null }
+                })}
+              </tbody>
+            </table>
+          </div>
+        :
+        <div className="align-center">
+          <p>No trade history to display :(</p>
+        </div>
+      }
       </div>
     )
   }
