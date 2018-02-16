@@ -85,22 +85,22 @@ tr:nth-child(even) td {
   padding-top: 5em;
 }
 
-.binance {
+.Binance {
   background: #BADA55;
   color: #000;
 }
 
-.bitfinex {
+.Bitfinex {
   background: darkgreen;
   color: #FFF;
 }
 
-.gdax {
+.Gdax {
   background: #444;
   color: #FFF;
 }
 
-.cryptopia {
+.Cryptopia {
   background: #556371;
   color: #FFF;
 }
@@ -110,9 +110,9 @@ tr:nth-child(even) td {
   color: #000;
 }
 
-.exchange-tag.sell-or-withdraw {
-  background: darkred;
-  color: #FFF;
+.exchange-tag.exchange-type {
+  background: #CCC;
+  color: #000;
 }
 
 .chart-container {

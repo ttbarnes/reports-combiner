@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
-// import moment from 'moment';
-
-// const MOMENT_DATE_FORMAT = 'Do MMM YYYY @ HH:mma';
+import moment from 'moment';
+const MOMENT_DATE_FORMAT = 'Do MMM YYYY @ HH:mma';
 
 class TradeHistoryTable extends Component {
 
-  // cryptopia provides dates with this formatting: DD/MM/YYYY HH:mm:ssa
-  // we want: Do MMM YYYY @ HH:mma
-  // handleCryptopiaDateFormat(date) {
-  //   return moment(date, 'DD/MM/YYYY HH:mm:ssa').format(MOMENT_DATE_FORMAT)
-  // }
+  isCellDate = (str) => str === 'timestamp';
+
+  isCellType = (str) => str === 'type';
+
+  isCellExchange = (str) => str === 'exchangeName';
+
+  handleCryptopiaDateFormat(date) {
+    return moment(date, 'YYYY-MM-DD-HH:mm:ss').format(MOMENT_DATE_FORMAT);
+  }
+
+  handleBinanceDateFormat(date) {
+    return moment(date).format(MOMENT_DATE_FORMAT);
+  }
 
   render() {
     const { tradeHistory } = this.props;
@@ -36,11 +43,39 @@ class TradeHistoryTable extends Component {
               <tbody>
                 {tradeHistory.trades.map((cell, cellIndex) => {
                   const cellKeys = Object.keys(cell);
+
                   return (
                     <tr key={cellIndex}>
                       {cellKeys.map((field) => {
+                        const tdKey = field + cellIndex;
+
+                        if (this.isCellDate(field)) {
+                          return (
+                            <td key={tdKey}>
+                              {cell.exchangeName === 'Binance' && <span>{this.handleBinanceDateFormat(cell[field])}</span>}
+                              {cell.exchangeName === 'Cryptopia' && <span>{this.handleCryptopiaDateFormat(cell[field])}</span>}
+                            </td>
+                          );
+                        }
+
+                        if (this.isCellType(field)) {
+                          return (
+                            <td key={tdKey}>
+                              <span className='exchange-tag exchange-type'>{cell[field]}</span>
+                            </td>
+                          );
+                        }
+
+                        if (this.isCellExchange(field)) {
+                          return (
+                            <td key={tdKey}>
+                              <span className={`exchange-tag ${cell[field]}`}>{cell[field]}</span>
+                            </td>
+                          );
+                        }
+                       
                         return (
-                          <td key={field + cellIndex}>
+                          <td key={tdKey}>
                             {cell[field]}
                           </td>
                         );
