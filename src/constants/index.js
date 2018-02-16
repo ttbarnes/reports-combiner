@@ -1,6 +1,5 @@
 // global
 export const API_ROOT = 'http://localhost:8080/api';
-// export const POSSIBLE_EXCHANGES = ['Binance', 'Bitfinex', 'GDAX', 'Cryptopia'];
 export const MAX_FREE_KEYS = 2;
 export const API_USER_EXCHANGE_KEYS = `${API_ROOT}/user/exchange-keys`;
 export const SUBSCRIPTION_PREMIUM = 'premium';
@@ -10,6 +9,8 @@ export const EXCHANGES_MAP = [
   { name: 'GDAX', requiresPassphrase: true },
   { name: 'Cryptopia' }
 ];
+export const SIDEBAR_ADD_NOTE = 'SIDEBAR_ADD_NOTE';
+
 
 // actions
 export const USER_SET_AUTH = 'USER_SET_AUTH';
@@ -39,3 +40,4 @@ export const HIDE_SUBSCRIPTION_MODAL = 'HIDE_SUBSCRIPTION_MODAL';
 
 export const OPEN_SIDEBAR = 'OPEN_SIDEBAR';
 export const CLOSE_SIDEBAR = 'CLOSE_SIDEBAR';
+

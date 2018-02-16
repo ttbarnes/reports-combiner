@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TradeHistoryTable from './TradeHistoryTable';
 import Loading from './components/Loading';
-// import { openSidebar } from './actions/sidebar';
+import { openSidebar } from './actions/sidebar';
 import { getUserTradeHistory } from './actions/user';
+import { SIDEBAR_ADD_NOTE } from './constants';
 
 class History extends Component {
 
@@ -16,7 +17,8 @@ class History extends Component {
       tradeHistory,
       promiseLoading,
       promiseError,
-      promiseSuccess
+      promiseSuccess,
+      onAddNote
     } = this.props;
 
     return (
@@ -31,6 +33,7 @@ class History extends Component {
         {promiseSuccess &&
           <TradeHistoryTable
             tradeHistory={tradeHistory}
+            onAddNote={onAddNote}
           />
         }
 
@@ -40,7 +43,8 @@ class History extends Component {
 }
 
 const mapDispatchToProps = {
-  onGetTradeHistory: () => getUserTradeHistory()
+  onGetTradeHistory: () => getUserTradeHistory(),
+  onAddNote: () => openSidebar(SIDEBAR_ADD_NOTE)
 }
 
 const mapStateToProps = (state) => ({

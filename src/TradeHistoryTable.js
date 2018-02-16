@@ -18,8 +18,15 @@ class TradeHistoryTable extends Component {
     return moment(date).format(MOMENT_DATE_FORMAT);
   }
 
+  isCellAddNote(str) {
+    return str === 'uiAddNote';
+  }
+
   render() {
-    const { tradeHistory } = this.props;
+    const {
+      tradeHistory,
+      onAddNote
+    } = this.props;
     
     const hasTrades = tradeHistory.fields.length && tradeHistory.trades.length;
 
@@ -70,6 +77,18 @@ class TradeHistoryTable extends Component {
                           return (
                             <td key={tdKey}>
                               <span className={`exchange-tag ${cell[field]}`}>{cell[field]}</span>
+                            </td>
+                          );
+                        }
+
+                        if (this.isCellAddNote(field)) {
+                          return (
+                            <td key={tdKey}>
+                              <button
+                                className="small"
+                                onClick={onAddNote}
+                              >add note
+                              </button>
                             </td>
                           );
                         }
