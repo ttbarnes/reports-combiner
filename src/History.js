@@ -9,7 +9,9 @@ import { SIDEBAR_ADD_NOTE } from './constants';
 class History extends Component {
 
   componentDidMount() {
-    this.props.onGetTradeHistory();
+    if (!this.props.tradeHistory.fields) {
+      this.props.onGetTradeHistory();
+    }
   }
 
   render() {
