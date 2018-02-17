@@ -14,7 +14,7 @@ class TradeHistoryTable extends Component {
     return moment(date, 'YYYY-MM-DD-HH:mm:ss').format(MOMENT_DATE_FORMAT);
   }
 
-  handleBinanceDateFormat(date) {
+  handleDateFormat(date) {
     return moment(date).format(MOMENT_DATE_FORMAT);
   }
 
@@ -27,7 +27,7 @@ class TradeHistoryTable extends Component {
       tradeHistory,
       onAddNote
     } = this.props;
-    
+
     const hasTrades = tradeHistory.fields.length && tradeHistory.trades.length;
 
     return (
@@ -59,7 +59,10 @@ class TradeHistoryTable extends Component {
                         if (this.isCellDate(field)) {
                           return (
                             <td key={tdKey}>
-                              {cell.exchangeName === 'Binance' && <span>{this.handleBinanceDateFormat(cell[field])}</span>}
+                              {(cell.exchangeName === 'Binance' ||
+                                cell.exchangeName === 'GDAX') && 
+                                <span>{this.handleDateFormat(cell[field])}</span>
+                              }
                               {cell.exchangeName === 'Cryptopia' && <span>{this.handleCryptopiaDateFormat(cell[field])}</span>}
                             </td>
                           );
