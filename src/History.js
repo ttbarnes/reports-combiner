@@ -25,9 +25,11 @@ class History extends Component {
 
     return (
       <div>
+
         {promiseLoading &&
           <Loading />
         }
+
         {promiseError &&
           <p className="form-error">Sorry, something has gone wrong :(</p>
         }
@@ -39,7 +41,7 @@ class History extends Component {
           />
         }
 
-        </div>
+      </div>
     );
   }
 }
