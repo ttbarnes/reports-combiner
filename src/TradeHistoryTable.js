@@ -9,7 +9,7 @@ class TradeHistoryTable extends Component {
 
   isCellDate = (str) => str === 'timestamp';
 
-  isCellType = (str) => str === 'type';
+  isCellType = (str) => str === 'tradeType';
 
   isCellExchange = (str) => str === 'exchangeName';
 

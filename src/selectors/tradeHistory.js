@@ -14,7 +14,7 @@ const selectTradeHistoryTrades = createSelector(
 
 export const selectTradeHistoryByDate = createSelector(
   selectTradeHistoryTrades,
-  trades => trades.sort((a: any, b: any): any =>
+  trades => trades && trades.length && trades.sort((a: any, b: any): any =>
     new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
   )
 );
