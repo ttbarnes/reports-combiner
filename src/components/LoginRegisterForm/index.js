@@ -15,7 +15,7 @@ class LoginRegisterForm extends Component {
     if (isAuth) {
       return (
         <Redirect to={{
-          pathname: '/dashboard',
+          pathname: '/history',
           state: { from: this.props.location }
         }} />
       );

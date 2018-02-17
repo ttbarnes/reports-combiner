@@ -31,7 +31,7 @@ const UnAuthRoute = ({ component: Component, isAuth, ...rest }) => (
   <Route {...rest} render={props => (
     isAuth ? (
       <Redirect to={{
-          pathname: '/dashboard',
+          pathname: '/history',
           state: { from: props.location }
         }} />
     ) : (
