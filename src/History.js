@@ -7,10 +7,10 @@ import { getUserTradeHistory } from './actions/user';
 import { SIDEBAR_ADD_NOTE } from './constants';
 
 class History extends Component {
-
-  componentDidMount() {
-    if (!this.props.tradeHistory.fields) {
-      this.props.onGetTradeHistory();
+  componentWillReceiveProps(nextProps) {
+    if (this.props.user.profile !== nextProps.user.profile &&
+        !this.props.tradeHistory.fields) {
+      this.props.onGetTradeHistory(); 
     }
   }
 
@@ -50,6 +50,7 @@ const mapDispatchToProps = {
 }
 
 const mapStateToProps = (state) => ({
+  user: state.user,
   tradeHistory: state.userTradeHistory,
   promiseLoading: state.user.promise.isLoading,
   promiseError: state.user.promise.hasError,
