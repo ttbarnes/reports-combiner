@@ -16,7 +16,7 @@ import {
   PROMISE_LOADING,
   PROMISE_ERROR,
   SUBSCRIPTION_PREMIUM,
-  FETCH_USER_TRADE_HISTORY_SUCCESS
+  FETCH_TRADE_HISTORY_SUCCESS
 } from '../constants';
 import { shouldShowSubscribe } from '../utils';
 import { showSubSubscriptionModal, hideSubSubscriptionModal } from './uiState';
@@ -110,7 +110,7 @@ export function userDataError() {
 
 export function fetchUserTradeHistorySuccess(payload) {
   return {
-    type: FETCH_USER_TRADE_HISTORY_SUCCESS,
+    type: FETCH_TRADE_HISTORY_SUCCESS,
     payload
   }
 }

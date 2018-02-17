@@ -7,9 +7,9 @@ import userTradeHistoryReducer from './userTradeHistory';
 
 const rootReducer = combineReducers({
   form: formReducer,
-  user: userReducer,
-  uiState: uiStateReducer,
   sidebar: sidebarReducer,
+  uiState: uiStateReducer,
+  user: userReducer,
   userTradeHistory: userTradeHistoryReducer
 })
 

@@ -1,20 +1,25 @@
 import {
-  FETCH_USER_TRADE_HISTORY_SUCCESS
+  FETCH_TRADE_HISTORY_SUCCESS
 } from '../constants';
 
-const initialState = [];
+const initialState = {
+  data: [],
+  filteredData: []
+}
 
-const userReducer = (state, action) => {
+const userTradeHistoryReducer = (state, action) => {
   if (typeof state === 'undefined') {
     return initialState;
   }
 
   switch (action.type) {
-    case FETCH_USER_TRADE_HISTORY_SUCCESS:
-      return action.payload;
+    case FETCH_TRADE_HISTORY_SUCCESS:
+      return Object.assign({}, state, {
+        data: action.payload
+      });
     default:
       return state;
   }
 };
 
-export default userReducer;
+export default userTradeHistoryReducer;

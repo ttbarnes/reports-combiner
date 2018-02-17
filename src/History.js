@@ -53,7 +53,7 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state) => ({
   user: state.user,
-  tradeHistory: state.userTradeHistory,
+  tradeHistory: state.userTradeHistory.data,
   promiseLoading: state.user.promise.isLoading,
   promiseError: state.user.promise.hasError,
   promiseSuccess: state.user.promise.isSuccess

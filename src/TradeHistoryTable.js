@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import moment from 'moment';
+import { selectTradeHistoryByDate } from './selectors/tradeHistory';
+
 const MOMENT_DATE_FORMAT = 'Do MMM YYYY @ HH:mma';
 
 class TradeHistoryTable extends Component {
@@ -25,10 +28,13 @@ class TradeHistoryTable extends Component {
   render() {
     const {
       tradeHistory,
+      filteredTradeHistory,
       onAddNote
     } = this.props;
 
-    const hasTrades = tradeHistory.fields.length && tradeHistory.trades.length;
+    const hasTrades = tradeHistory.fields.length &&
+                      filteredTradeHistory &&
+                      filteredTradeHistory.length;
 
     return (
       <div className="row">
@@ -48,7 +54,7 @@ class TradeHistoryTable extends Component {
                 </tr>
               </thead>
               <tbody>
-                {tradeHistory.trades.map((cell, cellIndex) => {
+                {filteredTradeHistory.map((cell, cellIndex) => {
                   const cellKeys = Object.keys(cell);
 
                   return (
@@ -120,4 +126,11 @@ class TradeHistoryTable extends Component {
   }
 }
 
-export default TradeHistoryTable;
+const mapStateToProps = (state) => ({
+  filteredTradeHistory: selectTradeHistoryByDate(state)
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(TradeHistoryTable);
