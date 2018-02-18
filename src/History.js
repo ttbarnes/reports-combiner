@@ -8,9 +8,12 @@ import { SIDEBAR_ADD_NOTE } from './constants';
 
 class History extends Component {
   componentWillReceiveProps(nextProps) {
-    if (this.props.user.profile !== nextProps.user.profile &&
-        !this.props.tradeHistory.fields) {
-      this.props.onGetTradeHistory(); 
+    const { user, tradeHistory } = this.props;
+    const shouldGetTradeHistory = user.profile !== nextProps.user.profile &&
+                                  nextProps.user.profile._id &&
+                                  !tradeHistory.fields;
+    if (shouldGetTradeHistory) {
+      this.props.onGetTradeHistory();
     }
   }
 
