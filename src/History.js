@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import TradeHistoryTable from './TradeHistoryTable';
 import Loading from './components/Loading';
 import { openSidebar } from './actions/sidebar';
@@ -11,6 +12,7 @@ class History extends Component {
     const { user, tradeHistory } = this.props;
     const shouldGetTradeHistory = user.profile !== nextProps.user.profile &&
                                   nextProps.user.profile._id &&
+                                  nextProps.user.profile.keys.length &&
                                   !tradeHistory.fields;
     if (shouldGetTradeHistory) {
       this.props.onGetTradeHistory();
@@ -19,12 +21,19 @@ class History extends Component {
 
   render() {
     const {
+      user,
       tradeHistory,
       promiseLoading,
       promiseError,
       promiseSuccess,
       onAddNote
     } = this.props;
+
+    const showNoExchangesMessage = (!promiseError &&
+                                    user.profile &&
+                                    user.profile.keys &&
+                                    !user.profile.keys.length
+                                   );
 
     return (
       <div>
@@ -33,8 +42,20 @@ class History extends Component {
           <Loading />
         }
 
+        {showNoExchangesMessage &&
+          <div className="align-center">
+            <p>No exchanges integrated.</p>
+            <Link to="/integrations">add an exchange</Link>
+          </div>
+        }
+
         {promiseError &&
-          <p className="form-error">Sorry, something has gone wrong :(</p>
+          <div className="align-center">
+            <p>{promiseError}</p>
+            {promiseError === 'No exchanges integrated' &&
+              <Link to="/integrations">add an exchange</Link>
+            }
+          </div>
         }
 
         {promiseSuccess &&

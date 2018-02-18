@@ -288,8 +288,8 @@ export const getUserTradeHistory = () => {
       dispatch(fetchUserTradeHistorySuccess(res.data));
       dispatch(promiseLoading({ isLoading: false }));
       dispatch(promiseSuccess({ isLoading: false, isSuccess: true }));
-    }, () => {
-      dispatch(promiseError({ hasError: true }));
+    }, (err) => {
+      dispatch(promiseError({ hasError: err.response.data.errorMessage }));
     });
   };
 }
