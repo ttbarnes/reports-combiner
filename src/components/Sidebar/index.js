@@ -30,7 +30,6 @@ class Sidebar extends Component {
   render() {
     const {
       settings,
-      onClose,
       promiseLoading,
       promiseError,
       promiseSuccess
