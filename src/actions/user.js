@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 import {
   API_ROOT,
   USER_SET_AUTH,
@@ -269,8 +268,6 @@ export const userSubscriptionCheck = (dispatch, profile, context) => {
   });
 }
 
-
-
 export const getUserTradeHistory = () => {
   return (dispatch, getState) => {
     dispatch(promiseError({ hasError: false }));
@@ -279,7 +276,6 @@ export const getUserTradeHistory = () => {
     const userObj = () => getState().user.profile;
     user = userObj();
     userId = user._id;
-
 
     return axios.create({
       headers: {

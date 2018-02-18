@@ -10,7 +10,7 @@ export const EXCHANGES_MAP = [
   { name: 'Cryptopia' }
 ];
 export const SIDEBAR_ADD_NOTE = 'SIDEBAR_ADD_NOTE';
-
+export const HISTORY_TABLE_FIELDS_DISALLOWED = ['_id'];
 
 // actions
 export const USER_SET_AUTH = 'USER_SET_AUTH';

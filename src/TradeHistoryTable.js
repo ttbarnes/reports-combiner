@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import { HISTORY_TABLE_FIELDS_DISALLOWED } from './constants';
 import { selectTradeHistoryByDate } from './selectors/tradeHistory';
 
 const MOMENT_DATE_FORMAT = 'Do MMM YYYY @ HH:mma';
 
 class TradeHistoryTable extends Component {
+
+  fieldShouldNotRender = (fieldName) => HISTORY_TABLE_FIELDS_DISALLOWED.includes(fieldName);
 
   isCellDate = (str) => str === 'timestamp';
 
@@ -61,6 +64,10 @@ class TradeHistoryTable extends Component {
                     <tr key={cellIndex}>
                       {cellKeys.map((field) => {
                         const tdKey = field + cellIndex;
+
+                        if (this.fieldShouldNotRender(field)) {
+                          return null;
+                        }
 
                         if (this.isCellDate(field)) {
                           return (
