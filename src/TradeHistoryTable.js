@@ -10,11 +10,11 @@ class TradeHistoryTable extends Component {
 
   fieldShouldNotRender = (fieldName) => HISTORY_TABLE_FIELDS_DISALLOWED.includes(fieldName);
 
-  isCellDate = (str) => str === 'timestamp';
+  isFieldDate = (str) => str === 'timestamp';
 
-  isCellType = (str) => str === 'tradeType';
+  isFieldType = (str) => str === 'tradeType';
 
-  isCellExchange = (str) => str === 'exchangeName';
+  isFieldExchange = (str) => str === 'exchangeName';
 
   handleCryptopiaDateFormat(date) {
     return moment(date, 'YYYY-MM-DD-HH:mm:ss').format(MOMENT_DATE_FORMAT);
@@ -24,7 +24,7 @@ class TradeHistoryTable extends Component {
     return moment(date).format(MOMENT_DATE_FORMAT);
   }
 
-  isCellAddNote(str) {
+  isFieldAddNote(str) {
     return str === 'uiAddNote';
   }
 
@@ -32,7 +32,7 @@ class TradeHistoryTable extends Component {
     const {
       tradeHistory,
       filteredTradeHistory,
-      onAddNote
+      onClickAddNoteButton
     } = this.props;
 
     const hasTrades = tradeHistory.fields.length &&
@@ -57,52 +57,52 @@ class TradeHistoryTable extends Component {
                 </tr>
               </thead>
               <tbody>
-                {filteredTradeHistory.map((cell, cellIndex) => {
-                  const cellKeys = Object.keys(cell);
+                {filteredTradeHistory.map((row, rowIndex) => {
+                  const rowKeys = Object.keys(row);
 
                   return (
-                    <tr key={cellIndex}>
-                      {cellKeys.map((field) => {
-                        const tdKey = field + cellIndex;
+                    <tr key={rowIndex}>
+                      {rowKeys.map((field) => {
+                        const tdKey = field + rowIndex;
 
                         if (this.fieldShouldNotRender(field)) {
                           return null;
                         }
 
-                        if (this.isCellDate(field)) {
+                        if (this.isFieldDate(field)) {
                           return (
                             <td key={tdKey}>
-                              {(cell.exchangeName === 'Binance' ||
-                                cell.exchangeName === 'GDAX') && 
-                                <span>{this.handleDateFormat(cell[field])}</span>
+                              {(row.exchangeName === 'Binance' ||
+                                row.exchangeName === 'GDAX') && 
+                                <span>{this.handleDateFormat(row[field])}</span>
                               }
-                              {cell.exchangeName === 'Cryptopia' && <span>{this.handleCryptopiaDateFormat(cell[field])}</span>}
+                              {row.exchangeName === 'Cryptopia' && <span>{this.handleCryptopiaDateFormat(row[field])}</span>}
                             </td>
                           );
                         }
 
-                        if (this.isCellType(field)) {
+                        if (this.isFieldType(field)) {
                           return (
                             <td key={tdKey}>
-                              <span className='exchange-tag exchange-type'>{cell[field]}</span>
+                              <span className='exchange-tag exchange-type'>{row[field]}</span>
                             </td>
                           );
                         }
 
-                        if (this.isCellExchange(field)) {
+                        if (this.isFieldExchange(field)) {
                           return (
                             <td key={tdKey}>
-                              <span className={`exchange-tag ${cell[field]}`}>{cell[field]}</span>
+                              <span className={`exchange-tag ${row[field]}`}>{row[field]}</span>
                             </td>
                           );
                         }
 
-                        if (this.isCellAddNote(field)) {
+                        if (this.isFieldAddNote(field)) {
                           return (
                             <td key={tdKey}>
                               <button
                                 className="small"
-                                onClick={onAddNote}
+                                onClick={() => onClickAddNoteButton(row)}
                               >add note
                               </button>
                             </td>
@@ -111,7 +111,7 @@ class TradeHistoryTable extends Component {
                        
                         return (
                           <td key={tdKey}>
-                            {cell[field]}
+                            {row[field]}
                           </td>
                         );
                       }
@@ -136,6 +136,7 @@ class TradeHistoryTable extends Component {
 const mapStateToProps = (state) => ({
   filteredTradeHistory: selectTradeHistoryByDate(state)
 });
+
 
 export default connect(
   mapStateToProps,

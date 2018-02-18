@@ -11,7 +11,7 @@ import History from './History';
 import Integrations from './Integrations';
 import About from './About';
 import SubscribeModal from './components/SubscribeModal';
-import Sidebar from './Sidebar';
+import Sidebar from './components/Sidebar';
 import './App.css';
 
 const PrivateRoute = ({ component: Component, isAuth, ...rest }) => (

@@ -140,18 +140,24 @@ tr:nth-child(even) td {
   margin-bottom: 10em;
 }
 
-input {
+input,
+textarea {
   width: 100%;
   padding: .5em;
   font-size: 1em;
   border: solid 2px #ACACAC;
   font-family: monospace, sans-serif, Helvetica;
-  transition: all .3s ease;
+  transition: all .3s ease; 
 }
 
-input:focus {
+input:focus,
+textarea:focus { 
   border: solid 2px #000;
   outline: 0 none;
+}
+
+textarea {
+  resize: none;
 }
 
 form > div {
@@ -390,7 +396,7 @@ header .nav li .button {
   right: -300px;
   width: 100%;
   height: 100%;
-  max-width: 300px;
+  max-width: 350px;
   z-index: 11;
   padding: 1em;
   opacity: 0;

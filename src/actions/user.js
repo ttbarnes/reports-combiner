@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {
   API_ROOT,
+  API_TRADE_HISTORY,
   USER_SET_AUTH,
   USER_SIGNUP_SUCCESS,
   USER_LOGIN_SUCCESS,
@@ -283,7 +284,7 @@ export const getUserTradeHistory = () => {
         'Authorization': localStorage.getItem('token')
       }
     }).get(
-      `${API_ROOT}/user/${userId}/trade-history`
+      `${API_ROOT}/user/${userId}/${API_TRADE_HISTORY}`
     ).then((res) => {
       dispatch(fetchUserTradeHistorySuccess(res.data));
       dispatch(promiseLoading({ isLoading: false }));

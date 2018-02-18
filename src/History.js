@@ -5,7 +5,8 @@ import TradeHistoryTable from './TradeHistoryTable';
 import Loading from './components/Loading';
 import { openSidebar } from './actions/sidebar';
 import { getUserTradeHistory } from './actions/user';
-import { SIDEBAR_ADD_NOTE } from './constants';
+import { tradeHistoryActiveRow } from './actions/userTradeHistory';
+import { SIDEBAR_TRADE_HISTORY_ADD_NOTE } from './constants';
 
 class History extends Component {
   componentWillReceiveProps(nextProps) {
@@ -19,14 +20,22 @@ class History extends Component {
     }
   }
 
+  handleOnOpenAddNoteSidebar = (rowObj) => {
+    const {
+      onTradeHistoryActiveRow,
+      onOpenAddNoteSidebar
+    } = this.props;
+    onTradeHistoryActiveRow(rowObj);
+    onOpenAddNoteSidebar();
+  }
+
   render() {
     const {
       user,
       tradeHistory,
       promiseLoading,
       promiseError,
-      promiseSuccess,
-      onAddNote
+      promiseSuccess
     } = this.props;
 
     const showNoExchangesMessage = (!promiseError &&
@@ -61,7 +70,7 @@ class History extends Component {
         {promiseSuccess &&
           <TradeHistoryTable
             tradeHistory={tradeHistory}
-            onAddNote={onAddNote}
+            onClickAddNoteButton={this.handleOnOpenAddNoteSidebar}
           />
         }
 
@@ -72,7 +81,8 @@ class History extends Component {
 
 const mapDispatchToProps = {
   onGetTradeHistory: () => getUserTradeHistory(),
-  onAddNote: () => openSidebar(SIDEBAR_ADD_NOTE)
+  onTradeHistoryActiveRow: (row) => tradeHistoryActiveRow(row),
+  onOpenAddNoteSidebar: () => openSidebar(SIDEBAR_TRADE_HISTORY_ADD_NOTE)
 }
 
 const mapStateToProps = (state) => ({

@@ -2,6 +2,9 @@
 export const API_ROOT = 'http://localhost:8080/api';
 export const MAX_FREE_KEYS = 2;
 export const API_USER_EXCHANGE_KEYS = `${API_ROOT}/user/exchange-keys`;
+export const API_TRADE_HISTORY = 'trade-history';
+export const API_TRADE_HISTORY_NOTE = `${API_TRADE_HISTORY}/note`;
+
 export const SUBSCRIPTION_PREMIUM = 'premium';
 export const EXCHANGES_MAP = [
   { name: 'Binance' },
@@ -9,7 +12,7 @@ export const EXCHANGES_MAP = [
   { name: 'GDAX', requiresPassphrase: true },
   { name: 'Cryptopia' }
 ];
-export const SIDEBAR_ADD_NOTE = 'SIDEBAR_ADD_NOTE';
+export const SIDEBAR_TRADE_HISTORY_ADD_NOTE = 'SIDEBAR_TRADE_HISTORY_ADD_NOTE';
 export const HISTORY_TABLE_FIELDS_DISALLOWED = ['_id'];
 
 // actions
@@ -39,5 +42,12 @@ export const HIDE_SUBSCRIPTION_MODAL = 'HIDE_SUBSCRIPTION_MODAL';
 
 export const OPEN_SIDEBAR = 'OPEN_SIDEBAR';
 export const CLOSE_SIDEBAR = 'CLOSE_SIDEBAR';
+export const PROMISE_SIDEBAR_LOADING = 'PROMISE_SIDEBAR_LOADING';
+export const PROMISE_SIDEBAR_SUCCESS = 'PROMISE_SIDEBAR_SUCCESS';
+export const PROMISE_SIDEBAR_ERROR = 'PROMISE_SIDEBAR_ERROR';
+export const PROMISE_SIDEBAR_RESET = 'PROMISE_SIDEBAR_RESET';
 
 export const FETCH_TRADE_HISTORY_SUCCESS = 'FETCH_TRADE_HISTORY_SUCCESS';
+
+export const TRADE_HISTORY_ACTIVE_ROW = 'TRADE_HISTORY_ACTIVE_ROW';
+export const TRADE_HISTORY_ADD_NOTE_SUCCESS = 'TRADE_HISTORY_ADD_NOTE_SUCCESS';

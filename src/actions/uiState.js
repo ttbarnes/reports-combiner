@@ -41,7 +41,6 @@ export function promiseExchangeReset() {
   }
 }
 
-
 export const postExchangeData = (postObj) => {
   return (dispatch, getState) => {
     const userProfile = getState().user.profile;
