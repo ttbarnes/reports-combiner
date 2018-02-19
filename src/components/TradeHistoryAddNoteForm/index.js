@@ -1,4 +1,4 @@
-import React, { PureComponent, Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { postTradeHistoryFormNote } from '../../actions/userTradeHistory'
@@ -14,7 +14,6 @@ const TextArea = (props) => (
 export class TradeHistoryAddNoteForm extends PureComponent {
   render() {
     const {
-      trade,
       onSubmitForm,
       promiseLoading,
       promiseSuccess
@@ -63,7 +62,6 @@ const TradeHistoryAddNoteReduxForm = reduxForm({
 })(TradeHistoryAddNoteForm);
 
 const mapStateToProps = (state) => ({
-  trade: state.userTradeHistory.activeRow,
   promiseLoading: state.sidebar.promise.isLoading,
   initialValues: {
     note: state.userTradeHistory.activeRow.note

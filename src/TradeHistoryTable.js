@@ -24,6 +24,11 @@ class TradeHistoryTable extends Component {
     return moment(date).format(MOMENT_DATE_FORMAT);
   }
 
+  handleBinanceDateFormat(date) {
+    const parseDate = moment(`/Date(${date})/`).toDate().getTime();
+    return moment(parseDate).format(MOMENT_DATE_FORMAT);
+  }
+
   isFieldNote(str) {
     return str === 'note';
   }
@@ -72,9 +77,11 @@ class TradeHistoryTable extends Component {
                         if (this.isFieldDate(field)) {
                           return (
                             <td key={tdKey}>
-                              {(row.exchangeName === 'Binance' ||
-                                row.exchangeName === 'GDAX') && 
+                              {row.exchangeName === 'GDAX' && 
                                 <span>{this.handleDateFormat(row[field])}</span>
+                              }
+                              {row.exchangeName === 'Binance' &&
+                                <span>{this.handleBinanceDateFormat(row[field])}</span>
                               }
                               {row.exchangeName === 'Cryptopia' && <span>{this.handleCryptopiaDateFormat(row[field])}</span>}
                             </td>
