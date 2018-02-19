@@ -24,8 +24,8 @@ class TradeHistoryTable extends Component {
     return moment(date).format(MOMENT_DATE_FORMAT);
   }
 
-  isFieldAddNote(str) {
-    return str === 'uiAddNote';
+  isFieldNote(str) {
+    return str === 'note';
   }
 
   render() {
@@ -97,14 +97,26 @@ class TradeHistoryTable extends Component {
                           );
                         }
 
-                        if (this.isFieldAddNote(field)) {
+                        if (this.isFieldNote(field)) {
+                          const note = row[field];
                           return (
                             <td key={tdKey}>
-                              <button
-                                className="small"
-                                onClick={() => onClickAddNoteButton(row)}
-                              >add note
-                              </button>
+                              <div className="table-cell-flex">
+
+                                <div>
+                                  {note.length ? <span>1 note</span> : <span/>}
+                                </div>
+
+                                <div>
+                                  <button
+                                    className="small"
+                                    onClick={() => onClickAddNoteButton(row)}
+                                  >
+                                    <i className="lnr lnr-pencil" />
+                                  </button>
+                                </div>
+
+                              </div>
                             </td>
                           );
                         }

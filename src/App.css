@@ -70,6 +70,26 @@ tr:nth-child(even) td {
   background: #F1F1F1;
 }
 
+td .table-cell-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+td .table-cell-flex > div {
+  width: 50%;
+}
+
+td .table-cell-flex > div:first-child {
+  text-align: left;
+}
+
+td .table-cell-flex > div:last-child {
+  text-align: right;
+}
+
+
 ::selection {
   color: #FFF;
   background: #000;
@@ -393,7 +413,7 @@ header .nav li .button {
   background: #FFF;
   position: fixed;
   top: 0;
-  right: -300px;
+  right: -350px;
   width: 100%;
   height: 100%;
   max-width: 350px;
