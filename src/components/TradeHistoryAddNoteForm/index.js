@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { postTradeHistoryFormNote } from '../../actions/userTradeHistory'
 import { closeSidebar } from '../../actions/sidebar';
+import { FORM_TRADE_HISTORY_ADD_NOTE } from '../../constants';
 
 const TextArea = (props) => (
   <textarea
@@ -58,13 +59,13 @@ export class TradeHistoryAddNoteForm extends PureComponent {
 }
 
 const TradeHistoryAddNoteReduxForm = reduxForm({
-  form: 'TRADE_HISTORY_ADD_NOTE'
+  form: FORM_TRADE_HISTORY_ADD_NOTE
 })(TradeHistoryAddNoteForm);
 
 const mapStateToProps = (state) => ({
   promiseLoading: state.sidebar.promise.isLoading,
   initialValues: {
-    note: state.userTradeHistory.activeRow.note
+    note: state.userTradeHistory.activeTrade.note
   }
 });
 

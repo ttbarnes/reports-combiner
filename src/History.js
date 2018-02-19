@@ -5,7 +5,7 @@ import TradeHistoryTable from './TradeHistoryTable';
 import Loading from './components/Loading';
 import { openSidebar } from './actions/sidebar';
 import { getUserTradeHistory } from './actions/user';
-import { tradeHistoryActiveRow } from './actions/userTradeHistory';
+import { tradeHistoryActiveTrade } from './actions/userTradeHistory';
 import { SIDEBAR_TRADE_HISTORY_ADD_NOTE } from './constants';
 
 class History extends Component {
@@ -22,10 +22,10 @@ class History extends Component {
 
   handleOnOpenAddNoteSidebar = (rowObj) => {
     const {
-      onTradeHistoryActiveRow,
+      onTradeHistoryActiveTrade,
       onOpenAddNoteSidebar
     } = this.props;
-    onTradeHistoryActiveRow(rowObj);
+    onTradeHistoryActiveTrade(rowObj);
     onOpenAddNoteSidebar();
   }
 
@@ -81,7 +81,7 @@ class History extends Component {
 
 const mapDispatchToProps = {
   onGetTradeHistory: () => getUserTradeHistory(),
-  onTradeHistoryActiveRow: (row) => tradeHistoryActiveRow(row),
+  onTradeHistoryActiveTrade: (row) => tradeHistoryActiveTrade(row),
   onOpenAddNoteSidebar: () => openSidebar(SIDEBAR_TRADE_HISTORY_ADD_NOTE)
 }
 

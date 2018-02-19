@@ -98,7 +98,7 @@ const mapStateToProps = (state) => ({
   promiseLoading: state.sidebar.promise.isLoading,
   promiseSuccess: state.sidebar.promise.isSuccess,
   promiseError: state.sidebar.promise.hasError,
-  activeTrade: state.userTradeHistory.activeRow
+  activeTrade: state.userTradeHistory.activeTrade
 });
 
 const mapDispatchToProps = {

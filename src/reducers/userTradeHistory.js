@@ -1,13 +1,13 @@
 import {
   FETCH_TRADE_HISTORY_SUCCESS,
-  TRADE_HISTORY_ACTIVE_ROW,
+  TRADE_HISTORY_ACTIVE_EXCHANGE,
   TRADE_HISTORY_ADD_NOTE_SUCCESS
 } from '../constants';
 
 const initialState = {
   data: [],
   filteredData: [],
-  activeRow: null
+  activeTrade: null
 }
 
 const userTradeHistoryReducer = (state, action) => {
@@ -20,10 +20,10 @@ const userTradeHistoryReducer = (state, action) => {
       return Object.assign({}, state, {
         data: action.payload
       });
-    case TRADE_HISTORY_ACTIVE_ROW:
+    case TRADE_HISTORY_ACTIVE_EXCHANGE:
       return {
         ...state,
-        activeRow: action.payload
+        activeTrade: action.payload
       }
     case TRADE_HISTORY_ADD_NOTE_SUCCESS:
       return Object.assign({}, state, {

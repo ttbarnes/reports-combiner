@@ -2,7 +2,7 @@ import axios from 'axios';
 import {
   API_ROOT,
   API_TRADE_HISTORY_NOTE,
-  TRADE_HISTORY_ACTIVE_ROW,
+  TRADE_HISTORY_ACTIVE_EXCHANGE,
   TRADE_HISTORY_ADD_NOTE_SUCCESS
 } from '../constants';
 import {
@@ -11,9 +11,9 @@ import {
   promiseSidebarError
 } from './sidebar';
 
-export function tradeHistoryActiveRow(payload) {
+export function tradeHistoryActiveTrade(payload) {
   return {
-    type: TRADE_HISTORY_ACTIVE_ROW,
+    type: TRADE_HISTORY_ACTIVE_EXCHANGE,
     payload
   }
 }
@@ -32,10 +32,10 @@ export const postTradeHistoryFormNote = () => {
 
     const state = getState();
     const userId = state.user.profile._id;
-    const newNote = state.form.TRADE_HISTORY_ADD_NOTE.values.note;
+    const newNote = state.form.FORM_TRADE_HISTORY_ADD_NOTE.values.note;
     const postObj = {
       note: newNote,
-      rowId: state.userTradeHistory.activeRow._id,
+      rowId: state.userTradeHistory.activeTrade._id,
       userId
     };
 

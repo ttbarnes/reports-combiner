@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { Redirect } from 'react-router-dom'
 import { userLogin, userSignup } from '../../actions/user';
+import { FORM_USER_LOGIN_SIGNUP } from '../../constants';
 import './styles.css';
 
 class LoginRegisterForm extends Component {
@@ -63,7 +64,7 @@ class LoginRegisterForm extends Component {
 }
 
 const LogInRegisterReduxForm = reduxForm({
-  form: 'USER_LOGIN_SIGNUP'
+  form: FORM_USER_LOGIN_SIGNUP
 })(LoginRegisterForm);
 
 const mapStateToProps = (state) => {
