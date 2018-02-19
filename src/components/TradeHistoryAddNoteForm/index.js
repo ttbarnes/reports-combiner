@@ -1,13 +1,20 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { postTradeHistoryFormNote } from '../../actions/userTradeHistory'
-import './styles.css';
 import { closeSidebar } from '../../actions/sidebar';
+
+const TextArea = (props) => (
+  <textarea
+    value={props.input.value}
+    onChange={props.input.onChange}
+  />
+);
 
 export class TradeHistoryAddNoteForm extends PureComponent {
   render() {
     const {
+      trade,
       onSubmitForm,
       promiseLoading,
       promiseSuccess
@@ -15,31 +22,35 @@ export class TradeHistoryAddNoteForm extends PureComponent {
 
     return (
       <div className="trade-history-add-note-form">
+
         {!promiseSuccess &&
-          <form onSubmit={(e) => e.preventDefault()}>
+          <div>
+            <form onSubmit={(e) => e.preventDefault()}>
 
-            <div>
-              <Field
-                name="note"
-                component="textarea"
-              />
-            </div>
+              <div>
+                <Field
+                  name="note"
+                  type="text"
+                  component={TextArea}
+                />
+              </div>
 
-            <div>
-              <button
-                type="submit"
-                onClick={onSubmitForm}
-                className="block small"
-                disabled={promiseLoading}
-              >Add note
-              </button>
-            </div>
+              <div>
+                <button
+                  type="submit"
+                  onClick={onSubmitForm}
+                  className="block small"
+                  disabled={promiseLoading}
+                >Add note
+                </button>
+              </div>
 
-          </form>
+            </form>
+          </div>
         }
         {promiseSuccess &&
           <div>
-            <p>Successfully added note!</p>
+            <p>Success!</p>
           </div>
         }
       </div>
@@ -52,7 +63,11 @@ const TradeHistoryAddNoteReduxForm = reduxForm({
 })(TradeHistoryAddNoteForm);
 
 const mapStateToProps = (state) => ({
-  promiseLoading: state.sidebar.promise.isLoading
+  trade: state.userTradeHistory.activeRow,
+  promiseLoading: state.sidebar.promise.isLoading,
+  initialValues: {
+    note: state.userTradeHistory.activeRow.note
+  }
 });
 
 const mapDispatchToProps = (dispatch) => ({

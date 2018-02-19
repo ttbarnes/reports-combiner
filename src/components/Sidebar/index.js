@@ -4,9 +4,13 @@ import {
   closeSidebar,
   promiseSidebarReset
 } from '../../actions/sidebar';
-import { SIDEBAR_TRADE_HISTORY_ADD_NOTE } from '../../constants';
+import {
+  SIDEBAR_TRADE_HISTORY_ADD_NOTE,
+  SIDEBAR_TRADE_HISTORY
+} from '../../constants';
 import Loading from '../Loading';
 import TradeHistoryAddNoteForm from '../../components/TradeHistoryAddNoteForm';
+import TradeHistoryTrade from '../../components/TradeHistoryTrade'
 
 class Sidebar extends Component {
 
@@ -32,7 +36,8 @@ class Sidebar extends Component {
       settings,
       promiseLoading,
       promiseError,
-      promiseSuccess
+      promiseSuccess,
+      activeTrade
     } = this.props;
     const isActive = settings.active;
 
@@ -62,6 +67,15 @@ class Sidebar extends Component {
           }
 
           <div>
+            {(settings.context === SIDEBAR_TRADE_HISTORY ||
+              settings.context === SIDEBAR_TRADE_HISTORY_ADD_NOTE) &&
+              <div>
+                <TradeHistoryTrade
+                  trade={activeTrade}
+                />
+              </div>
+            }
+
             {settings.context === SIDEBAR_TRADE_HISTORY_ADD_NOTE &&
               <div>
                 <TradeHistoryAddNoteForm
@@ -69,6 +83,7 @@ class Sidebar extends Component {
                 />
               </div>
             }
+
           </div>
 
         </div>
@@ -82,7 +97,8 @@ const mapStateToProps = (state) => ({
   settings: state.sidebar,
   promiseLoading: state.sidebar.promise.isLoading,
   promiseSuccess: state.sidebar.promise.isSuccess,
-  promiseError: state.sidebar.promise.hasError
+  promiseError: state.sidebar.promise.hasError,
+  activeTrade: state.userTradeHistory.activeRow
 });
 
 const mapDispatchToProps = {

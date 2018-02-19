@@ -13,6 +13,7 @@ export const EXCHANGES_MAP = [
   { name: 'Cryptopia' }
 ];
 export const SIDEBAR_TRADE_HISTORY_ADD_NOTE = 'SIDEBAR_TRADE_HISTORY_ADD_NOTE';
+export const SIDEBAR_TRADE_HISTORY = 'SIDEBAR_TRADE_HISTORY';
 export const HISTORY_TABLE_FIELDS_DISALLOWED = ['_id'];
 
 // actions

@@ -432,20 +432,14 @@ header .nav li .button {
   opacity: 1;
   right: 0;
   box-shadow: -11px 4px 27px #464646;
+  overflow-y: auto;
 }
-
 
 .sidebar header {
   display: flex;
   width: 100%;
   justify-content: space-between;
 }
-
-
-
-
-
-
 
 .sk-wave {
   margin: 40px auto;

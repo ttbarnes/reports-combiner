@@ -1,0 +1,12 @@
+.trade-history-add-note-form textarea {
+  min-height: 200px;
+}
+
+.trade-history-note-trade-summary {
+  margin-bottom: 2em;
+  list-style-type: none;
+}
+
+.trade-history-note-trade-summary p {
+  margin-bottom: 0;
+}
