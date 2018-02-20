@@ -12,7 +12,17 @@ import Loading from '../Loading';
 import TradeHistoryAddNoteForm from '../../components/TradeHistoryAddNoteForm';
 import TradeHistoryTrade from '../../components/TradeHistoryTrade'
 
+const ESC_KEY_CODE = 27;
+
 class Sidebar extends Component {
+
+  componentDidMount() {
+    document.addEventListener('keyup', (ev) => {
+      if (ev.keyCode === ESC_KEY_CODE) {
+        this.handleOnClose();
+      }
+    });
+  }
 
   componentWillReceiveProps(nextProps) {
     const { promiseSuccess } = nextProps;
