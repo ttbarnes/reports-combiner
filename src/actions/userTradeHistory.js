@@ -3,7 +3,8 @@ import {
   API_ROOT,
   API_TRADE_HISTORY_NOTE,
   TRADE_HISTORY_ACTIVE_EXCHANGE,
-  TRADE_HISTORY_ADD_NOTE_SUCCESS
+  TRADE_HISTORY_ADD_NOTE_SUCCESS,
+  TRADE_HISTORY_ACTIVE_EXCHANGE_RESET
 } from '../constants';
 import {
   promiseSidebarLoading,
@@ -15,6 +16,12 @@ export function tradeHistoryActiveTrade(payload) {
   return {
     type: TRADE_HISTORY_ACTIVE_EXCHANGE,
     payload
+  }
+}
+
+export function tradeHistoryActiveTradeReset() {
+  return {
+    type: TRADE_HISTORY_ACTIVE_EXCHANGE_RESET
   }
 }
 
@@ -50,6 +57,12 @@ export const postTradeHistoryFormNote = () => {
     ).then((res) => {
       dispatch(promiseSidebarSuccess());
       dispatch(tradeHistoryAddNoteSuccess(res.data.trades));
+
+      // TODO: refactor
+      dispatch(tradeHistoryActiveTrade({
+        ...state.userTradeHistory.activeTrade,
+        note: newNote
+      }));
     }, (err) => {
       dispatch(promiseSidebarError(err));
     });

@@ -69,7 +69,7 @@ th {
 tr:nth-child(even) td {
   background: #F1F1F1;
 }
-
+           
 td .table-cell-flex {
   display: flex;
   flex-direction: row;

@@ -5,12 +5,15 @@ import TradeHistoryTable from './TradeHistoryTable';
 import Loading from './components/Loading';
 import { openSidebar } from './actions/sidebar';
 import { getUserTradeHistory } from './actions/user';
-import { tradeHistoryActiveTrade } from './actions/userTradeHistory';
+import {
+  tradeHistoryActiveTrade,
+  tradeHistoryActiveTradeReset
+} from './actions/userTradeHistory';
 import { SIDEBAR_TRADE_HISTORY_ADD_NOTE } from './constants';
 
 class History extends Component {
   componentWillReceiveProps(nextProps) {
-    const { user, tradeHistory } = this.props;
+    const { user, tradeHistory, activeTrade } = this.props;
     const shouldGetTradeHistory = user.profile !== nextProps.user.profile &&
                                   nextProps.user.profile._id &&
                                   nextProps.user.profile.keys.length &&
@@ -20,7 +23,11 @@ class History extends Component {
     }
   }
 
-  handleOnOpenAddNoteSidebar = (rowObj) => {
+  componentWillUnmount() {
+    this.props.onResetTradeHistoryActiveTrade();
+  }
+
+  handleOnAddNote = (rowObj) => {
     const {
       onTradeHistoryActiveTrade,
       onOpenAddNoteSidebar
@@ -41,8 +48,7 @@ class History extends Component {
     const showNoExchangesMessage = (!promiseError &&
                                     user.profile &&
                                     user.profile.keys &&
-                                    !user.profile.keys.length
-                                   );
+                                    !user.profile.keys.length);
 
     return (
       <div>
@@ -70,7 +76,7 @@ class History extends Component {
         {promiseSuccess &&
           <TradeHistoryTable
             tradeHistory={tradeHistory}
-            onClickAddNoteButton={this.handleOnOpenAddNoteSidebar}
+            onClickAddNoteButton={this.handleOnAddNote}
           />
         }
 
@@ -82,7 +88,8 @@ class History extends Component {
 const mapDispatchToProps = {
   onGetTradeHistory: () => getUserTradeHistory(),
   onTradeHistoryActiveTrade: (row) => tradeHistoryActiveTrade(row),
-  onOpenAddNoteSidebar: () => openSidebar(SIDEBAR_TRADE_HISTORY_ADD_NOTE)
+  onOpenAddNoteSidebar: () => openSidebar(SIDEBAR_TRADE_HISTORY_ADD_NOTE),
+  onResetTradeHistoryActiveTrade: () => tradeHistoryActiveTradeReset(),
 }
 
 const mapStateToProps = (state) => ({
