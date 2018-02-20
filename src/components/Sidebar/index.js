@@ -15,10 +15,15 @@ import TradeHistoryTrade from '../../components/TradeHistoryTrade'
 class Sidebar extends Component {
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.promiseSuccess !== this.props.promiseSuccess) {
+    const { promiseSuccess } = nextProps;
+    // auto close sidebar (with delay) after promiseSuccess
+    // probably a better way to do this
+    if (promiseSuccess) {
       setTimeout(() => {
-        this.props.onClose();
-        this.props.onResetPromise();
+        if (this.props.promiseSuccess === true &&
+            this.props.settings.active) {
+          this.handleOnClose();
+        }
       }, 3000);
     }
   }

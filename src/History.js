@@ -10,10 +10,11 @@ import {
   tradeHistoryActiveTradeReset
 } from './actions/userTradeHistory';
 import { SIDEBAR_TRADE_HISTORY_ADD_NOTE } from './constants';
+import { selectTradeHistoryByDate } from './selectors/tradeHistory';
 
 class History extends Component {
   componentWillReceiveProps(nextProps) {
-    const { user, tradeHistory, activeTrade } = this.props;
+    const { user, tradeHistory } = this.props;
     const shouldGetTradeHistory = user.profile !== nextProps.user.profile &&
                                   nextProps.user.profile._id &&
                                   nextProps.user.profile.keys.length &&
@@ -40,6 +41,7 @@ class History extends Component {
     const {
       user,
       tradeHistory,
+      filteredTradeHistory,
       promiseLoading,
       promiseError,
       promiseSuccess
@@ -76,6 +78,7 @@ class History extends Component {
         {promiseSuccess &&
           <TradeHistoryTable
             tradeHistory={tradeHistory}
+            filteredTradeHistory={filteredTradeHistory}
             onClickAddNoteButton={this.handleOnAddNote}
           />
         }
@@ -95,6 +98,7 @@ const mapDispatchToProps = {
 const mapStateToProps = (state) => ({
   user: state.user,
   tradeHistory: state.userTradeHistory.data,
+  filteredTradeHistory: selectTradeHistoryByDate(state),
   promiseLoading: state.user.promise.isLoading,
   promiseError: state.user.promise.hasError,
   promiseSuccess: state.user.promise.isSuccess

@@ -1,12 +1,10 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { PureComponent } from 'react';
 import moment from 'moment';
 import { HISTORY_TABLE_FIELDS_DISALLOWED } from './constants';
-import { selectTradeHistoryByDate } from './selectors/tradeHistory';
 
 const MOMENT_DATE_FORMAT = 'Do MMM YYYY @ HH:mma';
 
-class TradeHistoryTable extends Component {
+class TradeHistoryTable extends PureComponent {
 
   fieldShouldNotRender = (fieldName) => HISTORY_TABLE_FIELDS_DISALLOWED.includes(fieldName);
 
@@ -152,12 +150,4 @@ class TradeHistoryTable extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  filteredTradeHistory: selectTradeHistoryByDate(state)
-});
-
-
-export default connect(
-  mapStateToProps,
-  null
-)(TradeHistoryTable);
+export default TradeHistoryTable;
