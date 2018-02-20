@@ -134,9 +134,9 @@ export const userSignup = () => {
   return (dispatch, getState) => {
     const userObj = () => {
       if (getState().form &&
-        getState().form.USER_LOGIN_SIGNUP &&
-        getState().form.USER_LOGIN_SIGNUP.values) {
-        return JSON.stringify(getState().form.USER_LOGIN_SIGNUP.values)
+        getState().form.FORM_USER_LOGIN_SIGNUP &&
+        getState().form.FORM_USER_LOGIN_SIGNUP.values) {
+        return JSON.stringify(getState().form.FORM_USER_LOGIN_SIGNUP.values)
       } else {
         return null;
       }
@@ -188,9 +188,9 @@ export const userLogin = () => {
     dispatch(authError(''));
     const userObj = () => {
       if (getState().form &&
-        getState().form.USER_LOGIN_SIGNUP &&
-        getState().form.USER_LOGIN_SIGNUP.values) {
-        return JSON.stringify(getState().form.USER_LOGIN_SIGNUP.values)
+        getState().form.FORM_USER_LOGIN_SIGNUP &&
+        getState().form.FORM_USER_LOGIN_SIGNUP.values) {
+        return JSON.stringify(getState().form.FORM_USER_LOGIN_SIGNUP.values)
       } else {
         return null;
       }
