@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import { Link } from 'react-router-dom';
 import BitfinexLogo from './images/bitfinex.png';
 import BittrexLogo from './images/bittrex.png';
 import GdaxLogo from './images/gdax.png';
@@ -29,8 +28,6 @@ export class Landing extends PureComponent {
             <img src={CryptopiaLogo} alt="Cryptopia" />
           </div>
         </div>
-
-        <p><Link to="/history" className="button">Go to history</Link></p>
 
       </div>
     );
