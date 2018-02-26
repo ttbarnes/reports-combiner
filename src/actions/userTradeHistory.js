@@ -4,7 +4,8 @@ import {
   API_TRADE_HISTORY_NOTE,
   TRADE_HISTORY_ACTIVE_EXCHANGE,
   TRADE_HISTORY_ADD_NOTE_SUCCESS,
-  TRADE_HISTORY_ACTIVE_EXCHANGE_RESET
+  TRADE_HISTORY_ACTIVE_EXCHANGE_RESET,
+  TRADE_HISTORY_SET_SORT_BY
 } from '../constants';
 import {
   promiseSidebarLoading,
@@ -28,6 +29,13 @@ export function tradeHistoryActiveTradeReset() {
 function tradeHistoryAddNoteSuccess(payload) {
   return {
     type: TRADE_HISTORY_ADD_NOTE_SUCCESS,
+    payload
+  }
+}
+
+export function tradeHistorySetSortBy(payload) {
+  return  {
+    type: TRADE_HISTORY_SET_SORT_BY,
     payload
   }
 }

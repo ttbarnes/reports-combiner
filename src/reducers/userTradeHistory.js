@@ -2,13 +2,15 @@ import {
   FETCH_TRADE_HISTORY_SUCCESS,
   TRADE_HISTORY_ACTIVE_EXCHANGE,
   TRADE_HISTORY_ACTIVE_EXCHANGE_RESET,
-  TRADE_HISTORY_ADD_NOTE_SUCCESS
+  TRADE_HISTORY_ADD_NOTE_SUCCESS,
+  TRADE_HISTORY_SET_SORT_BY
 } from '../constants';
 
 const initialState = {
   data: [],
   filteredData: [],
-  activeTrade: null
+  activeTrade: null,
+  sortBy: null
 }
 
 const userTradeHistoryReducer = (state, action) => {
@@ -37,6 +39,10 @@ const userTradeHistoryReducer = (state, action) => {
           ...state.data,
           trades: action.payload
         }
+      })
+    case TRADE_HISTORY_SET_SORT_BY: 
+      return Object.assign({}, state, {
+        sortBy: action.payload
       });
     default:
       return state;

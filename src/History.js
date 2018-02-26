@@ -3,14 +3,19 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import TradeHistoryTable from './TradeHistoryTable';
 import Loading from './components/Loading';
+import TradeHistoryFilters from './components/TradeHistoryFilters';
 import { openSidebar } from './actions/sidebar';
 import { getUserTradeHistory } from './actions/user';
 import {
   tradeHistoryActiveTrade,
-  tradeHistoryActiveTradeReset
+  tradeHistoryActiveTradeReset,
+  tradeHistorySetSortBy
 } from './actions/userTradeHistory';
 import { SIDEBAR_TRADE_HISTORY_ADD_NOTE } from './constants';
-import { selectTradeHistoryByDate } from './selectors/tradeHistory';
+import {
+  selectTradeHistorySortBy,
+  selectTradeHistorySorted
+} from './selectors/tradeHistory';
 
 class History extends Component {
   componentWillReceiveProps(nextProps) {
@@ -22,6 +27,11 @@ class History extends Component {
     if (shouldGetTradeHistory) {
       this.props.onGetTradeHistory();
     }
+  }
+
+  componentWillMount() {
+    // set default filter
+    this.props.onSetTradeHistorySortBy('tradeTypeAlphabetical');
   }
 
   componentWillUnmount() {
@@ -42,9 +52,11 @@ class History extends Component {
       user,
       tradeHistory,
       filteredTradeHistory,
+      activeSortBy,
       promiseLoading,
       promiseError,
-      promiseSuccess
+      promiseSuccess,
+      onSetTradeHistorySortBy
     } = this.props;
 
     const showNoExchangesMessage = (!promiseError &&
@@ -76,11 +88,21 @@ class History extends Component {
         }
 
         {promiseSuccess &&
-          <TradeHistoryTable
-            tradeHistory={tradeHistory}
-            filteredTradeHistory={filteredTradeHistory}
-            onClickAddNoteButton={this.handleOnAddNote}
-          />
+          <div>
+            <TradeHistoryFilters
+              onSetFilter={onSetTradeHistorySortBy}
+              activeSortBy={activeSortBy}
+            />
+
+            <br />
+            <br />
+
+            <TradeHistoryTable
+              tradeHistory={tradeHistory}
+              filteredTradeHistory={filteredTradeHistory}
+              onClickAddNoteButton={this.handleOnAddNote}
+            />
+          </div>
         }
 
       </div>
@@ -93,15 +115,17 @@ const mapDispatchToProps = {
   onTradeHistoryActiveTrade: (row) => tradeHistoryActiveTrade(row),
   onOpenAddNoteSidebar: () => openSidebar(SIDEBAR_TRADE_HISTORY_ADD_NOTE),
   onResetTradeHistoryActiveTrade: () => tradeHistoryActiveTradeReset(),
+  onSetTradeHistorySortBy: (sortBy) => tradeHistorySetSortBy(sortBy)
 }
 
 const mapStateToProps = (state) => ({
   user: state.user,
   tradeHistory: state.userTradeHistory.data,
-  filteredTradeHistory: selectTradeHistoryByDate(state),
+  filteredTradeHistory: selectTradeHistorySorted(state),
+  activeSortBy: selectTradeHistorySortBy(state),
   promiseLoading: state.user.promise.isLoading,
   promiseError: state.user.promise.hasError,
-  promiseSuccess: state.user.promise.isSuccess
+  promiseSuccess: state.user.promise.isSuccess  
 });
 
 export default connect(
