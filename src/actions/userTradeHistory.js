@@ -5,7 +5,9 @@ import {
   TRADE_HISTORY_ACTIVE_EXCHANGE,
   TRADE_HISTORY_ADD_NOTE_SUCCESS,
   TRADE_HISTORY_ACTIVE_EXCHANGE_RESET,
-  TRADE_HISTORY_SET_SORT_BY
+  TRADE_HISTORY_SET_SORT_BY,
+  TRADE_HISTORY_SET_FILTER_BY,
+  TRADE_HISTORY_FILTER_BY_SORT_BY_RESET
 } from '../constants';
 import {
   promiseSidebarLoading,
@@ -39,6 +41,20 @@ export function tradeHistorySetSortBy(payload) {
     payload
   }
 }
+
+export function tradeHistorySetFilterBy(payload) {
+  return {
+    type: TRADE_HISTORY_SET_FILTER_BY,
+    payload
+  }
+}
+
+export function tradeHistoryFilterBySortByReset() {
+  return {
+    type: TRADE_HISTORY_FILTER_BY_SORT_BY_RESET
+  }
+}
+
 
 export const postTradeHistoryFormNote = () => {
   return (dispatch, getState) => {

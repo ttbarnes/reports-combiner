@@ -1,0 +1,24 @@
+/* temp styles :) */
+
+.trade-history-filters {
+  display: flex;
+  flex-direction: row;
+}
+
+.trade-history-filters > div {
+  display: flex;
+  flex-direction: column;
+  margin-right: 3em;
+  background: #EEE;
+  padding: .5em;
+}
+
+.trade-history-filters h3 {
+  font-weight: bold;
+}
+
+.trade-history-filters li {
+  display: inline-flex;
+  list-style-type: none;
+  margin-right: .5em;
+}

@@ -12,22 +12,25 @@ export const selectTradeHistoryTrades = createSelector(
   tradeHistory => tradeHistory.trades
 );
 
-export const selectTradeHistoryByDate = createSelector(
-  selectTradeHistoryTrades,
-  trades => trades && trades.length && trades.sort((a: any, b: any): any =>
-    new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
-  )
-);
+// export const selectTradeHistoryByDate = createSelector(
+//   selectTradeHistoryTrades,
+//   trades => trades && trades.length && trades.sort((a: any, b: any): any =>
+//     new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
+//   )
+// );
 
 export const selectTradeHistorySortBy = createSelector(
   selectTradeHistoryBase,
   tradeHistory => tradeHistory.sortBy
 );
 
-export const selectTradeHistorySorted = createSelector(
-  selectTradeHistoryTrades,
-  selectTradeHistorySortBy,
-  (trades, sortBy) => trades && trades.length && trades.sort((a, b) => {
+export const selectTradeHistoryFilterBy = createSelector(
+  selectTradeHistoryBase,
+  tradeHistory => tradeHistory.filterBy
+);
+
+export const sortTrades = (trades, sortBy) =>
+  trades && trades.length && trades.sort((a, b) => {
     let fieldName = '';
     if (sortBy === 'tradeTypeAlphabetical' ||
         sortBy === 'tradeTypeAlphabeticalReverse') {
@@ -52,6 +55,27 @@ export const selectTradeHistorySorted = createSelector(
       return 0; 
     }
     return 0;
-  })
+  });
+
+const selectTradeHistoryFiltered = createSelector(
+  selectTradeHistoryTrades,
+  selectTradeHistoryFilterBy,
+  (trades, filterBy) => {
+    if (trades && trades.length && filterBy.exchangeName) {
+      return trades.filter((trade) =>
+        filterBy.exchangeName && filterBy.exchangeName.some((filterExchangeName) =>
+          filterExchangeName === trade.exchangeName
+        )
+      );
+    }
+    return trades;
+  }
 )
-  
+
+export const selectTradeHistoryFilteredSorted = createSelector(
+  selectTradeHistoryFiltered,
+  selectTradeHistorySortBy,
+  (filteredTrades, sortBy) => {
+    return sortTrades(filteredTrades, sortBy);
+  }
+);

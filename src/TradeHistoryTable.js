@@ -34,13 +34,13 @@ class TradeHistoryTable extends Component {
   render() {
     const {
       tradeHistory,
-      filteredTradeHistory,
+      tradeHistoryFilteredSorted,
       onClickAddNoteButton
     } = this.props;
 
     const hasTrades = tradeHistory.fields.length &&
-                      filteredTradeHistory &&
-                      filteredTradeHistory.length;
+                      tradeHistoryFilteredSorted &&
+                      tradeHistoryFilteredSorted.length;
 
     return (
       <div className="row">
@@ -60,7 +60,7 @@ class TradeHistoryTable extends Component {
                 </tr>
               </thead>
               <tbody>
-                {filteredTradeHistory.map((row, rowIndex) => {
+                {tradeHistoryFilteredSorted.map((row, rowIndex) => {
                   const rowKeys = Object.keys(row);
 
                   return (
