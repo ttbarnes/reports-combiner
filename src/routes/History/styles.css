@@ -1,0 +1,19 @@
+.history-filters-table-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.history-filters-table-container > div {
+  width: 100%;
+}
+
+.history-filters-table-container > .trade-history-filters {
+  max-width: 15%;
+  margin-right: 2%;
+}
+
+.history-filters-table-container > .trade-history-table {
+  max-width: 83%;
+}
+

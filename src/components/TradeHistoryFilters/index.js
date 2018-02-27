@@ -84,13 +84,13 @@ class TradeHistoryFilters extends Component {
                 {exchangeNames.map((e) =>
                   <li key={e}>
 
-                    <label>
+                    <label className="checkbox-wrap">
                       <input
                         type="checkbox"
                         onChange={(ev) => this.handleOnClickFilterBy('exchangeName', ev)}
                         name={e}
                       />
-                      {e}
+                      <span>{e}</span>
                     </label>
 
                   </li>

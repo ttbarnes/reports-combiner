@@ -43,7 +43,7 @@ class TradeHistoryTable extends Component {
       tradeHistoryFilteredSorted.length;
 
     return (
-      <div className="row">
+      <div className="trade-history-table">
         {hasTrades ?
           <div>
             <h4 className="heading-with-bg">All Trade History</h4>

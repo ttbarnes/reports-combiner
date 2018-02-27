@@ -1,14 +1,13 @@
-/* temp styles :) */
-
 .trade-history-filters {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .trade-history-filters > div {
   display: flex;
+  width: 100%;
   flex-direction: column;
-  margin-right: 3em;
+  margin-bottom: 1em;
   background: #EEE;
   padding: .5em;
 }
@@ -18,7 +17,16 @@
 }
 
 .trade-history-filters li {
-  display: inline-flex;
   list-style-type: none;
   margin-right: .5em;
+}
+
+.trade-history-filters li label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.trade-history-filters li input {
+  width: auto;
 }

@@ -18,6 +18,7 @@ import {
   selectTradeHistoryFilteredSorted
 } from '../../selectors/tradeHistory';
 import { SIDEBAR_TRADE_HISTORY_ADD_NOTE } from '../../constants';
+import './styles.css';
 
 class History extends Component {
   componentWillReceiveProps(nextProps) {
@@ -95,7 +96,7 @@ class History extends Component {
         }
 
         {promiseSuccess &&
-          <div className="history-container-filters-table">
+          <div className="history-filters-table-container">
 
             <TradeHistoryFilters
               onSetSortBy={onSetTradeHistorySortBy}
@@ -103,9 +104,6 @@ class History extends Component {
               activeSortBy={activeSortBy}
               exchangeNames={exchangesIntegrated}
             />
-
-            <br />
-            <br />
 
             <TradeHistoryTable
               tradeHistory={tradeHistory}
