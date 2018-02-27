@@ -46,7 +46,12 @@ class TradeHistoryTable extends Component {
       <div className="trade-history-table">
         {hasTrades ?
           <div>
-            <h4 className="heading-with-bg">All Trade History</h4>
+            <div className="table-header">
+              <h4 className="heading-with-bg">All Trade History</h4>
+              <p>
+                <small>{tradeHistoryFilteredSorted.length} out of {tradeHistory.trades.length} trades</small>
+              </p>
+            </div>
             <table>
               <thead>
                 <tr>

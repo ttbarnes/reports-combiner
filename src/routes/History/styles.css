@@ -17,3 +17,9 @@
   max-width: 83%;
 }
 
+
+.trade-history-table .table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
