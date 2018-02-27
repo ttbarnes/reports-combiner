@@ -14,7 +14,14 @@ export const EXCHANGES_MAP = [
   { name: 'GDAX', requiresPassphrase: true },
   { name: 'Cryptopia' }
 ];
+
+/*
+* history table
+*/
 export const HISTORY_TABLE_FIELDS_DISALLOWED = ['_id'];
+export const HISTORY_TABLE_FILTERS_TRADE_TYPE_VALUES = ['Buy', 'Sell'];
+
+
 
 /*
 * form names

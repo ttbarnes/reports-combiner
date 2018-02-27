@@ -142,7 +142,7 @@ class TradeHistoryTable extends Component {
           </div>
           :
           <div className="align-center">
-            <p>No trade history to display :(</p>
+            <p>No trades to display :(</p>
           </div>
         }
       </div>

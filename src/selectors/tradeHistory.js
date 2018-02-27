@@ -61,14 +61,29 @@ const selectTradeHistoryFiltered = createSelector(
   selectTradeHistoryTrades,
   selectTradeHistoryFilterBy,
   (trades, filterBy) => {
-    if (trades && trades.length && filterBy.exchangeName) {
-      return trades.filter((trade) =>
-        filterBy.exchangeName && filterBy.exchangeName.some((filterExchangeName) =>
-          filterExchangeName === trade.exchangeName
-        )
-      );
+    let finalResults = trades;
+    if (trades && trades.length) {
+
+      if (filterBy.exchangeName && filterBy.exchangeName.length) {
+        const filteredExchangeName = trades.filter((trade) =>
+          filterBy.exchangeName && filterBy.exchangeName.some((filterExchangeName) =>
+            filterExchangeName === trade.exchangeName
+          )
+        );
+        finalResults = filteredExchangeName;
+      }
+
+      if (filterBy.tradeType && filterBy.tradeType.length) {
+        const filteredTradeType = finalResults.filter((trade) =>
+          filterBy.tradeType && filterBy.tradeType.some((selectedTradeType) =>
+            selectedTradeType === trade.tradeType
+          )
+        ); 
+
+        finalResults = filteredTradeType;
+      }
     }
-    return trades;
+    return finalResults;
   }
 )
 

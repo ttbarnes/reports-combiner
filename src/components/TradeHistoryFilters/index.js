@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import { HISTORY_TABLE_FILTERS_TRADE_TYPE_VALUES } from '../../constants';
 import './styles.css';
 
 class TradeHistoryFilters extends Component {
   constructor() {
     super();
     this.state = {
-      exchangeNameFilters: []
+      exchangeName: [],
+      tradeType: []
     };
   }
 
@@ -22,39 +24,83 @@ class TradeHistoryFilters extends Component {
     }
   }
 
-  handleOnClickFilterBy(propertyName, ev) {
+  handleOnClickFilterByExchangeName(propertyName, ev) {
     const { onSetFilterBy } = this.props;
     const targetName = ev.target.name;
     const isChecked = ev.target.checked;
 
     if (isChecked) {
       this.setState({
-        exchangeNameFilters: [
-          ...this.state.exchangeNameFilters,
+        exchangeName: [
+          ...this.state.exchangeName,
           targetName
         ]
       }, () =>
         onSetFilterBy({
-          [propertyName]: this.state.exchangeNameFilters
+          exchangeName: this.state.exchangeName,
+          tradeType: this.state.tradeType
         })
       );
     } else {
-      if (!this.state.exchangeNameFilters.length -1 <= 0) {
+      if (!this.state.exchangeName.length -1 <= 0) {
         return this.setState({
-          exchangeNameFilters: this.state.exchangeNameFilters.filter((e) => e !== targetName)
+          exchangeName: this.state.exchangeName.filter((e) => e !== targetName)
         }, () =>
-            onSetFilterBy({})
+            onSetFilterBy({
+              exchangeName: this.state.exchangeName,
+              tradeType: this.state.tradeType
+            })
         ); 
       }
       return this.setState({
-        exchangeNameFilters: this.state.exchangeNameFilters.filter((e) => e !== targetName)
+        exchangeName: this.state.exchangeName.filter((e) => e !== targetName)
       }, () =>
         onSetFilterBy({
-          [propertyName]: this.state.exchangeNameFilters
+          exchangeName: this.state.exchangeName,
+          tradeType: this.state.tradeType
         })
       );
-
     }
+  }
+
+  handleOnClickFilterByTradeType(propertyName, ev) {
+    const { onSetFilterBy } = this.props;
+    const targetName = ev.target.name;
+    const isChecked = ev.target.checked;
+
+    if (isChecked) {
+      this.setState({
+        tradeType: [
+          ...this.state.tradeType,
+          targetName
+        ]
+      }, () =>
+        onSetFilterBy({
+          exchangeName: this.state.exchangeName,
+          tradeType: this.state.tradeType
+        })
+      );
+    } else {
+      if (!this.state.tradeType.length - 1 <= 0) {
+        return this.setState({
+          tradeType: this.state.tradeType.filter((e) => e !== targetName)
+        }, () =>
+          onSetFilterBy({
+            exchangeName: this.state.exchangeName,
+            tradeType: this.state.tradeType
+          })
+        );
+      }
+      return this.setState({
+        tradeType: this.state.tradeType.filter((e) => e !== targetName)
+      }, () =>
+          onSetFilterBy({
+            exchangeName: this.state.exchangeName,
+            tradeType: this.state.tradeType
+          })
+      );
+    }
+
   }
 
   render() {
@@ -87,7 +133,7 @@ class TradeHistoryFilters extends Component {
                     <label className="checkbox-wrap">
                       <input
                         type="checkbox"
-                        onChange={(ev) => this.handleOnClickFilterBy('exchangeName', ev)}
+                        onChange={(ev) => this.handleOnClickFilterByExchangeName('exchangeName', ev)}
                         name={e}
                       />
                       <span>{e}</span>
@@ -99,6 +145,30 @@ class TradeHistoryFilters extends Component {
             </div>
           :
           null}
+
+          <br />
+          <br />
+            
+          <div>
+            <p>Trade Type</p>
+            <ul>
+            {HISTORY_TABLE_FILTERS_TRADE_TYPE_VALUES.map((tradeType) =>
+                <li key={tradeType}>
+                  <label className="checkbox-wrap">
+                    <input
+                      type="checkbox"
+                      onChange={(ev) => this.handleOnClickFilterByTradeType('tradeType', ev)}
+                      name={tradeType}
+                    />
+                    <span>{tradeType.toUpperCase()}</span>
+                  </label>
+                </li>
+            )}
+            </ul>
+
+
+          </div>
+
         </div>
 
       </div>
