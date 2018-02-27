@@ -7,7 +7,7 @@ import Landing from './Landing';
 import Login from './Login';
 import Signup from './Signup';
 import Dashboard from './Dashboard';
-import History from './History';
+import HistoryContainer from './routes/History';
 import Integrations from './Integrations';
 import About from './About';
 import SubscribeModal from './components/SubscribeModal';
@@ -60,7 +60,7 @@ class Router extends Component {
               <Route exact path="/signup" component={Signup} />
               <PrivateRoute path="/dashboard" component={Dashboard} isAuth={isAuth} />
               <PrivateRoute path="/integrations" component={Integrations} isAuth={isAuth} />
-              <PrivateRoute path="/history" component={History} isAuth={isAuth} />
+              <PrivateRoute path="/history" component={HistoryContainer} isAuth={isAuth} />
               <Route path="/about" component={About} />
             </Switch>
           </div>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { RadialChart } from 'react-vis';
 import '../node_modules/react-vis/dist/style.css';
 import MOCK_DATA from './mock-data';
-import { getPercentagesObjFromArrayIndex } from './utils';
+import { getPercentagesObjFromArrayIndex } from '../../utils';
 
 class TradeHistoryChart extends Component {
 
@@ -10,7 +10,7 @@ class TradeHistoryChart extends Component {
 
     const exchanges = getPercentagesObjFromArrayIndex(MOCK_DATA.rows, 'last');
 
-    // rename required field names for chrat
+    // rename required field names for chart
     exchanges.map((e) => {
       e.angle = e.percentage;
       e.label = e.name;

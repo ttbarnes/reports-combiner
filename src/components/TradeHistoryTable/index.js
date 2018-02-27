@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import moment from 'moment';
-import { HISTORY_TABLE_FIELDS_DISALLOWED } from './constants';
+import { HISTORY_TABLE_FIELDS_DISALLOWED } from '../../constants';
 
 const MOMENT_DATE_FORMAT = 'Do MMM YYYY @ HH:mma';
 
@@ -39,8 +39,8 @@ class TradeHistoryTable extends Component {
     } = this.props;
 
     const hasTrades = tradeHistory.fields.length &&
-                      tradeHistoryFilteredSorted &&
-                      tradeHistoryFilteredSorted.length;
+      tradeHistoryFilteredSorted &&
+      tradeHistoryFilteredSorted.length;
 
     return (
       <div className="row">
@@ -75,7 +75,7 @@ class TradeHistoryTable extends Component {
                         if (this.isFieldDate(field)) {
                           return (
                             <td key={tdKey}>
-                              {row.exchangeName === 'GDAX' && 
+                              {row.exchangeName === 'GDAX' &&
                                 <span>{this.handleDateFormat(row[field])}</span>
                               }
                               {row.exchangeName === 'Binance' &&
@@ -109,7 +109,7 @@ class TradeHistoryTable extends Component {
                               <div className="table-cell-flex">
 
                                 <div>
-                                  {note.length ? <span>1 note</span> : <span/>}
+                                  {note.length ? <span>1 note</span> : <span />}
                                 </div>
 
                                 <div>
@@ -125,14 +125,14 @@ class TradeHistoryTable extends Component {
                             </td>
                           );
                         }
-                       
+
                         return (
                           <td key={tdKey}>
                             {row[field]}
                           </td>
                         );
                       }
-                    )}
+                      )}
                     </tr>
                   );
 
@@ -140,11 +140,11 @@ class TradeHistoryTable extends Component {
               </tbody>
             </table>
           </div>
-        :
-        <div className="align-center">
-          <p>No trade history to display :(</p>
-        </div>
-      }
+          :
+          <div className="align-center">
+            <p>No trade history to display :(</p>
+          </div>
+        }
       </div>
     )
   }

@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import TradeHistoryTable from './TradeHistoryTable';
-import Loading from './components/Loading';
-import TradeHistoryFilters from './components/TradeHistoryFilters';
-import { openSidebar } from './actions/sidebar';
-import { getUserTradeHistory } from './actions/user';
+import TradeHistoryTable from '../../components/TradeHistoryTable';
+import Loading from '../../components/Loading';
+import TradeHistoryFilters from '../../components/TradeHistoryFilters';
+import { openSidebar } from '../../actions/sidebar';
+import { getUserTradeHistory } from '../../actions/user';
 import {
   tradeHistoryActiveTrade,
   tradeHistoryActiveTradeReset,
   tradeHistorySetSortBy,
   tradeHistorySetFilterBy,
   tradeHistoryFilterBySortByReset
-} from './actions/userTradeHistory';
+} from '../../actions/userTradeHistory';
 import {
   selectTradeHistorySortBy,
   selectTradeHistoryFilteredSorted
-} from './selectors/tradeHistory';
-import { SIDEBAR_TRADE_HISTORY_ADD_NOTE } from './constants';
+} from '../../selectors/tradeHistory';
+import { SIDEBAR_TRADE_HISTORY_ADD_NOTE } from '../../constants';
 
 class History extends Component {
   componentWillReceiveProps(nextProps) {
@@ -72,7 +72,7 @@ class History extends Component {
                                     !user.profile.keys.length);
 
     return (
-      <div>
+      <article className="history-container">
 
         {promiseLoading &&
           <Loading />
@@ -95,7 +95,7 @@ class History extends Component {
         }
 
         {promiseSuccess &&
-          <div>
+          <div className="history-container-filters-table">
 
             <TradeHistoryFilters
               onSetSortBy={onSetTradeHistorySortBy}
@@ -116,7 +116,7 @@ class History extends Component {
           </div>
         }
 
-      </div>
+      </article>
     );
   }
 }
