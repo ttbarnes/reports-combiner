@@ -30,6 +30,8 @@ export const HISTORY_TABLE_FILTERS_EXCHANGE_NAME_ALPHABETICAL_REVERSE = 'exchang
 export const HISTORY_TABLE_FILTERS_AMOUNT_ALPHABETICAL = 'amountAlphabetical';
 export const HISTORY_TABLE_FILTERS_AMOUNT_ALPHABETICAL_REVERSE = 'amountAlphabeticalReverse';
 
+export const HISTORY_TABLE_FILTERS_TIMESTAMP_ASCENDING = 'timestampAscending';
+export const HISTORY_TABLE_FILTERS_TIMESTAMP_DESCENDING = 'timestampDescending';
 
 /*
 * form names

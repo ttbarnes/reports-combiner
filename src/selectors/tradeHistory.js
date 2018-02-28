@@ -12,13 +12,6 @@ export const selectTradeHistoryTrades = createSelector(
   tradeHistory => tradeHistory.trades
 );
 
-// export const selectTradeHistoryByDate = createSelector(
-//   selectTradeHistoryTrades,
-//   trades => trades && trades.length && trades.sort((a: any, b: any): any =>
-//     new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
-//   )
-// );
-
 export const selectTradeHistorySortBy = createSelector(
   selectTradeHistoryBase,
   tradeHistory => tradeHistory.sortBy
@@ -35,7 +28,6 @@ const selectTradeHistoryFiltered = createSelector(
   (trades, filterBy) => {
     let finalResults = trades;
     if (trades && trades.length) {
-
       if (filterBy.exchangeName && filterBy.exchangeName.length) {
         const filteredExchangeName = trades.filter((trade) =>
           filterBy.exchangeName && filterBy.exchangeName.some((filterExchangeName) =>
