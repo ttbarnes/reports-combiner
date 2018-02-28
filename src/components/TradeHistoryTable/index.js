@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import TradeHistoryTableHead from './TradeHistoryTableHead';
 import TradeHistoryTableBody from './TradeHistoryTableBody';
 
-class TradeHistoryTable extends Component {
+class TradeHistoryTable extends PureComponent {
 
   render() {
     const {

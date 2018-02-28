@@ -19,6 +19,13 @@ export const EXCHANGES_MAP = [
 * history table
 */
 export const HISTORY_TABLE_FIELDS_DISALLOWED = ['_id'];
+export const FILTERS_ALLOWED_FIELDS = [
+  'timestamp',
+  'amount',
+  'fee',
+  'type',
+  'exchange'
+];
 export const FILTERS_TRADE_TYPE_VALUES = ['Buy', 'Sell'];
 
 export const FILTERS_TRADE_TYPE_ASCENDING = 'tradeTypeAscending';
