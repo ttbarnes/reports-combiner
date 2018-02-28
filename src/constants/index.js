@@ -20,10 +20,15 @@ export const EXCHANGES_MAP = [
 */
 export const HISTORY_TABLE_FIELDS_DISALLOWED = ['_id'];
 export const HISTORY_TABLE_FILTERS_TRADE_TYPE_VALUES = ['Buy', 'Sell'];
+
 export const HISTORY_TABLE_FILTERS_TRADE_TYPE_ALPHABETICAL = 'tradeTypeAlphabetical';
 export const HISTORY_TABLE_FILTERS_TRADE_TYPE_ALPHABETICAL_REVERSE = 'tradeTypeAlphabeticalReverse';
+
 export const HISTORY_TABLE_FILTERS_EXCHANGE_NAME_ALPHABETICAL = 'exchangeNameAlphabetical';
 export const HISTORY_TABLE_FILTERS_EXCHANGE_NAME_ALPHABETICAL_REVERSE = 'exchangeNameAlphabeticalReverse';
+
+export const HISTORY_TABLE_FILTERS_AMOUNT_ALPHABETICAL = 'amountAlphabetical';
+export const HISTORY_TABLE_FILTERS_AMOUNT_ALPHABETICAL_REVERSE = 'amountAlphabeticalReverse';
 
 
 /*

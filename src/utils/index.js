@@ -3,7 +3,9 @@ import {
   HISTORY_TABLE_FILTERS_TRADE_TYPE_ALPHABETICAL,
   HISTORY_TABLE_FILTERS_TRADE_TYPE_ALPHABETICAL_REVERSE,
   HISTORY_TABLE_FILTERS_EXCHANGE_NAME_ALPHABETICAL,
-  HISTORY_TABLE_FILTERS_EXCHANGE_NAME_ALPHABETICAL_REVERSE
+  HISTORY_TABLE_FILTERS_EXCHANGE_NAME_ALPHABETICAL_REVERSE,
+  HISTORY_TABLE_FILTERS_AMOUNT_ALPHABETICAL,
+  HISTORY_TABLE_FILTERS_AMOUNT_ALPHABETICAL_REVERSE
 } from '../constants';
 
 // TODO: tidy up notes/docs
@@ -72,13 +74,31 @@ export const shouldShowSubscribe = (profile) => {
   return false;
 }
 
+// TODO: move sortTrade string/number logic into sortTrades
+// so it's less heavy on performance - .sort args should be short/simple as possible
+
 /*
 * sortTrade (for use with .sort())
-* given 2 trades, arrange by ascending or descending, depending on isReverse param
+* given 2 trades, arrange by ascending or descending, depending on isReverse and fieldName params
 */
 const sortTrade = (a, b, fieldName, isReverse = false) => {
-  const isLessThan = a[fieldName].toUpperCase() < b[fieldName].toUpperCase();
-  const isGreaterThan = a[fieldName].toUpperCase() > b[fieldName].toUpperCase();
+  let fieldNameA = a[fieldName],
+      fieldNameB = b[fieldName],
+      isLessThan,
+      isGreaterThan;
+
+  const isNumericField = fieldName === 'amount';
+
+  if (isNumericField) {
+    fieldNameA = Number(fieldNameA);
+    fieldNameB = Number(fieldNameB);
+    isLessThan = fieldNameA < fieldNameB,
+    isGreaterThan = fieldNameA > fieldNameB;
+  } else {
+    isLessThan = fieldNameA.toUpperCase() < fieldNameB.toUpperCase(),
+    isGreaterThan = fieldNameA.toUpperCase() > fieldNameB.toUpperCase();
+  }
+
   if (isReverse) {
     if (isLessThan) {
       return 1;
@@ -104,23 +124,26 @@ const sortTrade = (a, b, fieldName, isReverse = false) => {
 * then sort the array by this fieldName. Can be A-Z or Z-A
 */
 export const sortTrades = (trades, sortBy) => {
-
   let fieldName = '';
   if (sortBy === HISTORY_TABLE_FILTERS_TRADE_TYPE_ALPHABETICAL ||
       sortBy === HISTORY_TABLE_FILTERS_TRADE_TYPE_ALPHABETICAL_REVERSE) {
     fieldName = 'tradeType';
-  }
-  if (sortBy === HISTORY_TABLE_FILTERS_EXCHANGE_NAME_ALPHABETICAL ||
+  } else if (sortBy === HISTORY_TABLE_FILTERS_EXCHANGE_NAME_ALPHABETICAL ||
       sortBy === HISTORY_TABLE_FILTERS_EXCHANGE_NAME_ALPHABETICAL_REVERSE) {
     fieldName = 'exchangeName';
+  } else if (sortBy === HISTORY_TABLE_FILTERS_AMOUNT_ALPHABETICAL ||
+    sortBy === HISTORY_TABLE_FILTERS_AMOUNT_ALPHABETICAL_REVERSE) {
+    fieldName = 'amount';
   }
 
   return trades && trades.length && trades.sort((a, b) => {
     if (sortBy === HISTORY_TABLE_FILTERS_TRADE_TYPE_ALPHABETICAL ||
-        sortBy === HISTORY_TABLE_FILTERS_EXCHANGE_NAME_ALPHABETICAL) {
+        sortBy === HISTORY_TABLE_FILTERS_EXCHANGE_NAME_ALPHABETICAL ||
+        sortBy === HISTORY_TABLE_FILTERS_AMOUNT_ALPHABETICAL) {
       return sortTrade(a, b, fieldName);
     } else if (sortBy === HISTORY_TABLE_FILTERS_TRADE_TYPE_ALPHABETICAL_REVERSE ||
-               sortBy === HISTORY_TABLE_FILTERS_EXCHANGE_NAME_ALPHABETICAL_REVERSE) {
+               sortBy === HISTORY_TABLE_FILTERS_EXCHANGE_NAME_ALPHABETICAL_REVERSE ||
+               sortBy === HISTORY_TABLE_FILTERS_AMOUNT_ALPHABETICAL_REVERSE) {
       return sortTrade(a, b, fieldName, true);
     }
     return 0;
