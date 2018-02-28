@@ -7,7 +7,9 @@ import {
   FILTERS_AMOUNT_ASCENDING,
   FILTERS_AMOUNT_DESCENDING,
   FILTERS_TIMESTAMP_ASCENDING,
-  FILTERS_TIMESTAMP_DESCENDING
+  FILTERS_TIMESTAMP_DESCENDING,
+  FILTERS_FEE_ASCENDING,
+  FILTERS_FEE_DESCENDING
 } from '../constants';
 
 // TODO: tidy up notes/docs
@@ -81,7 +83,8 @@ export const shouldShowSubscribe = (profile) => {
 
 /*
 * sortTrade (for use with .sort())
-* given 2 trades, arrange by ascending or descending, depending on isReverse and fieldName params
+* given 2 trades, arrange by ascending or descending.
+* several isReverse/fieldName specifics/gotchas here due to values from apis
 */
 const sortTrade = (a, b, fieldName, isReverse = false) => {
   let fieldNameA = a[fieldName],
@@ -89,9 +92,17 @@ const sortTrade = (a, b, fieldName, isReverse = false) => {
       isLessThan,
       isGreaterThan;
 
-  const isNumericField = fieldName === 'amount';
+  const isNumericField = fieldName === 'amount' ||
+                         fieldName === 'fee';
   const isTimestampField = fieldName === 'timestamp';
   if (isNumericField) {
+    // isNaN check for 'n/a' string values
+    if (Number.isNaN(Number(fieldNameA))) {
+      fieldNameA = 0.00000000;
+    }
+    if (Number.isNaN(Number(fieldNameB))) {
+      fieldNameB = 0.00000000;
+    }
     fieldNameA = Number(fieldNameA);
     fieldNameB = Number(fieldNameB);
     isLessThan = fieldNameA < fieldNameB;
@@ -101,7 +112,6 @@ const sortTrade = (a, b, fieldName, isReverse = false) => {
       return new Date(fieldNameB).getTime() < new Date(fieldNameA).getTime();
     }
     return new Date(fieldNameB).getTime() - new Date(fieldNameA).getTime();
-    
   } else {
     isLessThan = fieldNameA.toUpperCase() < fieldNameB.toUpperCase();
     isGreaterThan = fieldNameA.toUpperCase() > fieldNameB.toUpperCase();
@@ -129,22 +139,30 @@ const sortTrade = (a, b, fieldName, isReverse = false) => {
 * sortTradesByFieldName
 * given an array of trades and a sortBy string (sortBy string is a human friendly string from table headings)
 * declare the fieldName used in each trade object
-* then sort the array by this fieldName. Can be A-Z or Z-A
+* then sort the array by this fieldName.
+*
+* NOTE, to be clear:
+* sortBy is the selected sortBy field.
+* tradeFieldName is the field name in a single trade object.
 */
 export const sortTrades = (trades, sortBy) => {
-  let fieldName = '';
+
+  let tradeFieldName = '';
   if (sortBy === FILTERS_TIMESTAMP_ASCENDING ||
       sortBy === FILTERS_TIMESTAMP_DESCENDING) {
-    fieldName = 'timestamp';
+    tradeFieldName = 'timestamp';
   } else if (sortBy === FILTERS_TRADE_TYPE_ASCENDING ||
              sortBy === FILTERS_TRADE_TYPE_DESCENDING) {
-    fieldName = 'tradeType';
+    tradeFieldName = 'tradeType';
   } else if (sortBy === FILTERS_EXCHANGE_NAME_ASCENDING ||
              sortBy === FILTERS_EXCHANGE_NAME_DESCENDING) {
-    fieldName = 'exchangeName';
+    tradeFieldName = 'exchangeName';
   } else if (sortBy === FILTERS_AMOUNT_ASCENDING ||
              sortBy === FILTERS_AMOUNT_DESCENDING) {
-    fieldName = 'amount';
+    tradeFieldName = 'amount';
+  } else if (sortBy === FILTERS_FEE_ASCENDING ||
+             sortBy === FILTERS_FEE_DESCENDING) {
+    tradeFieldName = 'fee';
   }
 
   return trades && trades.length && trades.sort((a, b) => {
@@ -152,16 +170,18 @@ export const sortTrades = (trades, sortBy) => {
     if (sortBy === FILTERS_TRADE_TYPE_ASCENDING ||
         sortBy === FILTERS_EXCHANGE_NAME_ASCENDING ||
         sortBy === FILTERS_AMOUNT_ASCENDING ||
-        sortBy === FILTERS_TIMESTAMP_ASCENDING) {
-      return sortTrade(a, b, fieldName);
+        sortBy === FILTERS_TIMESTAMP_ASCENDING ||
+        sortBy === FILTERS_FEE_ASCENDING) {
+      return sortTrade(a, b, tradeFieldName);
     }
 
     // descending
     else if (sortBy === FILTERS_TRADE_TYPE_DESCENDING ||
              sortBy === FILTERS_EXCHANGE_NAME_DESCENDING ||
              sortBy === FILTERS_AMOUNT_DESCENDING ||
-             sortBy === FILTERS_TIMESTAMP_DESCENDING) {
-      return sortTrade(a, b, fieldName, true);
+             sortBy === FILTERS_TIMESTAMP_DESCENDING ||
+             sortBy === FILTERS_FEE_DESCENDING) {
+      return sortTrade(a, b, tradeFieldName, true);
     }
     return 0;
   });

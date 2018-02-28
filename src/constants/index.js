@@ -33,6 +33,10 @@ export const FILTERS_AMOUNT_DESCENDING = 'amountDescending';
 export const FILTERS_TIMESTAMP_ASCENDING = 'timestampAscending';
 export const FILTERS_TIMESTAMP_DESCENDING = 'timestampDescending';
 
+export const FILTERS_FEE_ASCENDING = 'feeAscending';
+export const FILTERS_FEE_DESCENDING = 'feeDescending';
+
+
 /*
 * form names
 */

@@ -7,7 +7,9 @@ import {
   FILTERS_AMOUNT_ASCENDING,
   FILTERS_AMOUNT_DESCENDING,
   FILTERS_TIMESTAMP_ASCENDING,
-  FILTERS_TIMESTAMP_DESCENDING
+  FILTERS_TIMESTAMP_DESCENDING,
+  FILTERS_FEE_ASCENDING,
+  FILTERS_FEE_DESCENDING
 } from '../../constants';
 
 class TradeHistoryTableHead extends PureComponent {
@@ -17,7 +19,9 @@ class TradeHistoryTableHead extends PureComponent {
   isFieldAmount = (str) => str === 'Amount';
   isFieldType = (str) => str === 'Type';
   isFieldExchange = (str) => str === 'Exchange';
+  isFieldFee = (str) => str === 'Fee';
 
+  // TODO: CLEAN ME 
   handleOnClickSortBy(str) {
     const { activeSortBy, onSetSortBy } = this.props;
 
@@ -57,6 +61,15 @@ class TradeHistoryTableHead extends PureComponent {
       return onSetSortBy(FILTERS_AMOUNT_ASCENDING);
     }
 
+    else if (str === 'fee') {
+      if (activeSortBy === FILTERS_FEE_ASCENDING) {
+        return onSetSortBy(FILTERS_FEE_DESCENDING);
+      } else if (activeSortBy === FILTERS_FEE_DESCENDING) {
+        return onSetSortBy(FILTERS_FEE_ASCENDING);
+      }
+      return onSetSortBy(FILTERS_FEE_ASCENDING);
+    }
+
   }
 
   render() {
@@ -89,6 +102,22 @@ class TradeHistoryTableHead extends PureComponent {
                 >
                   <button
                     onClick={() => this.handleOnClickSortBy('amount')}
+                    className="button-link"
+                  >
+                    {field}
+                    <i className="lnr lnr-sort-alpha-asc" />
+                  </button>
+                </th>
+              );
+            }
+
+            if (this.isFieldFee(field)) {
+              return (
+                <th
+                  key={field}
+                >
+                  <button
+                    onClick={() => this.handleOnClickSortBy('fee')}
                     className="button-link"
                   >
                     {field}
