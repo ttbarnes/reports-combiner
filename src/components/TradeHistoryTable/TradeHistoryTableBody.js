@@ -1,9 +1,9 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import moment from 'moment';
 import { HISTORY_TABLE_FIELDS_DISALLOWED } from '../../constants';
 const MOMENT_DATE_FORMAT = 'Do MMM YYYY @ HH:mma';
 
-class TradeHistoryTableBody extends PureComponent {
+class TradeHistoryTableBody extends Component {
 
   fieldShouldNotRender = (fieldName) => HISTORY_TABLE_FIELDS_DISALLOWED.includes(fieldName);
 

@@ -20,6 +20,8 @@ export const EXCHANGES_MAP = [
 */
 export const HISTORY_TABLE_FIELDS_DISALLOWED = ['_id'];
 export const HISTORY_TABLE_FILTERS_TRADE_TYPE_VALUES = ['Buy', 'Sell'];
+export const HISTORY_TABLE_FILTERS_TRADE_TYPE_ALPHABETICAL = 'tradeTypeAlphabetical';
+export const HISTORY_TABLE_FILTERS_TRADE_TYPE_ALPHABETICAL_REVERSE = 'tradeTypeAlphabeticalReverse';
 
 
 

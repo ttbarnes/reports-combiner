@@ -17,7 +17,10 @@ import {
   selectTradeHistorySortBy,
   selectTradeHistoryFilteredSorted
 } from '../../selectors/tradeHistory';
-import { SIDEBAR_TRADE_HISTORY_ADD_NOTE } from '../../constants';
+import {
+  SIDEBAR_TRADE_HISTORY_ADD_NOTE,
+  HISTORY_TABLE_FILTERS_TRADE_TYPE_ALPHABETICAL
+} from '../../constants';
 import './styles.css';
 
 class History extends Component {
@@ -34,7 +37,8 @@ class History extends Component {
 
   componentWillMount() {
     // set default sort by
-    this.props.onSetTradeHistorySortBy('tradeTypeAlphabetical');
+    // TODO: set default sortBy as exchangeName alphabetical
+    this.props.onSetTradeHistorySortBy(HISTORY_TABLE_FILTERS_TRADE_TYPE_ALPHABETICAL);
   }
 
   componentWillUnmount() {
@@ -99,9 +103,7 @@ class History extends Component {
           <div className="history-filters-table-container">
 
             <TradeHistoryFilters
-              onSetSortBy={onSetTradeHistorySortBy}
               onSetFilterBy={onSetTradeHistoryFilterBy}
-              activeSortBy={activeSortBy}
               exchangeNames={exchangesIntegrated}
             />
 
@@ -109,6 +111,8 @@ class History extends Component {
               tradeHistory={tradeHistory}
               tradeHistoryFilteredSorted={tradeHistoryFilteredSorted}
               onClickAddNoteButton={this.handleOnAddNote}
+              activeSortBy={activeSortBy}
+              onSetSortBy={onSetTradeHistorySortBy}
             />
 
           </div>

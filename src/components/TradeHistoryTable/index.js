@@ -8,12 +8,14 @@ class TradeHistoryTable extends Component {
     const {
       tradeHistory,
       tradeHistoryFilteredSorted,
-      onClickAddNoteButton
+      onClickAddNoteButton,
+      activeSortBy,
+      onSetSortBy
     } = this.props;
 
     const hasTrades = tradeHistory.fields.length &&
-      tradeHistoryFilteredSorted &&
-      tradeHistoryFilteredSorted.length;
+                      tradeHistoryFilteredSorted &&
+                      tradeHistoryFilteredSorted.length;
 
     return (
       <div className="trade-history-table">
@@ -29,6 +31,8 @@ class TradeHistoryTable extends Component {
             <table>
               <TradeHistoryTableHead
                 headings={tradeHistory.fields}
+                activeSortBy={activeSortBy}
+                onSetSortBy={onSetSortBy}
               />
 
               <TradeHistoryTableBody

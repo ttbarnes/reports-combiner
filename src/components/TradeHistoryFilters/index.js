@@ -11,19 +11,6 @@ class TradeHistoryFilters extends Component {
     };
   }
 
-  handleOnClickSortBy(str) {
-    const { activeSortBy, onSetSortBy } = this.props;
-    if (str === 'tradeType') {
-
-      if (activeSortBy === 'tradeTypeAlphabetical') {
-        onSetSortBy('tradeTypeAlphabeticalReverse');
-      } else if (activeSortBy === 'tradeTypeAlphabeticalReverse') {
-        onSetSortBy('tradeTypeAlphabetical');
-      }
-
-    }
-  }
-
   handleOnClickFilterByExchangeName(propertyName, ev) {
     const { onSetFilterBy } = this.props;
     const targetName = ev.target.name;
@@ -107,18 +94,6 @@ class TradeHistoryFilters extends Component {
     const { exchangeNames } = this.props;
     return (
       <div className="trade-history-filters">
-
-        <div>
-          <h3>Sort by...</h3>
-
-          <p>Trade type</p>
-          <button
-            onClick={() => this.handleOnClickSortBy('tradeType')}
-            className="small"
-          >
-            A-Z
-          </button>
-        </div>
 
         <div>
           <h3>Filter by...</h3>
