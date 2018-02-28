@@ -48,11 +48,19 @@ class TradeHistoryTableHeadCell extends PureComponent {
     }
   }
 
+  handleActiveClassName(field) {
+    if (field === 'type') {
+      return this.props.activeSortBy.includes('tradeType') ? 'can-sort active' : 'can-sort';
+    }
+    return this.props.activeSortBy.includes(field) ? 'active' : 'can-sort';
+  }
+
   render() {
-    const { field } = this.props;
+    const { field, activeSortBy } = this.props;
+    const canSort = FILTERS_ALLOWED_FIELDS.includes(field);
     return (
-      <th>
-        {FILTERS_ALLOWED_FIELDS.includes(field) ?
+      canSort ?
+        <th className={this.handleActiveClassName(field)}>
           <button
             onClick={() => this.handleOnClickSortBy(field)}
             className="button-link"
@@ -60,8 +68,8 @@ class TradeHistoryTableHeadCell extends PureComponent {
             {field}
             <i className="lnr lnr-sort-alpha-asc" />
           </button>
-        : field}
-      </th>
+        </th>
+      : <th>{field}</th>
     )
   }
 }

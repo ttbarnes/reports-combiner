@@ -62,12 +62,28 @@ td {
   text-align: center;
 }
 
-th {
-  font-weight: bold;
+th,
+th button {
+  font-weight: 300;
+  background: #5A5A5A;
+  color: #D8D8D8;
+  transition: all .2s ease;
 }
 
 th button {
-  font-weight: bold;
+  transition: all .2s ease;
+}
+
+th.active,
+th.can-sort:hover {
+  background: #838383;
+  color: #FFF;
+}
+
+th.active button,
+th button:hover,
+th button:focus {
+  color: #FFF;
 }
 
 th i {
