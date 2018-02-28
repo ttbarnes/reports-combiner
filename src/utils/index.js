@@ -1,4 +1,10 @@
-import { MAX_FREE_KEYS } from '../constants';
+import {
+  MAX_FREE_KEYS,
+  HISTORY_TABLE_FILTERS_TRADE_TYPE_ALPHABETICAL,
+  HISTORY_TABLE_FILTERS_TRADE_TYPE_ALPHABETICAL_REVERSE,
+  HISTORY_TABLE_FILTERS_EXCHANGE_NAME_ALPHABETICAL,
+  HISTORY_TABLE_FILTERS_EXCHANGE_NAME_ALPHABETICAL_REVERSE
+} from '../constants';
 
 // TODO: tidy up notes/docs
 // TODO: make more functional :)
@@ -56,7 +62,8 @@ export const getPercentagesObjFromArrayIndex = (arr, arrIndex) => {
 }
 
 /*
-conditions for subscribe messages/modals
+* shouldShowSubscribe
+* conditions for subscribe messages/modals
 */
 export const shouldShowSubscribe = (profile) => {
   if (!profile.subscription && profile.keys.length >= MAX_FREE_KEYS) {
@@ -65,4 +72,58 @@ export const shouldShowSubscribe = (profile) => {
   return false;
 }
 
+/*
+* sortTrade (for use with .sort())
+* given 2 trades, arrange by ascending or descending, depending on isReverse param
+*/
+const sortTrade = (a, b, fieldName, isReverse = false) => {
+  const isLessThan = a[fieldName].toUpperCase() < b[fieldName].toUpperCase();
+  const isGreaterThan = a[fieldName].toUpperCase() > b[fieldName].toUpperCase();
+  if (isReverse) {
+    if (isLessThan) {
+      return 1;
+    }
+    if (isGreaterThan) {
+      return -1;
+    }
+    return 0;
+  }
+  if (isLessThan) {
+    return -1;
+  }
+  if (isGreaterThan) {
+    return 1;
+  }
+  return 0;
+};
+
+/*
+* sortTradesByFieldName
+* given an array of trades and a sortBy string (sortBy string is a human friendly string from table headings)
+* declare the fieldName used in each trade object
+* then sort the array by this fieldName. Can be A-Z or Z-A
+*/
+export const sortTrades = (trades, sortBy) => {
+
+  let fieldName = '';
+  if (sortBy === HISTORY_TABLE_FILTERS_TRADE_TYPE_ALPHABETICAL ||
+      sortBy === HISTORY_TABLE_FILTERS_TRADE_TYPE_ALPHABETICAL_REVERSE) {
+    fieldName = 'tradeType';
+  }
+  if (sortBy === HISTORY_TABLE_FILTERS_EXCHANGE_NAME_ALPHABETICAL ||
+      sortBy === HISTORY_TABLE_FILTERS_EXCHANGE_NAME_ALPHABETICAL_REVERSE) {
+    fieldName = 'exchangeName';
+  }
+
+  return trades && trades.length && trades.sort((a, b) => {
+    if (sortBy === HISTORY_TABLE_FILTERS_TRADE_TYPE_ALPHABETICAL ||
+        sortBy === HISTORY_TABLE_FILTERS_EXCHANGE_NAME_ALPHABETICAL) {
+      return sortTrade(a, b, fieldName);
+    } else if (sortBy === HISTORY_TABLE_FILTERS_TRADE_TYPE_ALPHABETICAL_REVERSE ||
+               sortBy === HISTORY_TABLE_FILTERS_EXCHANGE_NAME_ALPHABETICAL_REVERSE) {
+      return sortTrade(a, b, fieldName, true);
+    }
+    return 0;
+  });
+}
 
