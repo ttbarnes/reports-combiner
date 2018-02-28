@@ -66,6 +66,14 @@ th {
   font-weight: bold;
 }
 
+th button {
+  font-weight: bold;
+}
+
+th i {
+  margin-left: .5em;
+}
+
 tr:nth-child(even) td {
   background: #F1F1F1;
 }

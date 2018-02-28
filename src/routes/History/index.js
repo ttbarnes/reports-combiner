@@ -47,12 +47,8 @@ class History extends Component {
   }
 
   handleOnAddNote = (rowObj) => {
-    const {
-      onTradeHistoryActiveTrade,
-      onOpenAddNoteSidebar
-    } = this.props;
-    onTradeHistoryActiveTrade(rowObj);
-    onOpenAddNoteSidebar();
+    this.props.onTradeHistoryActiveTrade(rowObj);
+    this.props.onOpenAddNoteSidebar();
   }
 
   render() {

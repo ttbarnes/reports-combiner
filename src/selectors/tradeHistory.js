@@ -1,7 +1,9 @@
 import { createSelector } from 'reselect'
 import {
   HISTORY_TABLE_FILTERS_TRADE_TYPE_ALPHABETICAL,
-  HISTORY_TABLE_FILTERS_TRADE_TYPE_ALPHABETICAL_REVERSE
+  HISTORY_TABLE_FILTERS_TRADE_TYPE_ALPHABETICAL_REVERSE,
+  HISTORY_TABLE_FILTERS_EXCHANGE_NAME_ALPHABETICAL,
+  HISTORY_TABLE_FILTERS_EXCHANGE_NAME_ALPHABETICAL_REVERSE
 } from '../constants';
 
 const selectTradeHistoryBase = state => state.userTradeHistory;
@@ -33,6 +35,7 @@ export const selectTradeHistoryFilterBy = createSelector(
   tradeHistory => tradeHistory.filterBy
 );
 
+// TODO: clean me
 export const sortTrades = (trades, sortBy) => 
   trades && trades.length && trades.sort((a, b) => {
     let fieldName = '';
@@ -40,6 +43,11 @@ export const sortTrades = (trades, sortBy) =>
         sortBy === HISTORY_TABLE_FILTERS_TRADE_TYPE_ALPHABETICAL_REVERSE) {
       fieldName = 'tradeType';
     }
+    if (sortBy === HISTORY_TABLE_FILTERS_EXCHANGE_NAME_ALPHABETICAL ||
+      sortBy === HISTORY_TABLE_FILTERS_EXCHANGE_NAME_ALPHABETICAL_REVERSE) {
+      fieldName = 'exchangeName';
+    }
+
 
     if (sortBy === HISTORY_TABLE_FILTERS_TRADE_TYPE_ALPHABETICAL) {
       if (a[fieldName].toUpperCase() < b[fieldName].toUpperCase()) {
@@ -58,6 +66,25 @@ export const sortTrades = (trades, sortBy) =>
       }
       return 0;
     }
+
+    if (sortBy === HISTORY_TABLE_FILTERS_EXCHANGE_NAME_ALPHABETICAL) {
+      if (a[fieldName].toUpperCase() < b[fieldName].toUpperCase()) {
+        return -1;
+      }
+      if (a[fieldName].toUpperCase() > b[fieldName].toUpperCase()) {
+        return 1;
+      }
+      return 0;
+    } else if (sortBy === HISTORY_TABLE_FILTERS_EXCHANGE_NAME_ALPHABETICAL_REVERSE) {
+      if (a[fieldName].toUpperCase() < b[fieldName].toUpperCase()) {
+        return 1;
+      }
+      if (a[fieldName].toUpperCase() > b[fieldName].toUpperCase()) {
+        return -1;
+      }
+      return 0;
+    }
+
     return 0;
   });
 
