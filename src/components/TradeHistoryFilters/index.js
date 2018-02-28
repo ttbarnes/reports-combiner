@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { HISTORY_TABLE_FILTERS_TRADE_TYPE_VALUES } from '../../constants';
+import { FILTERS_TRADE_TYPE_VALUES } from '../../constants';
 import './styles.css';
 
 class TradeHistoryFilters extends Component {
@@ -127,7 +127,7 @@ class TradeHistoryFilters extends Component {
           <div>
             <p>Trade Type</p>
             <ul>
-            {HISTORY_TABLE_FILTERS_TRADE_TYPE_VALUES.map((tradeType) =>
+            {FILTERS_TRADE_TYPE_VALUES.map((tradeType) =>
                 <li key={tradeType}>
                   <label className="checkbox-wrap">
                     <input

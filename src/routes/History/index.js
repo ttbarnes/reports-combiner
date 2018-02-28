@@ -19,7 +19,7 @@ import {
 } from '../../selectors/tradeHistory';
 import {
   SIDEBAR_TRADE_HISTORY_ADD_NOTE,
-  HISTORY_TABLE_FILTERS_TIMESTAMP_ASCENDING
+  FILTERS_TIMESTAMP_ASCENDING
 } from '../../constants';
 import './styles.css';
 
@@ -37,8 +37,7 @@ class History extends Component {
 
   componentWillMount() {
     // set default sort by
-    // TODO: set default sortBy as exchangeName alphabetical
-    this.props.onSetTradeHistorySortBy(HISTORY_TABLE_FILTERS_TIMESTAMP_ASCENDING);
+    this.props.onSetTradeHistorySortBy(FILTERS_TIMESTAMP_ASCENDING);
   }
 
   componentWillUnmount() {

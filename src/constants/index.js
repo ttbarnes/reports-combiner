@@ -19,19 +19,19 @@ export const EXCHANGES_MAP = [
 * history table
 */
 export const HISTORY_TABLE_FIELDS_DISALLOWED = ['_id'];
-export const HISTORY_TABLE_FILTERS_TRADE_TYPE_VALUES = ['Buy', 'Sell'];
+export const FILTERS_TRADE_TYPE_VALUES = ['Buy', 'Sell'];
 
-export const HISTORY_TABLE_FILTERS_TRADE_TYPE_ALPHABETICAL = 'tradeTypeAlphabetical';
-export const HISTORY_TABLE_FILTERS_TRADE_TYPE_ALPHABETICAL_REVERSE = 'tradeTypeAlphabeticalReverse';
+export const FILTERS_TRADE_TYPE_ASCENDING = 'tradeTypeAscending';
+export const FILTERS_TRADE_TYPE_DESCENDING = 'tradeTypeDescending';
 
-export const HISTORY_TABLE_FILTERS_EXCHANGE_NAME_ALPHABETICAL = 'exchangeNameAlphabetical';
-export const HISTORY_TABLE_FILTERS_EXCHANGE_NAME_ALPHABETICAL_REVERSE = 'exchangeNameAlphabeticalReverse';
+export const FILTERS_EXCHANGE_NAME_ASCENDING = 'exchangeNameAscending';
+export const FILTERS_EXCHANGE_NAME_DESCENDING = 'exchangeNameDescending';
 
-export const HISTORY_TABLE_FILTERS_AMOUNT_ALPHABETICAL = 'amountAlphabetical';
-export const HISTORY_TABLE_FILTERS_AMOUNT_ALPHABETICAL_REVERSE = 'amountAlphabeticalReverse';
+export const FILTERS_AMOUNT_ASCENDING = 'amountAscending';
+export const FILTERS_AMOUNT_DESCENDING = 'amountDescending';
 
-export const HISTORY_TABLE_FILTERS_TIMESTAMP_ASCENDING = 'timestampAscending';
-export const HISTORY_TABLE_FILTERS_TIMESTAMP_DESCENDING = 'timestampDescending';
+export const FILTERS_TIMESTAMP_ASCENDING = 'timestampAscending';
+export const FILTERS_TIMESTAMP_DESCENDING = 'timestampDescending';
 
 /*
 * form names
