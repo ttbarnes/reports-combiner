@@ -64,7 +64,7 @@ class TradeHistoryTableHeadCell extends PureComponent {
         <th className={this.handleActiveClassName(field)}>
           <button
             onClick={() => this.handleOnClickSortBy(field)}
-            className="button-link"
+            className="button-as-text"
           >
             {field}
             <i className="lnr lnr-sort-alpha-asc" />

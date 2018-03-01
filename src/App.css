@@ -238,10 +238,17 @@ button,
   font-family: monospace, sans-serif, Helvetica;
 }
 
-button.button-link {
+button.button-as-text,
+button.button-as-link {
   background: none;
   padding: 0;
   border: 0 none;
+  margin-bottom: 0;
+}
+
+button.button-as-link {
+  color: #55a0da;
+  text-decoration: underline;
 }
 
 button.block,
@@ -380,7 +387,7 @@ header .nav li .button {
 .account-tag {
   display: inline-flex;
   padding: .3em;
-  color: #000;
+  color: #FFF;
 }
 
 .account-tag.basic {

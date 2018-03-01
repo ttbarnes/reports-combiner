@@ -80,8 +80,7 @@ class History extends Component {
 
         {showNoExchangesMessage &&
           <div className="align-center">
-            <p>No exchanges integrated.</p>
-            <Link to="/integrations">add an exchange</Link>
+            <p><Link to="/integrations">Add some exchanges</Link> to view your history</p>
           </div>
         }
 

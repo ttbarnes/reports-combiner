@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { EXCHANGES_MAP } from '../constants';
 import IntegrationsCount from '../components/IntegrationsCount';
 import { showSubSubscriptionModal } from '../actions/uiState';
+import './styles.css';
 
 export class Dashboard extends PureComponent {
 
@@ -13,15 +14,15 @@ export class Dashboard extends PureComponent {
     } = this.props;
 
     return (
-      <div>
+      <div className="dashboard-container">
 
         <div>
           {user.username && <h2><span className="text-transform-capitalize">{user.username}</span>{'\''}s Dashboard</h2>}
-          {!user.subscription && <p className="account-tag basic"><small>Basic account</small></p>}
-          {user.subscription && <p className="account-tag premium"><small>Premium account</small></p>}
+          {!user.subscription && <p className="account-tag basic">Basic account</p>}
+          {user.subscription && <p className="account-tag premium">Premium account</p>}
 
           <button
-            className="button-link"
+            className="button-as-link"
             onClick={onShowSubSubscriptionModal}
           >
             Upgrade to premium

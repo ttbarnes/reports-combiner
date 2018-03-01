@@ -13,7 +13,11 @@ const IntegrationsCount = (props) => {
     <div>
       <p>
         <small>{integrations.length}/{totalCount} exchanges integrated</small>
-        {props.showCta && <span>{' '}-{' '}<Link to="/integrations">add exchange</Link></span>}
+        {props.showCta &&
+            <span>{' '}-{' '}
+              <Link to="/integrations">add exchange</Link>
+            </span>
+        }
       </p>
     </div>
   )

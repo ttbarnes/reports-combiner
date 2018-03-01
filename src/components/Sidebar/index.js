@@ -68,7 +68,7 @@ class Sidebar extends Component {
             <h3 className="heading-with-bg">
               {settings.context === SIDEBAR_TRADE_HISTORY_ADD_NOTE && 'Add Note'}
             </h3>
-            <button onClick={this.handleOnClose} className="button-link close">
+            <button onClick={this.handleOnClose} className="button-as-text close">
               <i className="lnr lnr-cross" />
             </button>
           </header>

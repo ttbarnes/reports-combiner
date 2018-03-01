@@ -24,7 +24,7 @@ class ExchangeShowHide extends Component {
         <div className="cta">
           <button
             onClick={() => this.onClick()}
-            className="button-link block"
+            className="button-as-text block"
           >
             <h3>
               {name}
