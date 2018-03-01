@@ -53,7 +53,7 @@ class TradeHistoryTableHeadCell extends PureComponent {
     if (field === 'type' && activeSortBy) {
       return activeSortBy.includes('tradeType') ? 'can-sort active' : 'can-sort';
     }
-    return activeSortBy.includes(field) ? 'active' : 'can-sort';
+    return activeSortBy && activeSortBy.includes(field) ? 'active' : 'can-sort';
   }
 
   render() {
