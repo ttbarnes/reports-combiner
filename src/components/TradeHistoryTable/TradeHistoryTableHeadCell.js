@@ -49,10 +49,11 @@ class TradeHistoryTableHeadCell extends PureComponent {
   }
 
   handleActiveClassName(field) {
-    if (field === 'type') {
-      return this.props.activeSortBy.includes('tradeType') ? 'can-sort active' : 'can-sort';
+    const { activeSortBy } = this.props;
+    if (field === 'type' && activeSortBy) {
+      return activeSortBy.includes('tradeType') ? 'can-sort active' : 'can-sort';
     }
-    return this.props.activeSortBy.includes(field) ? 'active' : 'can-sort';
+    return activeSortBy.includes(field) ? 'active' : 'can-sort';
   }
 
   render() {
