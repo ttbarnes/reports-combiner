@@ -69,10 +69,21 @@ export const getPercentagesObjFromArrayIndex = (arr, arrIndex) => {
 
 /*
 * shouldShowSubscribe
-* conditions for subscribe messages/modals
+* trigger showing subscribe messages/modals
 */
-export const shouldShowSubscribe = (profile) => {
-  if (!profile.subscription && profile.keys.length >= MAX_FREE_KEYS) {
+export const shouldShowSubscribe = (profile, context) => {
+  const rules = {
+    maxFreeKeys: !profile.subscription &&
+                 profile.keys.length >= MAX_FREE_KEYS,
+
+    downloadHistory: !profile.subscription &&
+                      context === 'downloadHistory'
+  };
+
+  const ruleApplies = rules.maxFreeKeys ||
+                      rules.downloadHistory;
+
+  if (ruleApplies) {
     return true;
   }
   return false;

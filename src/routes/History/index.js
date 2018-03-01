@@ -5,8 +5,9 @@ import TradeHistoryTable from '../../components/TradeHistoryTable';
 import Loading from '../../components/Loading';
 import TradeHistoryFilters from '../../components/TradeHistoryFilters';
 import { openSidebar } from '../../actions/sidebar';
-import { getUserTradeHistory } from '../../actions/user';
 import {
+  getTradeHistory,
+  getTradeHistoryDownloadUrl,
   tradeHistoryActiveTrade,
   tradeHistoryActiveTradeReset,
   tradeHistorySetSortBy,
@@ -25,13 +26,17 @@ import './styles.css';
 
 class History extends Component {
   componentWillReceiveProps(nextProps) {
-    const { user, tradeHistory } = this.props;
+    const { user, tradeHistory, tradeHistoryDownloadUrl } = this.props;
     const shouldGetTradeHistory = user.profile !== nextProps.user.profile &&
                                   nextProps.user.profile._id &&
                                   nextProps.user.profile.keys.length &&
                                   !tradeHistory.fields;
     if (shouldGetTradeHistory) {
       this.props.onGetTradeHistory();
+    }
+
+    if (nextProps.tradeHistoryDownloadUrl !== tradeHistoryDownloadUrl) {
+      window.open(nextProps.tradeHistoryDownloadUrl, '_blank');
     }
   }
 
@@ -48,6 +53,10 @@ class History extends Component {
   handleOnAddNote = (rowObj) => {
     this.props.onTradeHistoryActiveTrade(rowObj);
     this.props.onOpenAddNoteSidebar();
+  }
+
+  handleGetTradeHistoryDownloadUrl = () => {
+    this.props.onGetTradeHistoryDownloadUrl();
   }
 
   render() {
@@ -104,6 +113,7 @@ class History extends Component {
             <TradeHistoryTable
               tradeHistory={tradeHistory}
               tradeHistoryFilteredSorted={tradeHistoryFilteredSorted}
+              onClickDownloadButton={this.handleGetTradeHistoryDownloadUrl}
               onClickAddNoteButton={this.handleOnAddNote}
               activeSortBy={activeSortBy}
               onSetSortBy={onSetTradeHistorySortBy}
@@ -118,18 +128,20 @@ class History extends Component {
 }
 
 const mapDispatchToProps = {
-  onGetTradeHistory: () => getUserTradeHistory(),
+  onGetTradeHistory: () => getTradeHistory(),
+  onGetTradeHistoryDownloadUrl: () => getTradeHistoryDownloadUrl(),
   onOpenAddNoteSidebar: () => openSidebar(SIDEBAR_TRADE_HISTORY_ADD_NOTE),
   onTradeHistoryActiveTrade: (row) => tradeHistoryActiveTrade(row),
   onResetTradeHistoryActiveTrade: () => tradeHistoryActiveTradeReset(),
   onSetTradeHistorySortBy: (sortBy) => tradeHistorySetSortBy(sortBy),
   onSetTradeHistoryFilterBy: (filterBy) => tradeHistorySetFilterBy(filterBy),
-  onResetTradeHistoryFilterBySortBy: () => tradeHistoryFilterBySortByReset(),
+  onResetTradeHistoryFilterBySortBy: () => tradeHistoryFilterBySortByReset()
 }
 
 const mapStateToProps = (state) => ({
   user: state.user,
   tradeHistory: state.userTradeHistory.data,
+  tradeHistoryDownloadUrl: state.userTradeHistory.downloadUrl,
   tradeHistoryFilteredSorted: selectTradeHistoryFilteredSorted(state),
   activeSortBy: selectTradeHistorySortBy(state),
   promiseLoading: state.user.promise.isLoading,

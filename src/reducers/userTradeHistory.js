@@ -1,5 +1,6 @@
 import {
   FETCH_TRADE_HISTORY_SUCCESS,
+  FETCH_TRADE_HISTORY_DOWNLOAD_URL_SUCCESS,
   TRADE_HISTORY_ACTIVE_EXCHANGE,
   TRADE_HISTORY_ACTIVE_EXCHANGE_RESET,
   TRADE_HISTORY_ADD_NOTE_SUCCESS,
@@ -12,7 +13,8 @@ const initialState = {
   data: [],
   activeTrade: null,
   sortBy: null,
-  filterBy: {}
+  filterBy: {},
+  downloadUrl: null
 }
 
 const userTradeHistoryReducer = (state, action) => {
@@ -24,6 +26,10 @@ const userTradeHistoryReducer = (state, action) => {
     case FETCH_TRADE_HISTORY_SUCCESS:
       return Object.assign({}, state, {
         data: action.payload
+      });
+    case FETCH_TRADE_HISTORY_DOWNLOAD_URL_SUCCESS:
+      return Object.assign({}, state, {
+        downloadUrl: action.payload
       });
     case TRADE_HISTORY_ACTIVE_EXCHANGE:
       return {

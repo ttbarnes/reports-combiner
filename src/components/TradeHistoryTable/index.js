@@ -8,12 +8,14 @@ class TradeHistoryTable extends PureComponent {
     const {
       tradeHistory,
       tradeHistoryFilteredSorted,
+      onClickDownloadButton,
       onClickAddNoteButton,
       activeSortBy,
       onSetSortBy
     } = this.props;
 
-    const hasTrades = tradeHistory.fields.length &&
+    const hasTrades = tradeHistory.fields &&
+                      tradeHistory.fields.length &&
                       tradeHistoryFilteredSorted &&
                       tradeHistoryFilteredSorted.length;
 
@@ -22,10 +24,19 @@ class TradeHistoryTable extends PureComponent {
         {hasTrades ?
           <div>
             <div className="table-header">
-              <h4 className="heading-with-bg">All Trade History</h4>
+              <div>
+                <h4 className="heading-with-bg">All Trade History</h4>
+                <button
+                  className="small"
+                  onClick={onClickDownloadButton}
+                  >download
+                </button>
+              </div>
+              <div>
               <p>
                 <small>{tradeHistoryFilteredSorted.length} out of {tradeHistory.trades.length} trades</small>
               </p>
+              </div>
             </div>
 
             <table>
