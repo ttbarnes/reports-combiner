@@ -4,8 +4,9 @@ import Modal from '../Modal';
 import Loading from '../Loading';
 import { userUpdate } from '../../actions/user'
 import { hideSubSubscriptionModal } from '../../actions/uiState';
+import { Step1, Step2, Step3 } from './steps';
 
-class SubscribeModal extends Component {
+export class SubscribeModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -50,41 +51,22 @@ class SubscribeModal extends Component {
         isOpen={modalIsOpen}
         onClose={this.handleOnClose}
       >
-      {step === 1 &&
-        <div className="align-center">
-          <h1>Premium subscription required</h1>
-          <p>Register for premium to get:</p>
-          <ul>
-            <li>Unlimated exchanges</li>
-            <li>Unlimated CSV/PDF rows</li>
-            <li>Add notes</li>
-            <li>Statistics</li>
-            <li>Etc</li>
-          </ul>
-          <button onClick={this.handleStepChange}>Subscribe today</button>
-        </div>
-      }
-      {step === 2 &&
-        <div className="align-center">
-          <h1>Premium subscription</h1>
-          <p>£1.23 p/month</p>
-
-          <button onClick={this.handlePayment}>Mock send payment</button>
-        </div>
-      }
-      {(step === 3 && promiseSuccess) &&
-        <div className="align-center">
-          <h1>Thank you</h1>
-          <p>We hope you enjoy! :)</p>
-        </div>
-      }
- 
-      {promiseLoading &&
-        <Loading />
-      }
-      {promiseError &&
-        <p className="form-error">Sorry, something has gone wrong :(</p>
-      }
+        {step === 1 &&
+          <Step1 onButtonClick={this.handlePayment} />
+        }
+        {step === 2 &&
+          <Step2 onButtonClick={this.handlePayment} />
+        }
+        {(step === 3 && promiseSuccess) &&
+          <Step3 />
+        }
+  
+        {promiseLoading &&
+          <Loading />
+        }
+        {promiseError &&
+          <p className="form-error">Sorry, something has gone wrong :(</p>
+        }
         
       </Modal>
     )

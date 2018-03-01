@@ -56,7 +56,7 @@ class TradeHistoryTableHeadCell extends PureComponent {
   }
 
   render() {
-    const { field, activeSortBy } = this.props;
+    const { field } = this.props;
     const canSort = FILTERS_ALLOWED_FIELDS.includes(field);
     return (
       canSort ?

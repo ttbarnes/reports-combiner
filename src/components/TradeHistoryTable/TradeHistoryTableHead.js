@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import TradeHistoryTableHeadCell from './TradeHistoryTableHeadCell';
 
 const TradeHistoryTableHead = ({ headings, activeSortBy, onSetSortBy}) => (
