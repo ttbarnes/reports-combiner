@@ -27,7 +27,7 @@ class TradeHistoryTable extends PureComponent {
               <div>
                 <h4 className="heading-with-bg">All Trade History</h4>
                 <button
-                  className="small"
+                  className="small button-as-link"
                   onClick={onClickDownloadButton}
                   >download
                 </button>
