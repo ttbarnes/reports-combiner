@@ -18,6 +18,7 @@ import {
 } from '../constants';
 import { shouldShowSubscribe } from '../utils';
 import { showSubSubscriptionModal, hideSubSubscriptionModal } from './uiState';
+import { resetTradeHistory } from './userTradeHistory';
 
 export function promiseLoading(payload) {
   return {
@@ -245,6 +246,7 @@ export const logout = () => {
   return (dispatch) => {
     localStorage.removeItem('token');
     dispatch(setUserAuth(false));
+    dispatch(resetTradeHistory());
   }
 }
 

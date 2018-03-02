@@ -11,6 +11,7 @@ import {
   TRADE_HISTORY_SET_SORT_BY,
   TRADE_HISTORY_SET_FILTER_BY,
   TRADE_HISTORY_FILTER_BY_SORT_BY_RESET,
+  TRADE_HISTORY_RESET,
   API_TRADE_HISTORY_DOWNLOAD_URL
 } from '../constants';
 import {
@@ -76,6 +77,12 @@ export function fetchUserTradeHistoryDownloadUrlSuccess(payload) {
   return {
     type: FETCH_TRADE_HISTORY_DOWNLOAD_URL_SUCCESS,
     payload
+  }
+}
+
+export function resetTradeHistory() {
+  return {
+    type: TRADE_HISTORY_RESET
   }
 }
 

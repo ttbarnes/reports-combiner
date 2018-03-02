@@ -6,7 +6,8 @@ import {
   TRADE_HISTORY_ADD_NOTE_SUCCESS,
   TRADE_HISTORY_SET_SORT_BY,
   TRADE_HISTORY_SET_FILTER_BY,
-  TRADE_HISTORY_FILTER_BY_SORT_BY_RESET
+  TRADE_HISTORY_FILTER_BY_SORT_BY_RESET,
+  TRADE_HISTORY_RESET
 } from '../constants';
 
 const initialState = {
@@ -15,7 +16,7 @@ const initialState = {
   sortBy: null,
   filterBy: {},
   downloadUrl: null
-}
+};
 
 const userTradeHistoryReducer = (state, action) => {
   if (typeof state === 'undefined') {
@@ -62,6 +63,8 @@ const userTradeHistoryReducer = (state, action) => {
         sortBy: initialState.sortBy,
         filterBy: initialState.filterBy
       }
+    case TRADE_HISTORY_RESET:
+      return initialState;
     default:
       return state;
   }
