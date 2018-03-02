@@ -6,7 +6,7 @@ export const MAX_FREE_KEYS = 2;
 export const API_USER_EXCHANGE_KEYS = `${API_ROOT}/user/exchange-keys`;
 export const API_TRADE_HISTORY = 'trade-history';
 export const API_TRADE_HISTORY_NOTE = `${API_TRADE_HISTORY}/note`;
-export const API_TRADE_HISTORY_DOWNLOAD_URL = `${API_ROOT}/poc/combined-history/local/download`;
+export const API_TRADE_HISTORY_DOWNLOAD_URL = `${API_ROOT}/poc/master-history/local/download`;
 
 export const SUBSCRIPTION_PREMIUM = 'premium';
 export const EXCHANGES_MAP = [

@@ -29,7 +29,7 @@ class History extends Component {
     const { user, tradeHistory, tradeHistoryDownloadUrl } = this.props;
     const shouldGetTradeHistory = user.profile !== nextProps.user.profile &&
                                   nextProps.user.profile._id &&
-                                  nextProps.user.profile.keys.length &&
+                                  nextProps.user.profile.keys.length && 
                                   !tradeHistory.fields;
     if (shouldGetTradeHistory) {
       this.props.onGetTradeHistory();
